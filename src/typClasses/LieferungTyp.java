@@ -9,5 +9,6 @@ package typClasses;
  */
 public class LieferungTyp {
     public int getBestellNr() {
+        return 0; // todo
     }
 }

@@ -1,5 +1,7 @@
 package adapter;
 
+import komponentenInterfaces.intern.IPersitenz;
+
 /**
  * Created with IntelliJ IDEA.
  * User: aaz527
@@ -7,5 +9,5 @@ package adapter;
  * Time: 13:30
  * To change this template use File | Settings | File Templates.
  */
-public class PersistenzAdapter {
+public class PersistenzAdapter implements IPersitenz {
 }

@@ -1,5 +1,7 @@
 package adapter;
 
+import komponentenInterfaces.intern.IBankAdapter;
+
 /**
  * Created with IntelliJ IDEA.
  * User: aaz527
@@ -7,5 +9,5 @@ package adapter;
  * Time: 13:31
  * To change this template use File | Settings | File Templates.
  */
-public class BankAdapter {
+public class BankAdapter implements IBankAdapter {
 }
