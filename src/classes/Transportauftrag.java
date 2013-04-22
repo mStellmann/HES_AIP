@@ -31,16 +31,8 @@ public class Transportauftrag implements ITransportauftrag {
         return transportauftragsNummer;
     }
 
-    public void setTransportauftragsNummer(int transportauftragsNummer) {
-        this.transportauftragsNummer = transportauftragsNummer;
-    }
-
     public Date getAusgangsdatum() {
         return ausgangsdatum;
-    }
-
-    public void setAusgangsdatum(Date ausgangsdatum) {
-        this.ausgangsdatum = ausgangsdatum;
     }
 
     public boolean isLieferungErfolgt() {
@@ -63,15 +55,23 @@ public class Transportauftrag implements ITransportauftrag {
         return transportdienstleister;
     }
 
-    public void setTransportdienstleister(String transportdienstleister) {
-        this.transportdienstleister = transportdienstleister;
-    }
-
     public ILieferung getLieferung() {
         return lieferung;
     }
 
     public void setLieferung(ILieferung lieferung) {
         this.lieferung = lieferung;
+    }
+
+    public void setTransportauftragsNummer(int transportauftragsNummer) {
+        this.transportauftragsNummer = transportauftragsNummer;
+    }
+
+    public void setAusgangsdatum(Date ausgangsdatum) {
+        this.ausgangsdatum = ausgangsdatum;
+    }
+
+    public void setTransportdienstleister(String transportdienstleister) {
+        this.transportdienstleister = transportdienstleister;
     }
 }

@@ -1,5 +1,7 @@
 package adapter;
 
+import interfaces.ILieferung;
+import interfaces.ITransportauftrag;
 import komponentenInterfaces.intern.ITransportdienstleisterAdapter;
 
 /**
@@ -8,4 +10,8 @@ import komponentenInterfaces.intern.ITransportdienstleisterAdapter;
  * Time: 20:15
  */
 public class TransportdienstleisterAdapter implements ITransportdienstleisterAdapter {
+    @Override
+    public ITransportauftrag erstelleTransportauftrag(int transportauftragsNummer, String transportdienstleister, ILieferung lieferung) {
+        return null;  // todo
+    }
 }

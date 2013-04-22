@@ -6,6 +6,7 @@ import komponentenInterfaces.extern.IBuchhaltungsverwaltungExtern;
 import komponentenInterfaces.intern.IAuftragsverwaltungIntern;
 import komponentenInterfaces.intern.IBankAdapter;
 import komponentenInterfaces.intern.IBuchhaltungsverwaltungIntern;
+import komponentenInterfaces.intern.IPersitenz;
 import komponentenLogik.BuchhaltungLogik;
 import komponentenRepositories.BuchhaltungsverwaltungRepository;
 
@@ -32,8 +33,8 @@ public class BuchhaltungverwaltungFassade implements IBuchhaltungsverwaltungInte
     private BuchhaltungsverwaltungRepository repository;
     private BuchhaltungLogik logik;
 
-    public BuchhaltungverwaltungFassade(IBankAdapter bankAdapter, IAuftragsverwaltungIntern auftragsverwaltungIntern) {
-        this.repository = new BuchhaltungsverwaltungRepository();
+    public BuchhaltungverwaltungFassade(IBankAdapter bankAdapter, IAuftragsverwaltungIntern auftragsverwaltungIntern, IPersitenz persitenz) {
+        this.repository = new BuchhaltungsverwaltungRepository(persitenz);
         this.logik = new BuchhaltungLogik(bankAdapter, auftragsverwaltungIntern, repository);
     }
 }

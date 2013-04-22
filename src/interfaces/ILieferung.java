@@ -8,4 +8,9 @@ package interfaces;
  * To change this template use File | Settings | File Templates.
  */
 public interface ILieferung {
+    int getLieferungsNummer();
+
+    ITransportauftrag getTransportauftrag();
+
+    void setTransportauftrag(ITransportauftrag transportauftrag);
 }

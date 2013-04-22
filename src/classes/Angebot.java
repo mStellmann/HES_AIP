@@ -31,34 +31,21 @@ public class Angebot implements IAngebot {
         this.produktMengeMap = produktMengeMap;
     }
 
-    public Angebot(int angebotsNummer, Date gueltigAb, Date gueltigBis, float gesamtPreis) {
+    public Angebot(int angebotsNummer, Date gueltigAb, Date gueltigBis) {
         this.angebotsNummer = angebotsNummer;
         this.gueltigAb = gueltigAb;
         this.gueltigBis = gueltigBis;
-        this.gesamtPreis = gesamtPreis;
     }
 
     public Angebot() {
-    }
-
-    public void setAngebotsNummer(int angebotsNummer) {
-        this.angebotsNummer = angebotsNummer;
     }
 
     public Date getGueltigAb() {
         return gueltigAb;
     }
 
-    public void setGueltigAb(Date gueltigAb) {
-        this.gueltigAb = gueltigAb;
-    }
-
     public Date getGueltigBis() {
         return gueltigBis;
-    }
-
-    public void setGueltigBis(Date gueltigBis) {
-        this.gueltigBis = gueltigBis;
     }
 
     public float getGesamtPreis() {
@@ -101,5 +88,17 @@ public class Angebot implements IAngebot {
     @Override
     public void addProduktMenge(IProdukt produkt, int Menge) {
         // todo
+    }
+
+    public void setAngebotsNummer(int angebotsNummer) {
+        this.angebotsNummer = angebotsNummer;
+    }
+
+    public void setGueltigAb(Date gueltigAb) {
+        this.gueltigAb = gueltigAb;
+    }
+
+    public void setGueltigBis(Date gueltigBis) {
+        this.gueltigBis = gueltigBis;
     }
 }

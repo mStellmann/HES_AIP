@@ -5,6 +5,7 @@
 - main() - für simuation
 - Diagramme erstellen mit Tools
 - Präsentation erstellen
+- jede Klasse: implements Serializable
 
 G*: Lagerverwaltung & Einkaufsverwaltung
 Roman: Produktverwaltung, Kundenverwaltung & Lieferantenverwaltung

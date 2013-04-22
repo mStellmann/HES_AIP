@@ -2,10 +2,7 @@ package komponentenFassaden;
 
 import interfaces.ILieferung;
 import komponentenInterfaces.extern.IAuftragsverwaltungExtern;
-import komponentenInterfaces.intern.IAngebotsverwaltungIntern;
-import komponentenInterfaces.intern.IAuftragsverwaltungIntern;
-import komponentenInterfaces.intern.ILagerverwaltungIntern;
-import komponentenInterfaces.intern.ITransportdienstleisterAdapter;
+import komponentenInterfaces.intern.*;
 import komponentenLogik.AuftragsverwaltungLogik;
 import komponentenRepositories.AuftragsverwaltungRepository;
 import typClasses.AngebotTyp;
@@ -26,8 +23,8 @@ public class AuftragsverwaltungFassade implements IAuftragsverwaltungIntern, IAu
     private AuftragsverwaltungLogik logik;
     private AuftragsverwaltungRepository repository;
 
-    public AuftragsverwaltungFassade(IAngebotsverwaltungIntern angebotsverwaltungIntern, ILagerverwaltungIntern lagerverwaltungIntern, ITransportdienstleisterAdapter transportdienstleisterAdapter) {
-        repository = new AuftragsverwaltungRepository();
+    public AuftragsverwaltungFassade(IAngebotsverwaltungIntern angebotsverwaltungIntern, ILagerverwaltungIntern lagerverwaltungIntern, ITransportdienstleisterAdapter transportdienstleisterAdapter, IPersitenz persitenz) {
+        repository = new AuftragsverwaltungRepository(persitenz);
         logik = new AuftragsverwaltungLogik(angebotsverwaltungIntern, lagerverwaltungIntern, transportdienstleisterAdapter, repository);
     }
 

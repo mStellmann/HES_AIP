@@ -39,10 +39,6 @@ public class Auftrag implements IAuftrag {
         return auftragsNummer;
     }
 
-    public void setAuftragsNummer(int auftragsNummer) {
-        this.auftragsNummer = auftragsNummer;
-    }
-
     public boolean isIstAbgeschlossen() {
         return istAbgeschlossen;
     }
@@ -53,10 +49,6 @@ public class Auftrag implements IAuftrag {
 
     public Date getBeauftragtAm() {
         return beauftragtAm;
-    }
-
-    public void setBeauftragtAm(Date beauftragtAm) {
-        this.beauftragtAm = beauftragtAm;
     }
 
     public IAngebot getAngebot() {
@@ -81,5 +73,13 @@ public class Auftrag implements IAuftrag {
 
     public void setRechnung(IRechnung rechnung) {
         this.rechnung = rechnung;
+    }
+
+    public void setAuftragsNummer(int auftragsNummer) {
+        this.auftragsNummer = auftragsNummer;
+    }
+
+    public void setBeauftragtAm(Date beauftragtAm) {
+        this.beauftragtAm = beauftragtAm;
     }
 }

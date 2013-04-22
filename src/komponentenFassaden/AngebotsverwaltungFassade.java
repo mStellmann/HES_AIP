@@ -3,6 +3,7 @@ package komponentenFassaden;
 import komponentenInterfaces.extern.IAngebotsverwaltungExtern;
 import komponentenInterfaces.intern.IAngebotsverwaltungIntern;
 import komponentenInterfaces.intern.IKundenverwaltungIntern;
+import komponentenInterfaces.intern.IPersitenz;
 import komponentenInterfaces.intern.IProduktverwaltungIntern;
 import komponentenLogik.AngebotsverwaltungLogik;
 import komponentenRepositories.AngebotsverwaltungRepository;
@@ -24,8 +25,8 @@ public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAn
     private AngebotsverwaltungRepository repository;
     private AngebotsverwaltungLogik logik;
 
-    public AngebotsverwaltungFassade(IProduktverwaltungIntern produktverwaltungIntern, IKundenverwaltungIntern kundenverwaltungIntern) {
-        repository = new AngebotsverwaltungRepository();
+    public AngebotsverwaltungFassade(IProduktverwaltungIntern produktverwaltungIntern, IKundenverwaltungIntern kundenverwaltungIntern, IPersitenz persitenz) {
+        repository = new AngebotsverwaltungRepository(persitenz);
         logik = new AngebotsverwaltungLogik(produktverwaltungIntern, kundenverwaltungIntern, repository);
     }
 
