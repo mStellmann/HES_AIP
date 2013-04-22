@@ -1,0 +1,11 @@
+- Funktionalität implementieren (Sezanrio)
+- Klassenannotationen für Hibernate
+- Adapter implementieren
+- jede Klasse -> JUnit tests
+- main() - für simuation
+- Diagramme erstellen mit Tools
+- Präsentation erstellen
+
+G*: Lagerverwaltung & Einkaufsverwaltung
+Roman: Produktverwaltung, Kundenverwaltung & Lieferantenverwaltung
+Matthis: Auftragsverwaltung, Angebotsverwaltung & Buchhaltungsverwaltung
