@@ -8,7 +8,24 @@ package typClasses;
  * To change this template use File | Settings | File Templates.
  */
 public class LieferungTyp {
+    private final int lieferungsNummer;
+
+    private final TransportauftragTyp transportauftrag;
+
+    public LieferungTyp(TransportauftragTyp transportauftrag, int lieferungsNummer) {
+        this.transportauftrag = transportauftrag;
+        this.lieferungsNummer = lieferungsNummer;
+    }
+
+    public int getLieferungsNummer() {
+        return lieferungsNummer;
+    }
+
+    public TransportauftragTyp getTransportauftrag() {
+        return transportauftrag;
+    }
+
     public int getBestellNr() {
-        return 0; // todo
+        return 0; // todo  - HAE WARUM ?!?!?!
     }
 }

@@ -1,5 +1,7 @@
 package typClasses;
 
+import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * User: abe263
@@ -8,4 +10,26 @@ package typClasses;
  * To change this template use File | Settings | File Templates.
  */
 public class ZahlungseingangTyp {
+    private final Date eingangsdatum;
+    private final float betrag;
+
+    private final RechnungTyp rechnung;
+
+    public ZahlungseingangTyp(Date eingangsdatum, float betrag, RechnungTyp rechnung) {
+        this.eingangsdatum = eingangsdatum;
+        this.betrag = betrag;
+        this.rechnung = rechnung;
+    }
+
+    public Date getEingangsdatum() {
+        return eingangsdatum;
+    }
+
+    public float getBetrag() {
+        return betrag;
+    }
+
+    public RechnungTyp getRechnung() {
+        return rechnung;
+    }
 }
