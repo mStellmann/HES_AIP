@@ -10,7 +10,7 @@ import java.util.Date;
  */
 public class Wareneingangsmeldung implements IWareneingangsmeldung {
     private Date datum;
-    private int menge;
+    //private int menge;
     private int bestellNr;
 
     private IProdukt produkt;

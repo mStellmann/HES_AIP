@@ -1,5 +1,6 @@
 package komponentenLogik;
 
+import classes.Warenausgangsmeldung;
 import classes.Wareneingangsmeldung;
 import komponentenInterfaces.intern.IEinkaufsverwaltungIntern;
 import komponentenInterfaces.intern.IProduktverwaltungIntern;
@@ -29,11 +30,14 @@ public class LagerverwaltungLogik {
     }
 
     public void produktAusliefern(int warenNr) {
-        if (istAusreichendVorhanden(warenNr)) {
-            ProduktTyp produkt = getProduktTyp(warenNr);
+        ProduktTyp produkt = getProduktTyp(warenNr);
+        if (istAusreichendVorhanden(warenNr, produkt.getMenge())) {
+
+            Warenausgangsmeldung warenausgangsmeldung = repository.createWarenausgangsmeldung(produkt.getMenge(), new Date());
         } else {
             LieferungTyp lieferung = wareBestellen(warenNr);
             Wareneingangsmeldung wareneingangsmeldung = repository.createWareneingangsmeldung(lieferung.getBestellNr(), new Date()); //Date platzhalter für JodaTime
+            produktAusliefern(warenNr); // da jetzt vorhanden wird eine warenausgangsmeldung erzeugt.
         }
     }
 
@@ -41,8 +45,8 @@ public class LagerverwaltungLogik {
         return einkaufsverwaltung.wareBestellen(warenNr);
     }
 
-    private boolean istAusreichendVorhanden(int warenNr) {
-        return produktverwaltung.istAusreichendVorhanden(warenNr);
+    private boolean istAusreichendVorhanden(int warenNr,int menge) {
+        return produktverwaltung.istAusreichendVorhanden(warenNr,menge);
     }
 
     private ProduktTyp getProduktTyp(int warenNr) {
