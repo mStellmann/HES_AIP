@@ -17,7 +17,7 @@ public class LagerverwaltungRepository {
         return new Wareneingangsmeldung(bestellNr, datum);
     }
 
-    public Warenausgangsmeldung createWarenausgangsmeldung() {
-        return new Warenausgangsmeldung();
+    public Warenausgangsmeldung createWarenausgangsmeldung(int menge, Date datum) {
+        return new Warenausgangsmeldung(menge,datum);
     }
 }
