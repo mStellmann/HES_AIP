@@ -8,7 +8,7 @@ package interfaces;
  * To change this template use File | Settings | File Templates.
  */
 public interface IAngebot {
-    int getAngebotNr();
+    int getAngebotsNummer();
 
     void addProduktMenge(IProdukt produkt, int Menge);
 }

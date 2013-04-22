@@ -21,9 +21,81 @@ public class Angebot implements IAngebot {
     private IAuftrag auftrag;
     private Map<IProdukt, Integer> produktMengeMap;
 
+    public Angebot(int angebotsNummer, Date gueltigAb, float gesamtPreis, Date gueltigBis, IKunde kunde, IAuftrag auftrag, Map<IProdukt, Integer> produktMengeMap) {
+        this.angebotsNummer = angebotsNummer;
+        this.gueltigAb = gueltigAb;
+        this.gesamtPreis = gesamtPreis;
+        this.gueltigBis = gueltigBis;
+        this.kunde = kunde;
+        this.auftrag = auftrag;
+        this.produktMengeMap = produktMengeMap;
+    }
+
+    public Angebot(int angebotsNummer, Date gueltigAb, Date gueltigBis, float gesamtPreis) {
+        this.angebotsNummer = angebotsNummer;
+        this.gueltigAb = gueltigAb;
+        this.gueltigBis = gueltigBis;
+        this.gesamtPreis = gesamtPreis;
+    }
+
+    public Angebot() {
+    }
+
+    public void setAngebotsNummer(int angebotsNummer) {
+        this.angebotsNummer = angebotsNummer;
+    }
+
+    public Date getGueltigAb() {
+        return gueltigAb;
+    }
+
+    public void setGueltigAb(Date gueltigAb) {
+        this.gueltigAb = gueltigAb;
+    }
+
+    public Date getGueltigBis() {
+        return gueltigBis;
+    }
+
+    public void setGueltigBis(Date gueltigBis) {
+        this.gueltigBis = gueltigBis;
+    }
+
+    public float getGesamtPreis() {
+        return gesamtPreis;
+    }
+
+    public void setGesamtPreis(float gesamtPreis) {
+        this.gesamtPreis = gesamtPreis;
+    }
+
+    public IKunde getKunde() {
+        return kunde;
+    }
+
+    public void setKunde(IKunde kunde) {
+        this.kunde = kunde;
+    }
+
+    public IAuftrag getAuftrag() {
+        return auftrag;
+    }
+
+    public void setAuftrag(IAuftrag auftrag) {
+        this.auftrag = auftrag;
+    }
+
+    public Map<IProdukt, Integer> getProduktMengeMap() {
+        return produktMengeMap;
+    }
+
+    public void setProduktMengeMap(Map<IProdukt, Integer> produktMengeMap) {
+        this.produktMengeMap = produktMengeMap;
+    }
+
     @Override
-    public int getAngebotNr() {
-        return 0;  // todo
+    public int getAngebotsNummer() {
+        return angebotsNummer;
     }
 
     @Override
