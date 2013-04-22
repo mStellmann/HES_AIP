@@ -1,5 +1,6 @@
 package komponentenFassaden;
 
+import interfaces.IAuftrag;
 import interfaces.ILieferung;
 import komponentenInterfaces.extern.IAuftragsverwaltungExtern;
 import komponentenInterfaces.intern.*;
@@ -30,12 +31,12 @@ public class AuftragsverwaltungFassade implements IAuftragsverwaltungIntern, IAu
 
     @Override
     public AuftragTyp erstelleAuftrag(int auftragsNummer, Date beauftragtAm, AngebotTyp angebot, LieferungTyp lieferung, RechnungTyp rechnung) {
-        return null;  // todo
+        return null;  // todo  -> LOGIK aufrufen für das erstellen.. Typ->Interface
     }
 
     @Override
-    public ILieferung erstelleLieferung(int auftragsNummer) {
-        return null;  // todo
+    public ILieferung erstelleLieferung(int lieferungsNummer) {
+        return repository.erstelleLieferung(lieferungsNummer);
     }
 
     @Override

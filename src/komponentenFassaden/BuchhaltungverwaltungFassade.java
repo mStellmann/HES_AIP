@@ -20,21 +20,23 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public class BuchhaltungverwaltungFassade implements IBuchhaltungsverwaltungIntern, IBuchhaltungsverwaltungExtern {
-    @Override
-    public IRechnung erstelleRechnung(int rechnungsNummer, Date rechnungsDatum, IAuftrag auftrag) {
-        return null;  // todo
-    }
-
-    @Override
-    public void markiereRechnungAlsBezahlt(int rechnungsNummer) {
-        // todo
-    }
-
     private BuchhaltungsverwaltungRepository repository;
     private BuchhaltungLogik logik;
 
     public BuchhaltungverwaltungFassade(IBankAdapter bankAdapter, IAuftragsverwaltungIntern auftragsverwaltungIntern, IPersitenz persitenz) {
         this.repository = new BuchhaltungsverwaltungRepository(persitenz);
         this.logik = new BuchhaltungLogik(bankAdapter, auftragsverwaltungIntern, repository);
+    }
+
+    @Override
+    public IRechnung erstelleRechnung(int rechnungsNummer, Date rechnungsDatum, IAuftrag auftrag) {
+        IRechnung rechnung = repository.erstelleRechnung(rechnungsNummer, rechnungsDatum);
+        rechnung.setAuftrag(auftrag);
+        return rechnung;
+    }
+
+    @Override
+    public void markiereRechnungAlsBezahlt(int rechnungsNummer) {
+        repository.getRechnung(rechnungsNummer).setIstBezahlt(true);
     }
 }

@@ -7,7 +7,7 @@ import interfaces.ILieferung;
  *
  */
 public interface IAuftragsverwaltungIntern {
-    ILieferung erstelleLieferung(int auftragsNummer);
+    ILieferung erstelleLieferung(int lieferungsNummer);
 
     void markiereAuftragAlsVerschickt(int auftragsNummer);
 

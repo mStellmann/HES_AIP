@@ -1,9 +1,16 @@
 package komponentenLogik;
 
+import interfaces.IAuftrag;
 import komponentenInterfaces.intern.IAngebotsverwaltungIntern;
 import komponentenInterfaces.intern.ILagerverwaltungIntern;
 import komponentenInterfaces.intern.ITransportdienstleisterAdapter;
 import komponentenRepositories.AuftragsverwaltungRepository;
+import typClasses.AngebotTyp;
+import typClasses.AuftragTyp;
+import typClasses.LieferungTyp;
+import typClasses.RechnungTyp;
+
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,5 +31,9 @@ public class AuftragsverwaltungLogik {
         this.repository = auftragsverwaltungRepository;
         this.lagerverwaltungIntern = lagerverwaltungIntern;
         this.transportdienstleisterAdapter = transportdienstleisterAdapter;
+    }
+
+    public IAuftrag erstelleAuftrag(int auftragsNummer, Date beauftragtAm, AngebotTyp angebot, LieferungTyp lieferung, RechnungTyp rechnung) {
+        return null;  // todo
     }
 }
