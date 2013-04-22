@@ -23,6 +23,11 @@ public class Angebot implements IAngebot {
 
     @Override
     public int getAngebotNr() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return 0;  // todo
+    }
+
+    @Override
+    public void addProduktMenge(IProdukt produkt, int Menge) {
+        // todo
     }
 }

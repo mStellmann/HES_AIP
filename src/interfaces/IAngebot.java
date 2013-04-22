@@ -9,4 +9,6 @@ package interfaces;
  */
 public interface IAngebot {
     int getAngebotNr();
+
+    void addProduktMenge(IProdukt produkt, int Menge);
 }

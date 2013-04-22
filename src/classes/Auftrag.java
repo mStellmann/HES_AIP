@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class Auftrag implements IAuftrag {
     private int auftragsNummer;
-    private boolean istAbgeschlossen;
+    private boolean istAbgeschlossen = false;
     private Date beauftragtAm;
 
     private IAngebot angebot;
