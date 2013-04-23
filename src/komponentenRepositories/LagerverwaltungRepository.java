@@ -1,5 +1,6 @@
 package komponentenRepositories;
 
+import classes.Angebot;
 import classes.Warenausgangsmeldung;
 import classes.Wareneingangsmeldung;
 import interfaces.IBestellung;
@@ -25,16 +26,44 @@ public class LagerverwaltungRepository {
 
     }
 
+     // Creates
     public IWareneingangsmeldung createWareneingangsmeldung(int bestellNr, Date datum, IBestellung bestellung) {
-        return new Wareneingangsmeldung(bestellNr, datum, bestellung);
+        Wareneingangsmeldung wareneingangsmeldung = new Wareneingangsmeldung(bestellNr, datum, bestellung);
+        save(wareneingangsmeldung);
+        return wareneingangsmeldung;
     }
 
+
+
     public IWarenausgangsmeldung createWarenausgangsmeldung(int menge, Date datum, IProdukt produkt) {
-        return new Warenausgangsmeldung(menge, datum, produkt);
+        Warenausgangsmeldung warenausgangsmeldung = new Warenausgangsmeldung(menge, datum, produkt);
+        save(warenausgangsmeldung);
+        return warenausgangsmeldung;
     }
 
     // Saves
     private <T> void save(T lagerMeldung) {
         persistenz.saveObject(lagerMeldung);
     }
+
+    // Updates
+    public void Wareneingangsmeldung(IWareneingangsmeldung wareneingangsmeldung) {
+        persistenz.updateObject(wareneingangsmeldung);
+    }
+    public void Warenausgangsmeldung(IWarenausgangsmeldung warenausgangsmeldung) {
+        persistenz.updateObject(warenausgangsmeldung);
+    }
+
+    // Getter
+    public IWareneingangsmeldung getWareneingangsmeldung(int id){
+        return persistenz.getObjectByID(id, Wareneingangsmeldung.class);
+    }
+
+    public IWarenausgangsmeldung getWarenausgangsmeldung(int id){
+        return persistenz.getObjectByID(id, Warenausgangsmeldung.class);
+    }
+
+
+
+
 }
