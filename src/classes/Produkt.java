@@ -20,6 +20,7 @@ public class Produkt implements IProdukt, Serializable {
     @Column(nullable = false)
     private int lagerbestand;
     @OneToOne //(mappedBy = "Produkt")
+    @JoinColumn(name = "orderbuch")
     private Orderbuch orderbuch;
     @OneToMany(mappedBy = "Produkt")
     private List<IWarenausgangsmeldung> warenausgangsmeldungList;
@@ -28,6 +29,7 @@ public class Produkt implements IProdukt, Serializable {
     @OneToMany(mappedBy = "Produkt")
     private List<IBestellung> bestellungList;
     @ManyToMany //(mappedBy = "Produkt")
+    @JoinColumn(name = "angebotList")
     private List<IAngebot> angebotList;
 
 

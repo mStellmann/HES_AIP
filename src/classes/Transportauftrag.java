@@ -26,6 +26,7 @@ public class Transportauftrag implements ITransportauftrag, Serializable {
     @Column(nullable = false)
     private String transportdienstleister;
     @OneToOne
+    @JoinColumn(name = "lieferung")
     private ILieferung lieferung;
 
     public Transportauftrag(Date ausgangsdatum, String transportdienstleister) {

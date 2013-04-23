@@ -20,6 +20,7 @@ public class Orderbuch implements IOrderbuch, Serializable {
     private int id;
     @Column(nullable = false)
     @OneToOne
+    @JoinColumn(name = "produkt")
     private IProdukt produkt;
     @OneToMany(mappedBy = "Orderbuch")
     private List<IOrderbuchsatz> orderbuchsatzList;
