@@ -18,12 +18,17 @@ public class KundenverwaltungFassade implements IKundenverwaltungIntern, IKunden
     //private ProduktverwaltungLogik logik;
     private KundenverwaltungRepository repository;
 
-    public KundenverwaltungFassade(IPersitenz persistenz){
+    public KundenverwaltungFassade(IPersitenz persistenz) {
         this.repository = new KundenverwaltungRepository(persistenz);
     }
 
     @Override
     public IKunde getKunde(int kundenNummer) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return repository.getKunde(kundenNummer);  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public IKunde createKunde(String name, String adresse) {
+        return repository.erstelleKunde(name, adresse);
     }
 }

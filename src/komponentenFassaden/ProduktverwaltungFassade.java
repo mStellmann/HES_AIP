@@ -34,6 +34,11 @@ public class ProduktverwaltungFassade implements IProduktverwaltungIntern, IProd
 
     @Override
     public IProdukt getProdukt(int warenNr) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return repository.getProdukt(warenNr);  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public IProdukt createProdukt(String name, int lagerbestand) {
+        return repository.erstelleProdukt(name,lagerbestand);  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

@@ -12,4 +12,6 @@ public interface IProduktverwaltungIntern {
     boolean nrIstVorhanden(int warenNr);
 
     IProdukt getProdukt(int warenNr);
+
+    IProdukt createProdukt(String name, int lagerbestand);
 }
