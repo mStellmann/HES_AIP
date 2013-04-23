@@ -3,17 +3,30 @@ package classes;
 import interfaces.IRechnung;
 import interfaces.IZahlungseingang;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  */
+
+@Entity
+@Table(name = "Zahlungseingang")
 public class Zahlungseingang implements IZahlungseingang, Serializable {
+
+    @Id
+    @GeneratedValue
     private int zahlungseingangID;
+    @Column(nullable = false)
+    @Temporal(value = TemporalType.DATE)
     private Date eingangsdatum;
+    @Column(nullable = false)
     private float betrag;
 
+
+    @ManyToOne
+    @JoinColumn(name = "rechnung")
     private IRechnung rechnung;
 
     public Zahlungseingang(Date eingangsdatum, float betrag) {
