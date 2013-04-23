@@ -1,15 +1,11 @@
 package adapter;
 
 import komponentenInterfaces.intern.IPersitenz;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-/**
- * Created with IntelliJ IDEA.
- * User: aaz527
- * Date: 19.04.13
- * Time: 13:30
- * To change this template use File | Settings | File Templates.
- */
+
 public class PersistenzAdapter implements IPersitenz {
     private Session session;
 
@@ -19,16 +15,44 @@ public class PersistenzAdapter implements IPersitenz {
 
     @Override
     public <T> void saveObject(T objectToSave) {
-        // todo
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.save(objectToSave);
+            transaction.commit();
+        } catch (HibernateException ex) {
+            transaction.rollback();
+            ex.printStackTrace();
+        }
     }
 
     @Override
-    public <T> T getObject(int id, Class<T> tClass) {
-        return null;  // todo
+    public <T> T getObjectByID(int id, Class<T> tClass) {
+        Transaction transaction = null;
+        T obj = null;
+        try {
+            transaction = session.beginTransaction();
+            obj = (T) session.get(tClass, id);
+            transaction.commit();
+
+        } catch (HibernateException ex) {
+            transaction.rollback();
+            ex.printStackTrace();
+        }
+        return obj;
     }
 
     @Override
-    public <T> void updateObject(int id, Class<T> tClass) {
-        // todo
+    public <T> void updateObject(T objectToUpdate) {
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(objectToUpdate);
+            transaction.commit();
+
+        } catch (HibernateException ex) {
+            transaction.rollback();
+            ex.printStackTrace();
+        }
     }
 }

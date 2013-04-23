@@ -8,7 +8,7 @@ package komponentenInterfaces.intern;
 public interface IPersitenz {
     <T> void saveObject(T objectToSave);
 
-    <T> T getObject(int id, Class<T> tClass);
+    <T> T getObjectByID(int id, Class<T> tClass);
 
-    <T> void updateObject(int id, Class<T> tClass);
+    <T> void updateObject(T objectToUpdate);
 }

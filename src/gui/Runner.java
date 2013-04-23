@@ -38,7 +38,6 @@ public class Runner {
         // -----------------------------
         session.close();
     }
-
 }
 
 
