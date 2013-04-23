@@ -30,7 +30,7 @@ public class AngebotsverwaltungLogik {
         repository.getAngebot(angebot.getAngebotsNummer()).addProduktMenge(produktVar, menge);
     }
 
-    public IAngebot erstelleAngebot(int angebotsNummer, Date gueltigAb, Date gueltigBis, KundeTyp kunde) {
-        return repository.erstelleAngebot(angebotsNummer, gueltigAb, gueltigBis, kundenverwaltungIntern.getKunde(kunde.getKundenNummer()));
+    public IAngebot erstelleAngebot(int angebotsNummer, Date gueltigAb, Date gueltigBis, float gesamtPreis, KundeTyp kunde) {
+        return repository.erstelleAngebot(angebotsNummer, gueltigAb, gueltigBis, gesamtPreis, kundenverwaltungIntern.getKunde(kunde.getKundenNummer()));
     }
 }

@@ -33,13 +33,14 @@ public class AuftragsverwaltungLogik {
         this.transportdienstleisterAdapter = transportdienstleisterAdapter;
     }
 
-    public IAuftrag erstelleAuftrag(int auftragsNummer, Date beauftragtAm, AngebotTyp angebot) {
+    public IAuftrag erstelleAuftrag(int auftragsNummer, Date beauftragtAm, AngebotTyp angebot) throws Exception {
 
-//        Set<ProduktTyp> produktSet = angebot.getProduktMengeMap().keySet();
-//
-//        for (ProduktTyp elem : produktSet) {
-//            if(!lagerverwaltungIntern.pruefeLagerbestand(elem.))
-//        }        todo abfrage
+        Set<ProduktTyp> produktSet = angebot.getProduktMengeMap().keySet();
+
+        for (ProduktTyp elem : produktSet) {
+            if (!lagerverwaltungIntern.pruefeLagerbestand(elem.getProduktNummer(), angebot.getProduktMengeMap().get(elem)))
+                throw new Exception("Nicht genug Produkte vorhanden. ProduktNummer(" + elem + ")");
+        }
 
         IAngebot angebotVar = angebotsverwaltungIntern.getAngebot(angebot.getAngebotsNummer());
         return repository.erstelleAuftrag(auftragsNummer, beauftragtAm, angebotVar);

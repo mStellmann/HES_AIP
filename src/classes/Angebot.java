@@ -32,8 +32,8 @@ public class Angebot implements IAngebot {
         this.produktMengeMap = produktMengeMap;
     }
 
-    public Angebot(int angebotsNummer, Date gueltigAb, Date gueltigBis, IKunde kunde) {
-        this(angebotsNummer, gueltigAb, 0f, gueltigBis, kunde, null, new HashMap<IProdukt, Integer>());
+    public Angebot(int angebotsNummer, Date gueltigAb, Date gueltigBis, float gesamtPreis, IKunde kunde) {
+        this(angebotsNummer, gueltigAb, gesamtPreis, gueltigBis, kunde, null, new HashMap<IProdukt, Integer>());
     }
 
     public Angebot() {
@@ -87,7 +87,6 @@ public class Angebot implements IAngebot {
     @Override
     public void addProduktMenge(IProdukt produkt, int menge) {
         produktMengeMap.put(produkt, menge);
-//        gesamtPreis += produkt.      todo preisberechnung
     }
 
     public void setAngebotsNummer(int angebotsNummer) {

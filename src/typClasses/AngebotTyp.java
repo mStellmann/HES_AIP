@@ -30,8 +30,8 @@ public class AngebotTyp {
         this.produktMengeMap = produktMengeMap;
     }
 
-    public AngebotTyp(int angebotsNummer, Date gueltigAb, Date gueltigBis, KundeTyp kunde) {
-        this(angebotsNummer, gueltigAb, gueltigBis, 0f, kunde, null, null);
+    public AngebotTyp(int angebotsNummer, Date gueltigAb, Date gueltigBis, float gesamtPreis, KundeTyp kunde) {
+        this(angebotsNummer, gueltigAb, gueltigBis, gesamtPreis, kunde, null, null);
     }
 
     public int getAngebotsNummer() {

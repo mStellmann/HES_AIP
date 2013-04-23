@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public interface IAngebotsverwaltungExtern {
 
-    AngebotTyp erstelleAngebot(int angebotsNummer, Date gueltigAb, Date gueltigBis, KundeTyp kunde);
+    AngebotTyp erstelleAngebot(int angebotsNummer, Date gueltigAb, Date gueltigBis, float gesamtPreis, KundeTyp kunde);
 
     void addProduktMengeZuAngebot(AngebotTyp angebot, ProduktTyp produkt, int menge);
 }
