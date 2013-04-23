@@ -4,17 +4,30 @@ import interfaces.IBestellung;
 import interfaces.IProdukt;
 import interfaces.IWareneingangsmeldung;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  */
+
+@Entity
+@Table(name = "Wareneingangsmeldung")
 public class Wareneingangsmeldung implements IWareneingangsmeldung, Serializable {
+
+    @Id
+    @GeneratedValue
+    private int id;
+    @Column(nullable = false)
+    @Temporal(value = TemporalType.DATE)
     private Date datum;
     //private int menge;
+    @Column(nullable = false)
     private int bestellNr;
 
+    @OneToOne
+    @JoinColumn(name = "bestellung")
     private IBestellung bestellung;
 
     public Wareneingangsmeldung(int bestellNr, Date datum, IBestellung bestellung) {
