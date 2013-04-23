@@ -32,4 +32,9 @@ public class LagerverwaltungRepository {
     public IWarenausgangsmeldung createWarenausgangsmeldung(int menge, Date datum, IProdukt produkt) {
         return new Warenausgangsmeldung(menge, datum, produkt);
     }
+
+    // Saves
+    private <T> void save(T lagerMeldung) {
+        persistenz.saveObject(lagerMeldung);
+    }
 }

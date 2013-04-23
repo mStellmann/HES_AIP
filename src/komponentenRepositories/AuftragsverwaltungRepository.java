@@ -37,41 +37,41 @@ public class AuftragsverwaltungRepository {
 
     // Getter
     public IAuftrag getAuftrag(int auftragsNummer) {
-        return null; // todo
+        return persitenz.getObjectByID(auftragsNummer, Auftrag.class);
     }
 
     public ITransportauftrag getTransportauftrag(int transportauftragsNummer) {
-        return null; // todo
+        return persitenz.getObjectByID(transportauftragsNummer, Transportauftrag.class);
     }
 
     public ILieferung getLieferung(int lieferungsNummer) {
-        return null; // todo
+        return persitenz.getObjectByID(lieferungsNummer, Lieferung.class);
     }
 
     // Updates
     public void updateAuftrag(IAuftrag auftrag) {
-        // todo
+        persitenz.updateObject(auftrag);
     }
 
     public void updateTransportauftrag(ITransportauftrag transportauftrag) {
-        // todo
+        persitenz.updateObject(transportauftrag);
     }
 
     public void updateLieferung(ILieferung lieferung) {
-        // todo
+        persitenz.updateObject(lieferung);
     }
 
     // Saves
     private void saveAuftrag(Auftrag auftrag) {
-        // todo
+        persitenz.saveObject(auftrag);
     }
 
     private void saveTransportauftrag(Transportauftrag transportauftrag) {
-        // todo
+        persitenz.saveObject(transportauftrag);
     }
 
     private void saveLieferung(Lieferung lieferung) {
-        // todo
+        persitenz.saveObject(lieferung);
     }
 
 

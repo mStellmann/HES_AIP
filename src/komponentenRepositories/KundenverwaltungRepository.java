@@ -18,22 +18,24 @@ public class KundenverwaltungRepository {
         this.persitenz = persitenz;
     }
 
-    public IKunde erstelleKunde( String name, String adresse) {
-        return new Kunde( name, adresse);
+    public IKunde erstelleKunde(String name, String adresse) {
+        Kunde kunde = new Kunde(name, adresse);
+        saveKunde(kunde);
+        return kunde;
     }
 
     // Getter
     public IKunde getKunde(int kundenNummer) {
-        return null; // todo
+        return persitenz.getObjectByID(kundenNummer, Kunde.class);
     }
 
     // Updates
     public void updateKunde(IKunde kunde) {
-        // todo
+        persitenz.updateObject(kunde);
     }
 
     // Saves
     private void saveKunde(Kunde kunde) {
-        // todo
+        persitenz.saveObject(kunde);
     }
 }
