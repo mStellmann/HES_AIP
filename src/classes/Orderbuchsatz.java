@@ -13,7 +13,7 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name= "Orderbuchsatz")
+@Table(name = "ORDERBUCHSATZ")
 public class Orderbuchsatz implements IOrderbuchsatz, Serializable {
 
     @Id
@@ -27,11 +27,12 @@ public class Orderbuchsatz implements IOrderbuchsatz, Serializable {
     private Date gueltigBis;
 
 
-    @ManyToOne
-    @JoinColumn(name ="lieferant")
+    @ManyToOne(targetEntity = Lieferant.class)
+    @JoinColumn(name = "LIEFERANT")
     private ILieferant lieferant;
-    @ManyToOne
-    @JoinColumn(name ="orderbuch")
+
+    @ManyToOne(targetEntity = Orderbuch.class)
+    @JoinColumn(name = "ORDERBUCH")
     private IOrderbuch orderbuch;
 
 

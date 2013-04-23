@@ -15,7 +15,7 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name = "Auftrag")
+@Table(name = "AUFTRAG")
 public class Auftrag implements IAuftrag, Serializable {
 
     @Id
@@ -28,14 +28,14 @@ public class Auftrag implements IAuftrag, Serializable {
     private Date beauftragtAm;
 
 
-    @OneToOne
-    @JoinColumn(name = "angebot")
+    @OneToOne(targetEntity = Angebot.class)
+    @JoinColumn(name = "ANGEBOT")
     private IAngebot angebot;
-    @OneToOne
-    @JoinColumn(name = "lieferung")
+    @OneToOne(targetEntity = Lieferung.class)
+    @JoinColumn(name = "LIEFERUNG")
     private ILieferung lieferung;
-    @OneToOne
-    @JoinColumn(name = "rechnung")
+    @OneToOne(targetEntity = Rechnung.class)
+    @JoinColumn(name = "RECHNUNG")
     private IRechnung rechnung;
 
     public Auftrag(Date beauftragtAm, IAngebot angebot, IRechnung rechnung, ILieferung lieferung) {

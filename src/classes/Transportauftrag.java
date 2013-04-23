@@ -2,6 +2,7 @@ package classes;
 
 import interfaces.ILieferung;
 import interfaces.ITransportauftrag;
+
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import javax.persistence.*;
  *
  */
 @Entity
-@Table(name = "Transportauftrag")
+@Table(name = "TRANSPORTAUFTRAG")
 public class Transportauftrag implements ITransportauftrag, Serializable {
     @Id
     @GeneratedValue
@@ -25,8 +26,8 @@ public class Transportauftrag implements ITransportauftrag, Serializable {
     private Date lieferdatum;
     @Column(nullable = false)
     private String transportdienstleister;
-    @OneToOne
-    @JoinColumn(name = "lieferung")
+    @OneToOne(targetEntity = Lieferung.class)
+    @JoinColumn(name = "LIEFERUNG")
     private ILieferung lieferung;
 
     public Transportauftrag(Date ausgangsdatum, String transportdienstleister) {

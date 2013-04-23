@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "Lieferant")
+@Table(name = "LIEFERANT")
 public class Lieferant implements ILieferant, Serializable {
 
     @Id
@@ -28,11 +28,11 @@ public class Lieferant implements ILieferant, Serializable {
     private String kontoverbindung;
 
 
-    @OneToMany(mappedBy = "Lieferant")
+    @OneToMany(mappedBy = "lieferant", targetEntity = Einkaufsinfosatz.class)
     private List<IEinkaufsinfosatz> einkaufsinfosatzList;
-    @OneToMany(mappedBy = "Lieferant")
+    @OneToMany(mappedBy = "lieferant", targetEntity = Bestellung.class)
     private List<IBestellung> bestellungList;
-    @OneToMany(mappedBy = "Lieferant")
+    @OneToMany(mappedBy = "lieferant", targetEntity = Orderbuchsatz.class)
     private List<IOrderbuchsatz> orderbuchsatzList;
 
     public Lieferant(String name, String adresse, String kontoverbindung) {

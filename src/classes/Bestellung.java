@@ -14,14 +14,14 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name = "Bestellung")
+@Table(name = "BESTELLUNG")
 public class Bestellung implements IBestellung, Serializable {
 
     @Id
     @GeneratedValue
     private int bestellungsNummer;
     @Column
-    @Temporal(value=TemporalType.DATE)
+    @Temporal(value = TemporalType.DATE)
     private Date bestelldatum;
     @Column
     private int menge;
@@ -29,15 +29,16 @@ public class Bestellung implements IBestellung, Serializable {
     private boolean freigabe;
 
 
-    @OneToOne
-    @JoinColumn(name ="wareneingangsmeldung")
+    @OneToOne(targetEntity = Wareneingangsmeldung.class)
+    @JoinColumn(name = "WARENEINGANGSMELDUNG")
     private IWareneingangsmeldung wareneingangsmeldung;
 
-    @ManyToOne
-    @JoinColumn(name = "produkt")
+    @ManyToOne(targetEntity = Produkt.class)
+    @JoinColumn(name = "PRODUKT")
     private IProdukt produkt;
-    @ManyToOne
-    @JoinColumn(name = "lieferant")
+
+    @ManyToOne(targetEntity = Lieferant.class)
+    @JoinColumn(name = "LIEFERANT")
     private ILieferant lieferant;
 
     public Bestellung(Date bestelldatum, int menge, boolean freigabe) {

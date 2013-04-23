@@ -9,9 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 @Entity
-@Table(name = "Kunde")
+@Table(name = "KUNDE")
 public class Kunde implements IKunde, Serializable {
     @Id
     @GeneratedValue
@@ -20,7 +19,7 @@ public class Kunde implements IKunde, Serializable {
     private String name;
     @Column(nullable = false)
     private String adresse;
-    @OneToMany(mappedBy = "Kunde")
+    @OneToMany(mappedBy = "kunde", targetEntity = Angebot.class)
     private List<IAngebot> angebotsList;
 
     public Kunde(String name, String adresse) {

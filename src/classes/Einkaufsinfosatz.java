@@ -12,7 +12,7 @@ import java.util.Date;
  *
  */
 @Entity
-@Table(name = "Einkaufsinfosatz")
+@Table(name = "EINKAUFSINFOSATZ")
 public class Einkaufsinfosatz implements IEinkaufsinfosatz, Serializable {
     @Id
     @GeneratedValue
@@ -29,11 +29,12 @@ public class Einkaufsinfosatz implements IEinkaufsinfosatz, Serializable {
     private int normalmenge;
     @Column(nullable = false)
     private float preis;
-    @ManyToOne
-    @JoinColumn(name = "lieferant")
+
+    @ManyToOne(targetEntity = Lieferant.class)
+    @JoinColumn(name = "LIEFERANT")
     private ILieferant lieferant;
-    @ManyToOne
-    @JoinColumn(name = "produkt")
+    @ManyToOne(targetEntity = Produkt.class)
+    @JoinColumn(name = "PRODUKT")
     private IProdukt produkt;
 
     public Einkaufsinfosatz(Date gueltigAb, Date gueltigBis, int planlieferzeit, int normalmenge, float preis) {

@@ -12,7 +12,7 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name = "Zahlungseingang")
+@Table(name = "ZAHLUNGSEINGANG")
 public class Zahlungseingang implements IZahlungseingang, Serializable {
 
     @Id
@@ -25,8 +25,8 @@ public class Zahlungseingang implements IZahlungseingang, Serializable {
     private float betrag;
 
 
-    @ManyToOne
-    @JoinColumn(name = "rechnung")
+    @ManyToOne(targetEntity = Rechnung.class)
+    @JoinColumn(name = "RECHNUNG")
     private IRechnung rechnung;
 
     public Zahlungseingang(Date eingangsdatum, float betrag) {

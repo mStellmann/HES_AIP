@@ -3,6 +3,7 @@ package classes;
 import interfaces.IAuftrag;
 import interfaces.ILieferung;
 import interfaces.ITransportauftrag;
+
 import javax.persistence.*;
 
 import java.io.Serializable;
@@ -11,16 +12,18 @@ import java.io.Serializable;
  *
  */
 @Entity
-@Table(name = "Lieferung")
+@Table(name = "LIEFERUNG")
 public class Lieferung implements ILieferung, Serializable {
     @Id
     @GeneratedValue
     private int lieferungsNummer;
-    @OneToOne
-    @JoinColumn(name = "transportauftrag")
+
+    @OneToOne(targetEntity = Transportauftrag.class)
+    @JoinColumn(name = "TRANSPORTAUFTRAG")
     private ITransportauftrag transportauftrag;
-    @OneToOne
-    @JoinColumn(name = "auftrag")
+
+    @OneToOne(targetEntity = Auftrag.class)
+    @JoinColumn(name = "AUFTRAG")
     private IAuftrag auftrag;
 
 

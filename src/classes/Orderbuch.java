@@ -13,16 +13,16 @@ import java.util.List;
  *
  */
 @Entity
-@Table(name = "Orderbuch")
+@Table(name = "ORDERBUCH")
 public class Orderbuch implements IOrderbuch, Serializable {
     @Id
     @GeneratedValue
     private int id;
-    @Column(nullable = false)
-    @OneToOne
-    @JoinColumn(name = "produkt")
+
+    @OneToOne(targetEntity = Produkt.class)
+    @JoinColumn(name = "PRODUKT")
     private IProdukt produkt;
-    @OneToMany(mappedBy = "Orderbuch")
+    @OneToMany(mappedBy = "orderbuch", targetEntity = Orderbuchsatz.class)
     private List<IOrderbuchsatz> orderbuchsatzList;
 
     public Orderbuch(IProdukt produkt) {

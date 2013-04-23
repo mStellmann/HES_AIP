@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Entity
-@Table(name = "Angebot")
+@Table(name = "ANGEBOT")
 public class Angebot implements IAngebot, Serializable {
     @Id
     @GeneratedValue
@@ -27,14 +27,16 @@ public class Angebot implements IAngebot, Serializable {
     @Column(nullable = false)
     private float gesamtPreis;
 
-    @ManyToOne
-    @JoinColumn(name = "kunde")
+    @ManyToOne(targetEntity = Kunde.class)
+    @JoinColumn(name = "KUNDE")
     private IKunde kunde;
-    @OneToOne
-    @JoinColumn(name = "auftrag")
+
+    @OneToOne(targetEntity = Auftrag.class)
+    @JoinColumn(name = "AUFTRAG")
     private IAuftrag auftrag;
-    @ManyToOne
-    @JoinColumn(name = "produktMengeMap")
+
+    @ManyToOne(targetEntity = Produkt.class)
+    @JoinColumn(name = "PRODUKTMENGEMAP")
     private Map<IProdukt, Integer> produktMengeMap;
 
     public Angebot(Date gueltigAb, float gesamtPreis, Date gueltigBis, IKunde kunde, IAuftrag auftrag, Map<IProdukt, Integer> produktMengeMap) {

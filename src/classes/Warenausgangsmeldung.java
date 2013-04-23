@@ -12,7 +12,7 @@ import java.util.Date;
  *
  */
 @Entity
-@Table(name = "Warenausgangsmeldung")
+@Table(name = "WARENAUSGANGSMELDUNG")
 public class Warenausgangsmeldung implements IWarenausgangsmeldung, Serializable {
     // private int lieferschein; // idnummer vom lieferschein (bar-code)
 
@@ -22,12 +22,12 @@ public class Warenausgangsmeldung implements IWarenausgangsmeldung, Serializable
     @Column(nullable = false)
     @Temporal(value = TemporalType.DATE)
     private Date datum;
-    @Column(nullable =  false)
+    @Column(nullable = false)
     private int menge;
 
 
-    @ManyToOne
-    @JoinColumn(name = "produkt")
+    @ManyToOne(targetEntity = Produkt.class)
+    @JoinColumn(name = "PRODUKT")
     private IProdukt produkt;
 
     public Warenausgangsmeldung(int menge, Date datum, IProdukt produkt) {

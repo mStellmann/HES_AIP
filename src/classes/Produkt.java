@@ -10,7 +10,7 @@ import java.util.List;
  *
  */
 @Entity
-@Table(name = "Produkt")
+@Table(name = "PRODUKT")
 public class Produkt implements IProdukt, Serializable {
     @Id
     @GeneratedValue
@@ -19,17 +19,22 @@ public class Produkt implements IProdukt, Serializable {
     private String name;
     @Column(nullable = false)
     private int lagerbestand;
-    @OneToOne //(mappedBy = "Produkt")
-    @JoinColumn(name = "orderbuch")
+
+    @OneToOne(targetEntity = Orderbuch.class)
+    @JoinColumn(name = "ORDERBUCH")
     private Orderbuch orderbuch;
-    @OneToMany(mappedBy = "Produkt")
+
+    @OneToMany(mappedBy = "produkt", targetEntity = Warenausgangsmeldung.class)
     private List<IWarenausgangsmeldung> warenausgangsmeldungList;
-    @OneToMany(mappedBy = "Produkt")
+
+    @OneToMany(mappedBy = "produkt", targetEntity = Einkaufsinfosatz.class)
     private List<IEinkaufsinfosatz> einkaufsinfosatzList;
-    @OneToMany(mappedBy = "Produkt")
+
+    @OneToMany(mappedBy = "produkt", targetEntity = Bestellung.class)
     private List<IBestellung> bestellungList;
-    @ManyToMany //(mappedBy = "Produkt")
-    @JoinColumn(name = "angebotList")
+
+    @ManyToMany(targetEntity = Angebot.class)
+    @JoinColumn(name = "ANGEBOTLIST")
     private List<IAngebot> angebotList;
 
 
@@ -55,7 +60,7 @@ public class Produkt implements IProdukt, Serializable {
         this.bestellungList = bestellungList;
     }
 
-    public Produkt( String name, int lagerbestand) {
+    public Produkt(String name, int lagerbestand) {
         this.produktNummer = produktNummer;
         this.name = name;
         this.lagerbestand = lagerbestand;

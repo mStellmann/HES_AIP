@@ -13,7 +13,7 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name = "Wareneingangsmeldung")
+@Table(name = "WARENEINGANGSMELDUNG")
 public class Wareneingangsmeldung implements IWareneingangsmeldung, Serializable {
 
     @Id
@@ -26,8 +26,8 @@ public class Wareneingangsmeldung implements IWareneingangsmeldung, Serializable
     @Column(nullable = false)
     private int bestellNr;
 
-    @OneToOne
-    @JoinColumn(name = "bestellung")
+    @OneToOne(targetEntity = Bestellung.class)
+    @JoinColumn(name = "BESTELLUNG")
     private IBestellung bestellung;
 
     public Wareneingangsmeldung(int bestellNr, Date datum, IBestellung bestellung) {

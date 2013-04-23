@@ -36,9 +36,22 @@ public class Runner {
         // --- SIMULATING SOME STUFF ---
 
         // TODO
+        /*
+        Kunde erstellen
+        Angebot erstellen
+        Anegebot -> Auftrag
+        Produkte erstellen -> Auftrag
+        -> erzeuge Waremausgangsmeldung
+        -> Lieferung und Transportauftrag
+        -> Rechnung
+
+        -> simulate -> Lieferung erfolgt
+        -> Zahlungseingang
+        -> abschließen
+         */
 
         // -----------------------------
-
+        System.out.println("HAHAHAHAHHAHAHAH");
         session.close();
     }
 }
