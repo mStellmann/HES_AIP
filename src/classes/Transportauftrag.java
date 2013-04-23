@@ -3,13 +3,14 @@ package classes;
 import interfaces.ILieferung;
 import interfaces.ITransportauftrag;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
 /**
  *
  */
-public class Transportauftrag implements ITransportauftrag {
+public class Transportauftrag implements ITransportauftrag, Serializable {
     private int transportauftragsNummer;
     private Date ausgangsdatum;
     private boolean lieferungErfolgt = false;
@@ -73,5 +74,33 @@ public class Transportauftrag implements ITransportauftrag {
 
     public void setTransportdienstleister(String transportdienstleister) {
         this.transportdienstleister = transportdienstleister;
+    }
+
+    @Override
+    public String toString() {
+        return "Transportauftrag{" +
+                "transportauftragsNummer=" + transportauftragsNummer +
+                ", ausgangsdatum=" + ausgangsdatum +
+                ", lieferungErfolgt=" + lieferungErfolgt +
+                ", lieferdatum=" + lieferdatum +
+                ", transportdienstleister='" + transportdienstleister + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Transportauftrag)) return false;
+
+        Transportauftrag that = (Transportauftrag) o;
+
+        if (transportauftragsNummer != that.transportauftragsNummer) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return transportauftragsNummer;
     }
 }

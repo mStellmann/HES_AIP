@@ -5,12 +5,13 @@ import interfaces.IEinkaufsinfosatz;
 import interfaces.ILieferant;
 import interfaces.IOrderbuchsatz;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  */
-public class Lieferant implements ILieferant {
+public class Lieferant implements ILieferant, Serializable {
     private int lieferantenNummer;
     private String name;
     private String adresse;
@@ -94,5 +95,32 @@ public class Lieferant implements ILieferant {
 
     public void setOrderbuchsatzList(List<IOrderbuchsatz> orderbuchsatzList) {
         this.orderbuchsatzList = orderbuchsatzList;
+    }
+
+    @Override
+    public String toString() {
+        return "Lieferant{" +
+                "lieferantenNummer=" + lieferantenNummer +
+                ", name='" + name + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", kontoverbindung='" + kontoverbindung + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Lieferant)) return false;
+
+        Lieferant lieferant = (Lieferant) o;
+
+        if (lieferantenNummer != lieferant.lieferantenNummer) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return lieferantenNummer;
     }
 }

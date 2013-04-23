@@ -40,4 +40,29 @@ public class Lieferung implements ILieferung, Serializable {
     public void setLieferungsNummer(int lieferungsNummer) {
         this.lieferungsNummer = lieferungsNummer;
     }
+
+    @Override
+    public String toString() {
+        return "Lieferung{" +
+                "lieferungsNummer=" + lieferungsNummer +
+                ", transportauftrag=" + transportauftrag +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Lieferung)) return false;
+
+        Lieferung lieferung = (Lieferung) o;
+
+        if (lieferungsNummer != lieferung.lieferungsNummer) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return lieferungsNummer;
+    }
 }

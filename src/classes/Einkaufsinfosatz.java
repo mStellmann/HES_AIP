@@ -3,12 +3,13 @@ package classes;
 import interfaces.IEinkaufsinfosatz;
 import interfaces.IProdukt;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  */
-public class Einkaufsinfosatz implements IEinkaufsinfosatz {
+public class Einkaufsinfosatz implements IEinkaufsinfosatz, Serializable {
     private Date gueltigAb;
     private Date gueltigBis;
     private int planlieferzeit; // in int => anzahl tage
@@ -17,7 +18,7 @@ public class Einkaufsinfosatz implements IEinkaufsinfosatz {
 
     private IProdukt produkt;
 
-    public Einkaufsinfosatz(Date gueltigAb, Date gueltigBis, int planlieferzeit, int normalmenge, float preis){
+    public Einkaufsinfosatz(Date gueltigAb, Date gueltigBis, int planlieferzeit, int normalmenge, float preis) {
         this.gueltigAb = gueltigAb;
         this.gueltigBis = gueltigBis;
         this.planlieferzeit = planlieferzeit;
@@ -25,7 +26,7 @@ public class Einkaufsinfosatz implements IEinkaufsinfosatz {
         this.preis = preis;
     }
 
-    public Einkaufsinfosatz(){
+    public Einkaufsinfosatz() {
 
     }
 
@@ -75,5 +76,39 @@ public class Einkaufsinfosatz implements IEinkaufsinfosatz {
 
     public void setProdukt(IProdukt produkt) {
         this.produkt = produkt;
+    }
+
+    @Override
+    public String toString() {
+        return "Einkaufsinfosatz{" +
+                "gueltigAb=" + gueltigAb +
+                ", gueltigBis=" + gueltigBis +
+                ", planlieferzeit=" + planlieferzeit +
+                ", normalmenge=" + normalmenge +
+                ", preis=" + preis +
+                ", produkt=" + produkt +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Einkaufsinfosatz)) return false;
+
+        Einkaufsinfosatz that = (Einkaufsinfosatz) o;
+
+        if (!gueltigAb.equals(that.gueltigAb)) return false;
+        if (!gueltigBis.equals(that.gueltigBis)) return false;
+        if (!produkt.equals(that.produkt)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = gueltigAb.hashCode();
+        result = 31 * result + gueltigBis.hashCode();
+        result = 31 * result + produkt.hashCode();
+        return result;
     }
 }

@@ -4,12 +4,13 @@ import interfaces.ILieferant;
 import interfaces.IOrderbuch;
 import interfaces.IOrderbuchsatz;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  */
-public class Orderbuchsatz implements IOrderbuchsatz {
+public class Orderbuchsatz implements IOrderbuchsatz, Serializable {
     private Date gueltigAb;
     private Date gueltigBis;
 
@@ -58,5 +59,39 @@ public class Orderbuchsatz implements IOrderbuchsatz {
 
     public void setOrderbuch(IOrderbuch orderbuch) {
         this.orderbuch = orderbuch;
+    }
+
+    @Override
+    public String toString() {
+        return "Orderbuchsatz{" +
+                "gueltigAb=" + gueltigAb +
+                ", gueltigBis=" + gueltigBis +
+                ", lieferant=" + lieferant +
+                ", orderbuch=" + orderbuch +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Orderbuchsatz)) return false;
+
+        Orderbuchsatz that = (Orderbuchsatz) o;
+
+        if (!gueltigAb.equals(that.gueltigAb)) return false;
+        if (!gueltigBis.equals(that.gueltigBis)) return false;
+        if (!lieferant.equals(that.lieferant)) return false;
+        if (!orderbuch.equals(that.orderbuch)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = gueltigAb.hashCode();
+        result = 31 * result + gueltigBis.hashCode();
+        result = 31 * result + lieferant.hashCode();
+        result = 31 * result + orderbuch.hashCode();
+        return result;
     }
 }

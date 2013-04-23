@@ -4,12 +4,13 @@ import interfaces.IBestellung;
 import interfaces.IProdukt;
 import interfaces.IWareneingangsmeldung;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  */
-public class Wareneingangsmeldung implements IWareneingangsmeldung {
+public class Wareneingangsmeldung implements IWareneingangsmeldung, Serializable {
     private Date datum;
     //private int menge;
     private int bestellNr;
@@ -48,5 +49,36 @@ public class Wareneingangsmeldung implements IWareneingangsmeldung {
 
     public void setBestellung(IBestellung bestellung) {
         this.bestellung = bestellung;
+    }
+
+    @Override
+    public String toString() {
+        return "Wareneingangsmeldung{" +
+                "datum=" + datum +
+                ", bestellNr=" + bestellNr +
+                ", bestellung=" + bestellung +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Wareneingangsmeldung)) return false;
+
+        Wareneingangsmeldung that = (Wareneingangsmeldung) o;
+
+        if (bestellNr != that.bestellNr) return false;
+        if (!bestellung.equals(that.bestellung)) return false;
+        if (!datum.equals(that.datum)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = datum.hashCode();
+        result = 31 * result + bestellNr;
+        result = 31 * result + bestellung.hashCode();
+        return result;
     }
 }

@@ -5,12 +5,13 @@ import interfaces.ILieferant;
 import interfaces.IProdukt;
 import interfaces.IWareneingangsmeldung;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  */
-public class Bestellung implements IBestellung {
+public class Bestellung implements IBestellung, Serializable {
     private int bestellungsNummer;
     private Date bestelldatum;
     private int menge;
@@ -20,14 +21,14 @@ public class Bestellung implements IBestellung {
     private IProdukt produkt;
     private ILieferant lieferant;
 
-    public Bestellung(int bestellungsNummer, Date bestelldatum, int menge, boolean freigabe){
+    public Bestellung(int bestellungsNummer, Date bestelldatum, int menge, boolean freigabe) {
         this.bestellungsNummer = bestellungsNummer;
         this.bestelldatum = bestelldatum;
         this.menge = menge;
         this.freigabe = freigabe;
     }
 
-    public Bestellung(){
+    public Bestellung() {
 
     }
 
@@ -85,5 +86,32 @@ public class Bestellung implements IBestellung {
 
     public void setLieferant(ILieferant lieferant) {
         this.lieferant = lieferant;
+    }
+
+    @Override
+    public String toString() {
+        return "Bestellung{" +
+                "bestellungsNummer=" + bestellungsNummer +
+                ", bestelldatum=" + bestelldatum +
+                ", menge=" + menge +
+                ", freigabe=" + freigabe +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Bestellung)) return false;
+
+        Bestellung that = (Bestellung) o;
+
+        if (bestellungsNummer != that.bestellungsNummer) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return bestellungsNummer;
     }
 }

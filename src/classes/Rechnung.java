@@ -4,6 +4,7 @@ import interfaces.IAuftrag;
 import interfaces.IRechnung;
 import interfaces.IZahlungseingang;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 /**
  *
  */
-public class Rechnung implements IRechnung {
+public class Rechnung implements IRechnung, Serializable {
     private int rechnungsNummer;
     private Date rechnungsDatum;
     private boolean istBezahlt = false;
@@ -71,5 +72,31 @@ public class Rechnung implements IRechnung {
 
     public void setAuftrag(IAuftrag auftrag) {
         this.auftrag = auftrag;
+    }
+
+    @Override
+    public String toString() {
+        return "Rechnung{" +
+                "rechnungsNummer=" + rechnungsNummer +
+                ", rechnungsDatum=" + rechnungsDatum +
+                ", istBezahlt=" + istBezahlt +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Rechnung)) return false;
+
+        Rechnung rechnung = (Rechnung) o;
+
+        if (rechnungsNummer != rechnung.rechnungsNummer) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return rechnungsNummer;
     }
 }

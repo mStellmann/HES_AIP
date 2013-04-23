@@ -2,13 +2,14 @@ package classes;
 
 import interfaces.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  */
-public class Produkt implements IProdukt {
+public class Produkt implements IProdukt, Serializable {
     private int produktNummer;
     private String name;
     private int lagerbestand;
@@ -115,5 +116,29 @@ public class Produkt implements IProdukt {
         bestellungList.add(bestellung);
     }
 
+    @Override
+    public String toString() {
+        return "Produkt{" +
+                "produktNummer=" + produktNummer +
+                ", name='" + name + '\'' +
+                ", lagerbestand=" + lagerbestand +
+                '}';
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Produkt)) return false;
+
+        Produkt produkt = (Produkt) o;
+
+        if (produktNummer != produkt.produktNummer) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return produktNummer;
+    }
 }

@@ -5,12 +5,13 @@ import interfaces.IAuftrag;
 import interfaces.ILieferung;
 import interfaces.IRechnung;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  */
-public class Auftrag implements IAuftrag {
+public class Auftrag implements IAuftrag, Serializable {
     private int auftragsNummer;
     private boolean istAbgeschlossen = false;
     private Date beauftragtAm;
@@ -84,5 +85,31 @@ public class Auftrag implements IAuftrag {
 
     public void setBeauftragtAm(Date beauftragtAm) {
         this.beauftragtAm = beauftragtAm;
+    }
+
+    @Override
+    public String toString() {
+        return "Auftrag{" +
+                "auftragsNummer=" + auftragsNummer +
+                ", istAbgeschlossen=" + istAbgeschlossen +
+                ", beauftragtAm=" + beauftragtAm +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Auftrag)) return false;
+
+        Auftrag auftrag = (Auftrag) o;
+
+        if (auftragsNummer != auftrag.auftragsNummer) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return auftragsNummer;
     }
 }

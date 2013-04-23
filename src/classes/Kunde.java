@@ -3,10 +3,11 @@ package classes;
 import interfaces.IAngebot;
 import interfaces.IKunde;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Kunde implements IKunde{
+public class Kunde implements IKunde, Serializable {
     private int kundenNummer;
     private String name;
     private String adresse;
@@ -57,5 +58,31 @@ public class Kunde implements IKunde{
     @Override
     public void putAngebotToList(IAngebot angebot) {
         angebotsList.add(angebot);
+    }
+
+    @Override
+    public String toString() {
+        return "Kunde{" +
+                "kundenNummer=" + kundenNummer +
+                ", name='" + name + '\'' +
+                ", adresse='" + adresse + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Kunde)) return false;
+
+        Kunde kunde = (Kunde) o;
+
+        if (kundenNummer != kunde.kundenNummer) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return kundenNummer;
     }
 }
