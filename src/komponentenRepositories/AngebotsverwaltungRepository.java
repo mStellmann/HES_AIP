@@ -2,6 +2,7 @@ package komponentenRepositories;
 
 import classes.Angebot;
 import interfaces.IAngebot;
+import interfaces.IKunde;
 import komponentenInterfaces.intern.IPersitenz;
 
 import java.util.Date;
@@ -17,8 +18,8 @@ public class AngebotsverwaltungRepository {
         this.persitenz = persitenz;
     }
 
-    public IAngebot erstelleAngebot(int angebotsNummer, Date gueltigAb, Date gueltigBis) {
-        return new Angebot(angebotsNummer, gueltigAb, gueltigBis);
+    public IAngebot erstelleAngebot(int angebotsNummer, Date gueltigAb, Date gueltigBis, IKunde kunde) {
+        return new Angebot(angebotsNummer, gueltigAb, gueltigBis, kunde);
     }
 
     // Getter

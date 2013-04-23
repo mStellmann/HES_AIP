@@ -32,8 +32,9 @@ public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAn
     }
 
     @Override
-    public AngebotTyp erstelleAngebot(int angebotsNummer, Date gueltigAb, Date gueltigBis, float gesamtPreis, KundeTyp kunde, AuftragTyp auftrag) {
-        return null;  // todo
+    public AngebotTyp erstelleAngebot(int angebotsNummer, Date gueltigAb, Date gueltigBis, KundeTyp kunde) {
+        IAngebot angebot = logik.erstelleAngebot(angebotsNummer, gueltigAb, gueltigBis, kunde);
+        return new AngebotTyp(angebot.getAngebotsNummer(), angebot.getGueltigAb(), angebot.getGueltigBis(), kunde);
     }
 
     @Override
@@ -43,6 +44,6 @@ public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAn
 
     @Override
     public IAngebot getAngebot(int angebotsNummer) {
-        return null;  // todo
+        return repository.getAngebot(angebotsNummer);
     }
 }

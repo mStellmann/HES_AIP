@@ -5,14 +5,14 @@ import interfaces.IProdukt;
 import komponentenInterfaces.intern.IKundenverwaltungIntern;
 import komponentenInterfaces.intern.IProduktverwaltungIntern;
 import komponentenRepositories.AngebotsverwaltungRepository;
+import typClasses.AngebotTyp;
+import typClasses.KundeTyp;
 import typClasses.ProduktTyp;
 
+import java.util.Date;
+
 /**
- * Created with IntelliJ IDEA.
- * User: aaz527
- * Date: 19.04.13
- * Time: 13:23
- * To change this template use File | Settings | File Templates.
+ *
  */
 public class AngebotsverwaltungLogik {
     IProduktverwaltungIntern produktverwaltungIntern;
@@ -25,10 +25,12 @@ public class AngebotsverwaltungLogik {
         this.repository = repository;
     }
 
-//    public void addProduktMengeZuAngebot(IAngebot angebot, ProduktTyp produkt, int menge) {
-//        IProdukt produktVar = produktverwaltungIntern.getProdukt(produkt)
-//        repository.getAngebot(angebot.getAngebotsNummer()).addProduktMenge();
-//    }
+    public void addProduktMengeZuAngebot(IAngebot angebot, ProduktTyp produkt, int menge) {
+        IProdukt produktVar = produktverwaltungIntern.getProdukt(produkt.getProduktNummer());
+        repository.getAngebot(angebot.getAngebotsNummer()).addProduktMenge(produktVar, menge);
+    }
 
-
+    public IAngebot erstelleAngebot(int angebotsNummer, Date gueltigAb, Date gueltigBis, KundeTyp kunde) {
+        return repository.erstelleAngebot(angebotsNummer, gueltigAb, gueltigBis, kundenverwaltungIntern.getKunde(kunde.getKundenNummer()));
+    }
 }

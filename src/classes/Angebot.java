@@ -32,8 +32,8 @@ public class Angebot implements IAngebot {
         this.produktMengeMap = produktMengeMap;
     }
 
-    public Angebot(int angebotsNummer, Date gueltigAb, Date gueltigBis) {
-        this(angebotsNummer, gueltigAb, 0f, gueltigBis, null, null, new HashMap<IProdukt, Integer>());
+    public Angebot(int angebotsNummer, Date gueltigAb, Date gueltigBis, IKunde kunde) {
+        this(angebotsNummer, gueltigAb, 0f, gueltigBis, kunde, null, new HashMap<IProdukt, Integer>());
     }
 
     public Angebot() {
