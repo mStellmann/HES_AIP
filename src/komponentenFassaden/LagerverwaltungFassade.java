@@ -3,6 +3,7 @@ package komponentenFassaden;
 import komponentenInterfaces.extern.ILagerverwaltungExtern;
 import komponentenInterfaces.intern.IEinkaufsverwaltungIntern;
 import komponentenInterfaces.intern.ILagerverwaltungIntern;
+import komponentenInterfaces.intern.IPersitenz;
 import komponentenInterfaces.intern.IProduktverwaltungIntern;
 import komponentenLogik.LagerverwaltungLogik;
 import komponentenRepositories.LagerverwaltungRepository;
@@ -18,9 +19,9 @@ public class LagerverwaltungFassade implements ILagerverwaltungIntern, ILagerver
     private LagerverwaltungLogik logik;
     private LagerverwaltungRepository repositorie;
 
-    public LagerverwaltungFassade(IProduktverwaltungIntern produkt, IEinkaufsverwaltungIntern einkauf) {
+    public LagerverwaltungFassade(IProduktverwaltungIntern produkt, IEinkaufsverwaltungIntern einkauf, IPersitenz persistenz) {
 
-        repositorie = new LagerverwaltungRepository();
+        repositorie = new LagerverwaltungRepository(persistenz);
         logik = new LagerverwaltungLogik(repositorie, produkt, einkauf);
     }
 

@@ -2,8 +2,11 @@ package komponentenRepositories;
 
 import classes.Warenausgangsmeldung;
 import classes.Wareneingangsmeldung;
+import interfaces.IBestellung;
+import interfaces.IProdukt;
 import interfaces.IWarenausgangsmeldung;
 import interfaces.IWareneingangsmeldung;
+import komponentenInterfaces.intern.IPersitenz;
 
 import java.util.Date;
 
@@ -15,11 +18,18 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public class LagerverwaltungRepository {
-    public IWareneingangsmeldung createWareneingangsmeldung(int bestellNr, Date datum) {
-        return new Wareneingangsmeldung(bestellNr, datum);
+    private IPersitenz persistenz;
+
+    public LagerverwaltungRepository(IPersitenz persistenz) {
+        this.persistenz = persistenz;
+
     }
 
-    public IWarenausgangsmeldung createWarenausgangsmeldung(int menge, Date datum) {
-        return new Warenausgangsmeldung(menge,datum);
+    public IWareneingangsmeldung createWareneingangsmeldung(int bestellNr, Date datum, IBestellung bestellung) {
+        return new Wareneingangsmeldung(bestellNr, datum, bestellung);
+    }
+
+    public IWarenausgangsmeldung createWarenausgangsmeldung(int menge, Date datum, IProdukt produkt) {
+        return new Warenausgangsmeldung(menge, datum, produkt);
     }
 }
