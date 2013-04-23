@@ -27,6 +27,7 @@ public class Rechnung implements IRechnung, Serializable {
     @OneToMany(mappedBy = "Rechnung")
     private List<IZahlungseingang> zahlungseingangList;
     @OneToOne
+    @JoinColumn(name = "auftrag")
     private IAuftrag auftrag;
 
     public Rechnung(Date rechnungsDatum, List<IZahlungseingang> zahlungseingangList, IAuftrag auftrag) {
