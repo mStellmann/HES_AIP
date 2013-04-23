@@ -15,4 +15,8 @@ public interface IBuchhaltungsverwaltungIntern {
     IZahlungseingang erstelleZahlungseingang(Date eingangsdatum, float betrag);
 
     void markiereRechnungAlsBezahlt(int rechnungsNummer);
+
+    IRechnung getRechnung(int rechnungsNummer);
+
+    IZahlungseingang getZahlungseingang(int rechnungsNummer);
 }
