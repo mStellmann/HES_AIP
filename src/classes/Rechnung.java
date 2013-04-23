@@ -4,6 +4,7 @@ import interfaces.IAuftrag;
 import interfaces.IRechnung;
 import interfaces.IZahlungseingang;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,15 +19,15 @@ public class Rechnung implements IRechnung {
     private List<IZahlungseingang> zahlungseingangList;
     private IAuftrag auftrag;
 
-    public Rechnung(int rechnungsNummer, Date rechnungsDatum, IAuftrag auftrag) {
+    public Rechnung(int rechnungsNummer, Date rechnungsDatum, List<IZahlungseingang> zahlungseingangList, IAuftrag auftrag) {
         this.rechnungsNummer = rechnungsNummer;
         this.rechnungsDatum = rechnungsDatum;
+        this.zahlungseingangList = zahlungseingangList;
         this.auftrag = auftrag;
     }
 
     public Rechnung(int rechnungsNummer, Date rechnungsDatum) {
-        this.rechnungsNummer = rechnungsNummer;
-        this.rechnungsDatum = rechnungsDatum;
+        this(rechnungsNummer, rechnungsDatum, new ArrayList<IZahlungseingang>(), null);
     }
 
     public Rechnung() {

@@ -35,6 +35,7 @@ public class AuftragsverwaltungLogik {
     }
 
     public IAuftrag erstelleAuftrag(int auftragsNummer, Date beauftragtAm, AngebotTyp angebot) {
+        angebot.
         IAngebot angebotVar = angebotsverwaltungIntern.getAngebot(angebot.getAngebotsNummer());
         return repository.erstelleAuftrag(auftragsNummer,beauftragtAm,angebotVar);
     }

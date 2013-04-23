@@ -6,6 +6,7 @@ import interfaces.IKunde;
 import interfaces.IProdukt;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -32,7 +33,7 @@ public class Angebot implements IAngebot {
     }
 
     public Angebot(int angebotsNummer, Date gueltigAb, Date gueltigBis) {
-        this(angebotsNummer,gueltigAb,0f,gueltigBis,null,null,null);
+        this(angebotsNummer,gueltigAb,0f,gueltigBis,null,null,new HashMap<IProdukt, Integer>());
     }
 
     public Angebot() {
