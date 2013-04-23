@@ -1,4 +1,5 @@
 package interfaces;
+import classes.Kunde;
 
 /**
  * Created with IntelliJ IDEA.
@@ -8,4 +9,9 @@ package interfaces;
  * To change this template use File | Settings | File Templates.
  */
 public interface IKunde {
+
+    int getKundennummer();
+    String getKundenname();
+    String getAdresse();
+    void putAngebotToList(IAngebot angebot);
 }
