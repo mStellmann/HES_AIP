@@ -14,9 +14,15 @@ import java.util.Map;
 @Entity
 @Table(name = "ANGEBOT")
 public class Angebot implements IAngebot, Serializable {
+    @Id
+    @GeneratedValue
+    @Column(name = "ANGEBOT_ID")
     private int angebotsNummer;
+    @Column(name = "GUELTIG_AB", nullable = false)
     private Date gueltigAb;
+    @Column(name = "GUELTIG_BIS", nullable = false)
     private Date gueltigBis;
+    @Column(name = "GESAMTPREIS", nullable = false)
     private float gesamtPreis;
 
     private IKunde kunde;
@@ -80,9 +86,6 @@ public class Angebot implements IAngebot, Serializable {
         this.produktMengeMap = produktMengeMap;
     }
 
-    @Id
-    @GeneratedValue
-    @Column(name = "ANGEBOT_ID")
     @Override
     public int getAngebotsNummer() {
         return angebotsNummer;
