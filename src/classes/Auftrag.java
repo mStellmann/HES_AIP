@@ -28,8 +28,11 @@ public class Auftrag implements IAuftrag {
     }
 
     public Auftrag(int auftragsNummer, Date beauftragtAm) {
-        this.auftragsNummer = auftragsNummer;
-        this.beauftragtAm = beauftragtAm;
+        this(auftragsNummer, beauftragtAm, null, null, null);
+    }
+
+    public Auftrag(int auftragsNummer, Date beauftragtAm, IAngebot angebot) {
+        this(auftragsNummer, beauftragtAm, angebot, null, null);
     }
 
     public Auftrag() {

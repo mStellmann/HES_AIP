@@ -1,5 +1,6 @@
 package komponentenLogik;
 
+import interfaces.IAngebot;
 import interfaces.IAuftrag;
 import komponentenInterfaces.intern.IAngebotsverwaltungIntern;
 import komponentenInterfaces.intern.ILagerverwaltungIntern;
@@ -33,7 +34,8 @@ public class AuftragsverwaltungLogik {
         this.transportdienstleisterAdapter = transportdienstleisterAdapter;
     }
 
-    public IAuftrag erstelleAuftrag(int auftragsNummer, Date beauftragtAm, AngebotTyp angebot, LieferungTyp lieferung, RechnungTyp rechnung) {
-        return null;  // todo
+    public IAuftrag erstelleAuftrag(int auftragsNummer, Date beauftragtAm, AngebotTyp angebot) {
+        IAngebot angebotVar = angebotsverwaltungIntern.getAngebot(angebot.getAngebotsNummer());
+        return repository.erstelleAuftrag(auftragsNummer,beauftragtAm,angebotVar);
     }
 }

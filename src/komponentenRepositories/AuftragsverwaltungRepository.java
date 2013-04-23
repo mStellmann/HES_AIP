@@ -3,6 +3,7 @@ package komponentenRepositories;
 import classes.Auftrag;
 import classes.Lieferung;
 import classes.Transportauftrag;
+import interfaces.IAngebot;
 import interfaces.IAuftrag;
 import interfaces.ILieferung;
 import interfaces.ITransportauftrag;
@@ -22,8 +23,8 @@ public class AuftragsverwaltungRepository {
         this.persitenz = persitenz;
     }
 
-    public IAuftrag erstelleAuftrag(int auftragsNummer, Date beauftragtAm) {
-        return new Auftrag(auftragsNummer, beauftragtAm);
+    public IAuftrag erstelleAuftrag(int auftragsNummer, Date beauftragtAm, IAngebot angebot) {
+        return new Auftrag(auftragsNummer, beauftragtAm, angebot);
     }
 
     public ITransportauftrag erstelleTransportauftrag(int transportauftragsNummer, Date ausgangsdatum, String transportdienstleister) {

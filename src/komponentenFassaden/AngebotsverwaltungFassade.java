@@ -1,5 +1,6 @@
 package komponentenFassaden;
 
+import interfaces.IAngebot;
 import komponentenInterfaces.extern.IAngebotsverwaltungExtern;
 import komponentenInterfaces.intern.IAngebotsverwaltungIntern;
 import komponentenInterfaces.intern.IKundenverwaltungIntern;
@@ -38,5 +39,10 @@ public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAn
     @Override
     public void addProduktMengeZuAngebot(AngebotTyp angebot, ProduktTyp produkt, int menge) {
         // todo
+    }
+
+    @Override
+    public IAngebot getAngebot(int angebotsNummer) {
+        return null;  // todo
     }
 }

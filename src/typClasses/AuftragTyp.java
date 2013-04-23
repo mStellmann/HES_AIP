@@ -27,6 +27,15 @@ public class AuftragTyp {
         this.rechnung = rechnung;
     }
 
+    public AuftragTyp(int auftragsNummer, Date beauftragtAm, AngebotTyp angebot) {
+        this.auftragsNummer = auftragsNummer;
+        this.istAbgeschlossen = false;
+        this.beauftragtAm = beauftragtAm;
+        this.angebot = angebot;
+        this.lieferung = null;
+        this.rechnung = null;
+    }
+
     public int getAuftragsNummer() {
         return auftragsNummer;
     }

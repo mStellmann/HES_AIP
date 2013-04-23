@@ -32,9 +32,7 @@ public class Angebot implements IAngebot {
     }
 
     public Angebot(int angebotsNummer, Date gueltigAb, Date gueltigBis) {
-        this.angebotsNummer = angebotsNummer;
-        this.gueltigAb = gueltigAb;
-        this.gueltigBis = gueltigBis;
+        this(angebotsNummer,gueltigAb,0f,gueltigBis,null,null,null);
     }
 
     public Angebot() {
