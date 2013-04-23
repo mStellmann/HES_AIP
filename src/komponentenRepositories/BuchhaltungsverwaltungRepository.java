@@ -14,10 +14,10 @@ import java.util.Date;
  */
 public class BuchhaltungsverwaltungRepository {
     // zahlungseingang, rechnung
-    private IPersitenz persitenz;
+    private IPersitenz persistenz;
 
-    public BuchhaltungsverwaltungRepository(IPersitenz persitenz) {
-        this.persitenz = persitenz;
+    public BuchhaltungsverwaltungRepository(IPersitenz persistenz) {
+        this.persistenz = persistenz;
     }
 
     public IZahlungseingang erstelleZahlungseingang(Date eingangsdatum, float betrag) {
@@ -30,28 +30,28 @@ public class BuchhaltungsverwaltungRepository {
 
     // Getter
     public IZahlungseingang getZahlungseingang(int rechnungsnummer) {
-        return null; // todo
+        return persistenz.getObjectByID(rechnungsnummer, Zahlungseingang.class);
     }
 
     public IRechnung getRechnung(int rechnungsnummer) {
-        return null; // todo
+        return persistenz.getObjectByID(rechnungsnummer, Rechnung.class);
     }
 
     // Updates
     public void updateZahlungseingang(IZahlungseingang zahlungseingang) {
-        // todo
+        persistenz.updateObject(zahlungseingang);
     }
 
     public void updateRechnung(IRechnung rechnung) {
-        // todo
+        persistenz.updateObject(rechnung);
     }
 
     // Saves
     private void saveZahlungseingang(Zahlungseingang zahlungseingang) {
-        // todo
+        persistenz.saveObject(zahlungseingang);
     }
 
     private void saveRechnung(Rechnung rechnung) {
-        // todo
+        persistenz.saveObject(rechnung);
     }
 }

@@ -24,17 +24,17 @@ public class AngebotsverwaltungRepository {
 
     // Getter
     public IAngebot getAngebot(int angebotsNummer) {
-        return null; // todo
+        return persitenz.getObjectByID(angebotsNummer, Angebot.class);
     }
 
     // Updates
     public void updateAngebot(IAngebot angebot) {
-        // todo
+        persitenz.updateObject(angebot);
     }
 
     // Saves
     private void saveAngebot(Angebot angebot) {
-        // todo
+        persitenz.saveObject(angebot);
     }
 
 }

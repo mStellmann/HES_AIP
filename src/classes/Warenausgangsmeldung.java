@@ -4,17 +4,30 @@ import interfaces.IBestellung;
 import interfaces.IProdukt;
 import interfaces.IWarenausgangsmeldung;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  */
+@Entity
+@Table(name = "Warenausgangsmeldung")
 public class Warenausgangsmeldung implements IWarenausgangsmeldung, Serializable {
     // private int lieferschein; // idnummer vom lieferschein (bar-code)
+
+    @Id
+    @GeneratedValue
+    private int id;
+    @Column(nullable = false)
+    @Temporal(value = TemporalType.DATE)
     private Date datum;
+    @Column(nullable =  false)
     private int menge;
 
+
+    @ManyToOne
+    @JoinColumn(name = "produkt")
     private IProdukt produkt;
 
     public Warenausgangsmeldung(int menge, Date datum, IProdukt produkt) {

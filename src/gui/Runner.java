@@ -34,8 +34,11 @@ public class Runner {
         BuchhaltungverwaltungFassade buchhaltungverwaltung = new BuchhaltungverwaltungFassade(bankAdapter, auftragsverwaltung, persitenz);
 
         // --- SIMULATING SOME STUFF ---
-        //             TODO
+
+        // TODO
+
         // -----------------------------
+
         session.close();
     }
 }

@@ -15,22 +15,25 @@ public class ProduktverwaltungRepository {
         this.persitenz = persitenz;
     }
 
-    public IProdukt erstelleProdukt( String name, int lagerbestand) {
-        return new Produkt(name, lagerbestand);
+    public IProdukt erstelleProdukt(String name, int lagerbestand) {
+        Produkt produkt = new Produkt(name, lagerbestand);
+        persitenz.saveObject(produkt);
+        return produkt;
+
     }
 
     // Getter
-    public IProdukt getProdukt(int kundenNummer) {
-        return null; // todo
+    public IProdukt getProdukt(int produktNummer) {
+        return persitenz.getObjectByID(produktNummer, Produkt.class);
     }
 
     // Updates
-    public void updateProdukt(IKunde kunde) {
-        // todo
+    public void updateProdukt(IProdukt produkt) {
+        persitenz.updateObject(produkt);
     }
 
     // Saves
-    private void saveProdukt(Kunde kunde) {
-        // todo
+    private void saveProdukt(Produkt produkt) {
+        persitenz.saveObject(produkt);
     }
 }
