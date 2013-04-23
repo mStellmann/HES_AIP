@@ -5,19 +5,36 @@ import interfaces.IAuftrag;
 import interfaces.ILieferung;
 import interfaces.IRechnung;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+
 
 /**
  *
  */
+
+@Entity
+@Table(name = "auftraege")
 public class Auftrag implements IAuftrag, Serializable {
+
+    @Id
+    @GeneratedValue
     private int auftragsNummer;
+    @Column //(nullable = false)
     private boolean istAbgeschlossen = false;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date beauftragtAm;
 
+
+    @OneToOne
+    @JoinColumn(name = "angebot")
     private IAngebot angebot;
+    @OneToOne
+    @JoinColumn(name = "lieferung")
     private ILieferung lieferung;
+    @OneToOne
+    @JoinColumn(name = "rechnung")
     private IRechnung rechnung;
 
     public Auftrag(Date beauftragtAm, IAngebot angebot, IRechnung rechnung, ILieferung lieferung) {
