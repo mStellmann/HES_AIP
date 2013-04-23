@@ -21,6 +21,7 @@ public class Kunde implements IKunde, Serializable {
     @Column(nullable = false)
     private String adresse;
     @OneToMany(mappedBy = "Kunde")
+    @JoinColumn(name = "angebotsList")
     private List<IAngebot> angebotsList;
 
     public Kunde(String name, String adresse) {

@@ -29,10 +29,13 @@ public class Lieferant implements ILieferant, Serializable {
 
 
     @OneToMany(mappedBy = "Lieferant")
+    @JoinColumn(name = "einkaufsinfosatzList")
     private List<IEinkaufsinfosatz> einkaufsinfosatzList;
     @OneToMany(mappedBy = "Lieferant")
+    @JoinColumn(name = "bestellungList")
     private List<IBestellung> bestellungList;
     @OneToMany(mappedBy = "Lieferant")
+    @JoinColumn(name = "orderbuchsatzList")
     private List<IOrderbuchsatz> orderbuchsatzList;
 
     public Lieferant(String name, String adresse, String kontoverbindung) {

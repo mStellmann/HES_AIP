@@ -30,10 +30,10 @@ public class Einkaufsinfosatz implements IEinkaufsinfosatz, Serializable {
     @Column(nullable = false)
     private float preis;
     @ManyToOne
-    @JoinColumn(name = "Lieferant")
+    @JoinColumn(name = "lieferant")
     private ILieferant lieferant;
     @ManyToOne
-    @JoinColumn(name = "Produkt")
+    @JoinColumn(name = "produkt")
     private IProdukt produkt;
 
     public Einkaufsinfosatz(Date gueltigAb, Date gueltigBis, int planlieferzeit, int normalmenge, float preis) {

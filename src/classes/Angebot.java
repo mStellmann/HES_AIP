@@ -12,21 +12,29 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Entity
-@Table(name = "ANGEBOT")
+@Table(name = "Angebot")
 public class Angebot implements IAngebot, Serializable {
     @Id
     @GeneratedValue
-    @Column(name = "ANGEBOT_ID")
+    @Column(nullable = false)
     private int angebotsNummer;
-    @Column(name = "GUELTIG_AB", nullable = false)
+    @Column(nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date gueltigAb;
-    @Column(name = "GUELTIG_BIS", nullable = false)
+    @Column(nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date gueltigBis;
-    @Column(name = "GESAMTPREIS", nullable = false)
+    @Column(nullable = false)
     private float gesamtPreis;
 
+    @ManyToOne
+    @JoinColumn(name = "kunde")
     private IKunde kunde;
+    @OneToOne
+    @JoinColumn(name = "auftrag")
     private IAuftrag auftrag;
+    @ManyToOne
+    @JoinColumn(name = "produktMengeMap")
     private Map<IProdukt, Integer> produktMengeMap;
 
     public Angebot(Date gueltigAb, float gesamtPreis, Date gueltigBis, IKunde kunde, IAuftrag auftrag, Map<IProdukt, Integer> produktMengeMap) {

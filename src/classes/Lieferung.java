@@ -17,8 +17,10 @@ public class Lieferung implements ILieferung, Serializable {
     @GeneratedValue
     private int lieferungsNummer;
     @OneToOne
+    @JoinColumn(name = "transportauftrag")
     private ITransportauftrag transportauftrag;
     @OneToOne
+    @JoinColumn(name = "auftrag")
     private IAuftrag auftrag;
 
 
