@@ -13,7 +13,7 @@ public class Kunde implements IKunde, Serializable {
     private String adresse;
     private List<IAngebot> angebotsList;
 
-    public Kunde(int kundenNummer, String name, String adresse) {
+    public Kunde(String name, String adresse) {
         this.kundenNummer = kundenNummer;
         this.name = name;
         this.adresse = adresse;

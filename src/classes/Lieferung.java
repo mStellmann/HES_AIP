@@ -13,14 +13,11 @@ public class Lieferung implements ILieferung, Serializable {
 
     private ITransportauftrag transportauftrag;
 
-    public Lieferung(int lieferungsNummer, ITransportauftrag transportauftrag) {
+    public Lieferung(ITransportauftrag transportauftrag) {
         this.lieferungsNummer = lieferungsNummer;
         this.transportauftrag = transportauftrag;
     }
 
-    public Lieferung(int lieferungsNummer) {
-        this(lieferungsNummer, null);
-    }
 
     public Lieferung() {
     }

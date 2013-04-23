@@ -21,7 +21,7 @@ public class Lieferant implements ILieferant, Serializable {
     private List<IBestellung> bestellungList;
     private List<IOrderbuchsatz> orderbuchsatzList;
 
-    public Lieferant(int lieferantenNummer, String name, String adresse, String kontoverbindung) {
+    public Lieferant(String name, String adresse, String kontoverbindung) {
         this.lieferantenNummer = lieferantenNummer;
         this.name = name;
         this.adresse = adresse;

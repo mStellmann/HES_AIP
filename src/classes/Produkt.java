@@ -17,10 +17,11 @@ public class Produkt implements IProdukt, Serializable {
     private List<IWarenausgangsmeldung> warenausgangsmeldungList;
     private List<IAngebot> angebotList;
     private List<IEinkaufsinfosatz> einkaufsinfosatzList;
+
     private List<IBestellung> bestellungList;
 
 
-    public Produkt(int produktNummer, String name, int lagerbestand, Orderbuch orderbuch, List<IWarenausgangsmeldung> warenausgangsmeldungList, List<IAngebot> angebotList, List<IEinkaufsinfosatz> einkaufsinfosatzList, List<IBestellung> bestellungList) {
+    public Produkt(String name, int lagerbestand, Orderbuch orderbuch, List<IWarenausgangsmeldung> warenausgangsmeldungList, List<IAngebot> angebotList, List<IEinkaufsinfosatz> einkaufsinfosatzList, List<IBestellung> bestellungList) {
         this.produktNummer = produktNummer;
         this.name = name;
         this.lagerbestand = lagerbestand;
