@@ -14,4 +14,6 @@ public interface ILagerverwaltungIntern {
     boolean pruefeLagerbestand(int produktNummer, int geforderteProduktMenge);
     IWareneingangsmeldung createWareneingangsmeldung(int bestellNr, Date datum, IBestellung bestellung);
     public IWarenausgangsmeldung createWarenausgangsmeldung(int menge, Date datum, IProdukt produkt);
+    public IWareneingangsmeldung getWareneingangsmeldung(int id);
+    public IWarenausgangsmeldung getWarenausgangsmeldung(int id);
 }

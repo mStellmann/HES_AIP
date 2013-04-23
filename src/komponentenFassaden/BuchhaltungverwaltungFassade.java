@@ -21,6 +21,7 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public class BuchhaltungverwaltungFassade implements IBuchhaltungsverwaltungIntern, IBuchhaltungsverwaltungExtern {
+
     private BuchhaltungsverwaltungRepository repository;
     private BuchhaltungLogik logik;
 
@@ -45,5 +46,15 @@ public class BuchhaltungverwaltungFassade implements IBuchhaltungsverwaltungInte
     @Override
     public void markiereRechnungAlsBezahlt(int rechnungsNummer) {
         repository.getRechnung(rechnungsNummer).setIstBezahlt(true);
+    }
+
+    @Override
+    public IRechnung getRechnung(int rechnungsNummer) {
+        return repository.getRechnung(rechnungsNummer);
+    }
+
+    @Override
+    public IZahlungseingang getZahlungseingang(int rechnungsNummer) {
+        return repository.getZahlungseingang(rechnungsNummer);
     }
 }
