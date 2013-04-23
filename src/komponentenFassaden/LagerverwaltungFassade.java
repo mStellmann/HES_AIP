@@ -39,6 +39,14 @@ public class LagerverwaltungFassade implements ILagerverwaltungIntern, ILagerver
                       return repositorie.createWarenausgangsmeldung(menge,datum,produkt);
     }
 
+    public IWareneingangsmeldung getWareneingangsmeldung(int id){
+          return repositorie.getWareneingangsmeldung(id);
+    }
+
+    public IWarenausgangsmeldung getWarenausgangsmeldung(int id){
+         return repositorie.getWarenausgangsmeldung(id);
+    }
+
     @Override
     public boolean pruefeLagerbestand(int produktNummer, int geforderteProduktMenge) {
         return logik.pruefeLagerbestand(produktNummer,geforderteProduktMenge);
