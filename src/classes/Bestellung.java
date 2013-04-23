@@ -28,8 +28,16 @@ public class Bestellung implements IBestellung, Serializable {
     @Column(nullable = false)
     private boolean freigabe;
 
+
+    @OneToOne
+    @JoinColumn(name ="wareneingangsmeldung")
     private IWareneingangsmeldung wareneingangsmeldung;
+
+    @ManyToOne
+    @JoinColumn(name = "produkt")
     private IProdukt produkt;
+    @ManyToOne
+    @JoinColumn(name = "lieferant")
     private ILieferant lieferant;
 
     public Bestellung(Date bestelldatum, int menge, boolean freigabe) {
