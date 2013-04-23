@@ -23,16 +23,16 @@ public class AuftragsverwaltungRepository {
         this.persitenz = persitenz;
     }
 
-    public IAuftrag erstelleAuftrag(int auftragsNummer, Date beauftragtAm, IAngebot angebot) {
-        return new Auftrag(auftragsNummer, beauftragtAm, angebot);
+    public IAuftrag erstelleAuftrag(Date beauftragtAm, IAngebot angebot) {
+        return new Auftrag(beauftragtAm, angebot);
     }
 
-    public ITransportauftrag erstelleTransportauftrag(int transportauftragsNummer, Date ausgangsdatum, String transportdienstleister) {
-        return new Transportauftrag(transportauftragsNummer, ausgangsdatum, transportdienstleister);
+    public ITransportauftrag erstelleTransportauftrag(Date ausgangsdatum, String transportdienstleister) {
+        return new Transportauftrag(ausgangsdatum, transportdienstleister);
     }
 
-    public ILieferung erstelleLieferung(int lieferungsNummer) {
-        return new Lieferung(lieferungsNummer);
+    public ILieferung erstelleLieferung() {
+        return new Lieferung();
     }
 
     // Getter

@@ -18,8 +18,8 @@ public class AngebotsverwaltungRepository {
         this.persitenz = persitenz;
     }
 
-    public IAngebot erstelleAngebot(int angebotsNummer, Date gueltigAb, Date gueltigBis, float gesamtPreis, IKunde kunde) {
-        return new Angebot(angebotsNummer, gueltigAb, gueltigBis, gesamtPreis, kunde);
+    public IAngebot erstelleAngebot(Date gueltigAb, Date gueltigBis, float gesamtPreis, IKunde kunde) {
+        return new Angebot(gueltigAb, gueltigBis, gesamtPreis, kunde);
     }
 
     // Getter

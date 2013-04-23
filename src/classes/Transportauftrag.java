@@ -19,8 +19,7 @@ public class Transportauftrag implements ITransportauftrag, Serializable {
 
     private ILieferung lieferung;
 
-    public Transportauftrag(int transportauftragsNummer, Date ausgangsdatum, String transportdienstleister) {
-        this.transportauftragsNummer = transportauftragsNummer;
+    public Transportauftrag(Date ausgangsdatum, String transportdienstleister) {
         this.ausgangsdatum = ausgangsdatum;
         this.transportdienstleister = transportdienstleister;
     }

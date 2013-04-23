@@ -29,8 +29,8 @@ public class BuchhaltungverwaltungFassade implements IBuchhaltungsverwaltungInte
     }
 
     @Override
-    public IRechnung erstelleRechnung(int rechnungsNummer, Date rechnungsDatum, IAuftrag auftrag) {
-        IRechnung rechnung = repository.erstelleRechnung(rechnungsNummer, rechnungsDatum);
+    public IRechnung erstelleRechnung(Date rechnungsDatum, IAuftrag auftrag) {
+        IRechnung rechnung = repository.erstelleRechnung(rechnungsDatum);
         rechnung.setAuftrag(auftrag);
         return rechnung;
     }

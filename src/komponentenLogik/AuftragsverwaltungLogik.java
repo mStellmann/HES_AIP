@@ -33,7 +33,7 @@ public class AuftragsverwaltungLogik {
         this.transportdienstleisterAdapter = transportdienstleisterAdapter;
     }
 
-    public IAuftrag erstelleAuftrag(int auftragsNummer, Date beauftragtAm, AngebotTyp angebot) throws Exception {
+    public IAuftrag erstelleAuftrag(Date beauftragtAm, AngebotTyp angebot) throws Exception {
 
         Set<ProduktTyp> produktSet = angebot.getProduktMengeMap().keySet();
 
@@ -43,6 +43,6 @@ public class AuftragsverwaltungLogik {
         }
 
         IAngebot angebotVar = angebotsverwaltungIntern.getAngebot(angebot.getAngebotsNummer());
-        return repository.erstelleAuftrag(auftragsNummer, beauftragtAm, angebotVar);
+        return repository.erstelleAuftrag(beauftragtAm, angebotVar);
     }
 }

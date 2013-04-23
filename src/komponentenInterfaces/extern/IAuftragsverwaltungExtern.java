@@ -11,5 +11,5 @@ import java.util.Date;
  *
  */
 public interface IAuftragsverwaltungExtern {
-    AuftragTyp erstelleAuftrag(int auftragsNummer, Date beauftragtAm, AngebotTyp angebot);
+    AuftragTyp erstelleAuftrag(Date beauftragtAm, AngebotTyp angebot);
 }

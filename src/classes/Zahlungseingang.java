@@ -10,6 +10,7 @@ import java.util.Date;
  *
  */
 public class Zahlungseingang implements IZahlungseingang, Serializable {
+    private int zahlungseingangID;
     private Date eingangsdatum;
     private float betrag;
 
@@ -21,6 +22,14 @@ public class Zahlungseingang implements IZahlungseingang, Serializable {
     }
 
     public Zahlungseingang() {
+    }
+
+    public int getZahlungseingangID() {
+        return zahlungseingangID;
+    }
+
+    public void setZahlungseingangID(int zahlungseingangID) {
+        this.zahlungseingangID = zahlungseingangID;
     }
 
     public Date getEingangsdatum() {

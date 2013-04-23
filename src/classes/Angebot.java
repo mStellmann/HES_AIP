@@ -5,11 +5,14 @@ import interfaces.IAuftrag;
 import interfaces.IKunde;
 import interfaces.IProdukt;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+@Entity
+@Table(name = "ANGEBOT")
 public class Angebot implements IAngebot, Serializable {
     private int angebotsNummer;
     private Date gueltigAb;
@@ -20,8 +23,8 @@ public class Angebot implements IAngebot, Serializable {
     private IAuftrag auftrag;
     private Map<IProdukt, Integer> produktMengeMap;
 
-    public Angebot(int angebotsNummer, Date gueltigAb, float gesamtPreis, Date gueltigBis, IKunde kunde, IAuftrag auftrag, Map<IProdukt, Integer> produktMengeMap) {
-        this.angebotsNummer = angebotsNummer;
+    public Angebot(Date gueltigAb, float gesamtPreis, Date gueltigBis, IKunde kunde, IAuftrag auftrag, Map<IProdukt, Integer> produktMengeMap) {
+
         this.gueltigAb = gueltigAb;
         this.gesamtPreis = gesamtPreis;
         this.gueltigBis = gueltigBis;
@@ -30,8 +33,8 @@ public class Angebot implements IAngebot, Serializable {
         this.produktMengeMap = produktMengeMap;
     }
 
-    public Angebot(int angebotsNummer, Date gueltigAb, Date gueltigBis, float gesamtPreis, IKunde kunde) {
-        this(angebotsNummer, gueltigAb, gesamtPreis, gueltigBis, kunde, null, new HashMap<IProdukt, Integer>());
+    public Angebot(Date gueltigAb, Date gueltigBis, float gesamtPreis, IKunde kunde) {
+        this(gueltigAb, gesamtPreis, gueltigBis, kunde, null, new HashMap<IProdukt, Integer>());
     }
 
     public Angebot() {
@@ -77,6 +80,9 @@ public class Angebot implements IAngebot, Serializable {
         this.produktMengeMap = produktMengeMap;
     }
 
+    @Id
+    @GeneratedValue
+    @Column(name = "ANGEBOT_ID")
     @Override
     public int getAngebotsNummer() {
         return angebotsNummer;

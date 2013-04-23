@@ -24,8 +24,8 @@ public class BuchhaltungsverwaltungRepository {
         return new Zahlungseingang(eingangsdatum, betrag);
     }
 
-    public IRechnung erstelleRechnung(int rechnungsNummer, Date rechnungsDatum) {
-        return new Rechnung(rechnungsNummer, rechnungsDatum);
+    public IRechnung erstelleRechnung(Date rechnungsDatum) {
+        return new Rechnung(rechnungsDatum);
     }
 
     // Getter

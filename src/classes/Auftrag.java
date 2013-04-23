@@ -20,20 +20,19 @@ public class Auftrag implements IAuftrag, Serializable {
     private ILieferung lieferung;
     private IRechnung rechnung;
 
-    public Auftrag(int auftragsNummer, Date beauftragtAm, IAngebot angebot, IRechnung rechnung, ILieferung lieferung) {
-        this.auftragsNummer = auftragsNummer;
+    public Auftrag(Date beauftragtAm, IAngebot angebot, IRechnung rechnung, ILieferung lieferung) {
         this.beauftragtAm = beauftragtAm;
         this.angebot = angebot;
         this.rechnung = rechnung;
         this.lieferung = lieferung;
     }
 
-    public Auftrag(int auftragsNummer, Date beauftragtAm) {
-        this(auftragsNummer, beauftragtAm, null, null, null);
+    public Auftrag(Date beauftragtAm) {
+        this(beauftragtAm, null, null, null);
     }
 
-    public Auftrag(int auftragsNummer, Date beauftragtAm, IAngebot angebot) {
-        this(auftragsNummer, beauftragtAm, angebot, null, null);
+    public Auftrag(Date beauftragtAm, IAngebot angebot) {
+        this(beauftragtAm, angebot, null, null);
     }
 
     public Auftrag() {

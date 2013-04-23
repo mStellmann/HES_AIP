@@ -20,15 +20,14 @@ public class Rechnung implements IRechnung, Serializable {
     private List<IZahlungseingang> zahlungseingangList;
     private IAuftrag auftrag;
 
-    public Rechnung(int rechnungsNummer, Date rechnungsDatum, List<IZahlungseingang> zahlungseingangList, IAuftrag auftrag) {
-        this.rechnungsNummer = rechnungsNummer;
+    public Rechnung(Date rechnungsDatum, List<IZahlungseingang> zahlungseingangList, IAuftrag auftrag) {
         this.rechnungsDatum = rechnungsDatum;
         this.zahlungseingangList = zahlungseingangList;
         this.auftrag = auftrag;
     }
 
-    public Rechnung(int rechnungsNummer, Date rechnungsDatum) {
-        this(rechnungsNummer, rechnungsDatum, new ArrayList<IZahlungseingang>(), null);
+    public Rechnung(Date rechnungsDatum) {
+        this(rechnungsDatum, new ArrayList<IZahlungseingang>(), null);
     }
 
     public Rechnung() {

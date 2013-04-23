@@ -28,17 +28,23 @@ public class AuftragsverwaltungFassade implements IAuftragsverwaltungIntern, IAu
         repository = new AuftragsverwaltungRepository(persitenz);
         logik = new AuftragsverwaltungLogik(angebotsverwaltungIntern, lagerverwaltungIntern, transportdienstleisterAdapter, repository);
     }
+
     // from extern
     @Override
-    public AuftragTyp erstelleAuftrag(int auftragsNummer, Date beauftragtAm, AngebotTyp angebot) {
-        IAuftrag auftrag = logik.erstelleAuftrag(auftragsNummer,beauftragtAm,angebot);
-        return new AuftragTyp(auftrag.getAuftragsNummer(),auftrag.getBeauftragtAm(),angebot);
+    public AuftragTyp erstelleAuftrag(Date beauftragtAm, AngebotTyp angebot) {
+        IAuftrag auftrag = null;
+        try {
+            auftrag = logik.erstelleAuftrag(beauftragtAm, angebot);
+        } catch (Exception e) {
+            e.printStackTrace();  // todo -> exception catchen
+        }
+        return new AuftragTyp(auftrag.getAuftragsNummer(), auftrag.getBeauftragtAm(), angebot);
     }
 
     // from intern
     @Override
-    public ILieferung erstelleLieferung(int lieferungsNummer) {
-        return repository.erstelleLieferung(lieferungsNummer);
+    public ILieferung erstelleLieferung() {
+        return repository.erstelleLieferung();
     }
 
     @Override

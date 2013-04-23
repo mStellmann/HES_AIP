@@ -9,7 +9,7 @@ import java.util.Date;
  *
  */
 public interface IBuchhaltungsverwaltungIntern {
-    IRechnung erstelleRechnung(int rechnungsNummer, Date rechnungsDatum, IAuftrag auftrag);
+    IRechnung erstelleRechnung(Date rechnungsDatum, IAuftrag auftrag);
 
     void markiereRechnungAlsBezahlt(int rechnungsNummer);
 }
