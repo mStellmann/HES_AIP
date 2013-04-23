@@ -1,6 +1,6 @@
 - Funktionalität implementieren (Sezanrio)
-- Klassenannotationen für Hibernate
+
 - jede Klasse -> JUnit tests
 - main() - für simuation
-- Diagramme erstellen mit Tools
-- Präsentation erstellen
+- Sequenzdiagramm editieren
+- Präsentation - seqDia einfügen
