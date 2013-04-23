@@ -2,6 +2,8 @@ package komponentenRepositories;
 
 import classes.Warenausgangsmeldung;
 import classes.Wareneingangsmeldung;
+import interfaces.IWarenausgangsmeldung;
+import interfaces.IWareneingangsmeldung;
 
 import java.util.Date;
 
@@ -13,11 +15,11 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public class LagerverwaltungRepository {
-    public Wareneingangsmeldung createWareneingangsmeldung(int bestellNr, Date datum) {
+    public IWareneingangsmeldung createWareneingangsmeldung(int bestellNr, Date datum) {
         return new Wareneingangsmeldung(bestellNr, datum);
     }
 
-    public Warenausgangsmeldung createWarenausgangsmeldung(int menge, Date datum) {
+    public IWarenausgangsmeldung createWarenausgangsmeldung(int menge, Date datum) {
         return new Warenausgangsmeldung(menge,datum);
     }
 }

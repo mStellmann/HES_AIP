@@ -2,6 +2,8 @@ package komponentenLogik;
 
 import classes.Warenausgangsmeldung;
 import classes.Wareneingangsmeldung;
+import interfaces.IWarenausgangsmeldung;
+import interfaces.IWareneingangsmeldung;
 import komponentenInterfaces.intern.IEinkaufsverwaltungIntern;
 import komponentenInterfaces.intern.IProduktverwaltungIntern;
 import komponentenRepositories.LagerverwaltungRepository;
@@ -29,15 +31,16 @@ public class LagerverwaltungLogik {
         this.einkaufsverwaltung = einkaufsverwaltung;
     }
 
-    public void produktAusliefern(int warenNr) {
+    public void produktAusliefern(int warenNr, int geforderteMenge) {
         ProduktTyp produkt = getProduktTyp(warenNr);
-        if (istAusreichendVorhanden(warenNr, produkt.getMenge())) {
-
-            Warenausgangsmeldung warenausgangsmeldung = repository.createWarenausgangsmeldung(produkt.getMenge(), new Date());
+        if (geforderteMenge <= produkt.getMenge()) {
+            int rausgehendeMenge = produkt.getMenge();
+            IWarenausgangsmeldung warenausgangsmeldung = repository.createWarenausgangsmeldung(rausgehendeMenge, new Date());
+            produktverwaltung.lagerbestendReduzieren(rausgehendeMenge);
         } else {
             LieferungTyp lieferung = wareBestellen(warenNr);
-            Wareneingangsmeldung wareneingangsmeldung = repository.createWareneingangsmeldung(lieferung.getBestellNr(), new Date()); //Date platzhalter für JodaTime
-            produktAusliefern(warenNr); // da jetzt vorhanden wird eine warenausgangsmeldung erzeugt.
+            IWareneingangsmeldung wareneingangsmeldung = repository.createWareneingangsmeldung(lieferung.getBestellNr(), new Date()); //Date platzhalter für JodaTime
+            produktAusliefern(warenNr,geforderteMenge); // da jetzt vorhanden wird eine warenausgangsmeldung erzeugt.
         }
     }
 
@@ -45,12 +48,17 @@ public class LagerverwaltungLogik {
         return einkaufsverwaltung.wareBestellen(warenNr);
     }
 
-    private boolean istAusreichendVorhanden(int warenNr,int menge) {
-        return produktverwaltung.istAusreichendVorhanden(warenNr,menge);
+//    private boolean istAusreichendVorhanden(int warenNr,int menge) {
+//        return produktverwaltung.istAusreichendVorhanden(warenNr,menge);
+//    }
+
+    private boolean nrIstVorhanden(int warenNr){
+        return produktverwaltung.nrIstVorhanden(warenNr);
     }
 
     private ProduktTyp getProduktTyp(int warenNr) {
-        return produktverwaltung.getProduktTyp(warenNr);
+        if (nrIstVorhanden(warenNr)) return produktverwaltung.getProduktTyp(warenNr);
+        else throw new IndexOutOfBoundsException();
 
     }
 }
