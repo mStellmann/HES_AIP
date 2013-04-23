@@ -1,5 +1,9 @@
 package komponentenFassaden;
 
+import interfaces.IBestellung;
+import interfaces.IProdukt;
+import interfaces.IWarenausgangsmeldung;
+import interfaces.IWareneingangsmeldung;
 import komponentenInterfaces.extern.ILagerverwaltungExtern;
 import komponentenInterfaces.intern.IEinkaufsverwaltungIntern;
 import komponentenInterfaces.intern.ILagerverwaltungIntern;
@@ -7,6 +11,8 @@ import komponentenInterfaces.intern.IPersitenz;
 import komponentenInterfaces.intern.IProduktverwaltungIntern;
 import komponentenLogik.LagerverwaltungLogik;
 import komponentenRepositories.LagerverwaltungRepository;
+
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,10 +31,17 @@ public class LagerverwaltungFassade implements ILagerverwaltungIntern, ILagerver
         logik = new LagerverwaltungLogik(repositorie, produkt, einkauf);
     }
 
+    public IWareneingangsmeldung createWareneingangsmeldung(int bestellNr, Date datum, IBestellung bestellung)   {
+                   return repositorie.createWareneingangsmeldung(bestellNr, datum, bestellung);
+    }
 
+    public IWarenausgangsmeldung createWarenausgangsmeldung(int menge, Date datum, IProdukt produkt){
+                      return repositorie.createWarenausgangsmeldung(menge,datum,produkt);
+    }
 
     @Override
     public boolean pruefeLagerbestand(int produktNummer, int geforderteProduktMenge) {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return logik.pruefeLagerbestand(produktNummer,geforderteProduktMenge);
+       // return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }
