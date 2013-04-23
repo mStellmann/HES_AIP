@@ -10,9 +10,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- */
 public class Angebot implements IAngebot, Serializable {
     private int angebotsNummer;
     private Date gueltigAb;
