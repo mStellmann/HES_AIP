@@ -16,8 +16,11 @@ public class Kunde implements IKunde, Serializable {
     @Id
     @GeneratedValue
     private int kundenNummer;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String adresse;
+    @OneToMany(mappedBy = "Kunde")
     private List<IAngebot> angebotsList;
 
     public Kunde(String name, String adresse) {

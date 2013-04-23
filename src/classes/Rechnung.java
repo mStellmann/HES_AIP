@@ -3,6 +3,7 @@ package classes;
 import interfaces.IAuftrag;
 import interfaces.IRechnung;
 import interfaces.IZahlungseingang;
+import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,12 +13,20 @@ import java.util.List;
 /**
  *
  */
+@Entity
+@Table(name = "Rechnung")
 public class Rechnung implements IRechnung, Serializable {
+    @Id
+    @GeneratedValue
     private int rechnungsNummer;
+    @Column(nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date rechnungsDatum;
+    @Column(nullable = false)
     private boolean istBezahlt = false;
-
+    @OneToMany(mappedBy = "Rechnung")
     private List<IZahlungseingang> zahlungseingangList;
+    @OneToOne
     private IAuftrag auftrag;
 
     public Rechnung(Date rechnungsDatum, List<IZahlungseingang> zahlungseingangList, IAuftrag auftrag) {

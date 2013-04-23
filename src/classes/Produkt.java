@@ -2,23 +2,33 @@ package classes;
 
 import interfaces.*;
 
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  */
+@Entity
+@Table(name = "Produkt")
 public class Produkt implements IProdukt, Serializable {
+    @Id
+    @GeneratedValue
     private int produktNummer;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private int lagerbestand;
+    @OneToOne //(mappedBy = "Produkt")
     private Orderbuch orderbuch;
+    @OneToMany(mappedBy = "Produkt")
     private List<IWarenausgangsmeldung> warenausgangsmeldungList;
-    private List<IAngebot> angebotList;
+    @OneToMany(mappedBy = "Produkt")
     private List<IEinkaufsinfosatz> einkaufsinfosatzList;
-
+    @OneToMany(mappedBy = "Produkt")
     private List<IBestellung> bestellungList;
+    @ManyToMany //(mappedBy = "Produkt")
+    private List<IAngebot> angebotList;
 
 
     public Produkt(String name, int lagerbestand, Orderbuch orderbuch, List<IWarenausgangsmeldung> warenausgangsmeldungList, List<IAngebot> angebotList, List<IEinkaufsinfosatz> einkaufsinfosatzList, List<IBestellung> bestellungList) {

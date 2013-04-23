@@ -1,17 +1,26 @@
 package classes;
 
+import interfaces.IAuftrag;
 import interfaces.ILieferung;
 import interfaces.ITransportauftrag;
+import javax.persistence.*;
 
 import java.io.Serializable;
 
 /**
  *
  */
+@Entity
+@Table(name = "Lieferung")
 public class Lieferung implements ILieferung, Serializable {
+    @Id
+    @GeneratedValue
     private int lieferungsNummer;
-
+    @OneToOne
     private ITransportauftrag transportauftrag;
+    @OneToOne
+    private IAuftrag auftrag;
+
 
     public Lieferung(ITransportauftrag transportauftrag) {
         this.lieferungsNummer = lieferungsNummer;

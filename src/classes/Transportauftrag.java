@@ -2,21 +2,30 @@ package classes;
 
 import interfaces.ILieferung;
 import interfaces.ITransportauftrag;
-
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
+import javax.persistence.*;
 
 /**
  *
  */
+@Entity
+@Table(name = "Transportauftrag")
 public class Transportauftrag implements ITransportauftrag, Serializable {
+    @Id
+    @GeneratedValue
     private int transportauftragsNummer;
+    @Column
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date ausgangsdatum;
+    @Column(nullable = false)
     private boolean lieferungErfolgt = false;
+    @Column
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date lieferdatum;
+    @Column(nullable = false)
     private String transportdienstleister;
-
+    @OneToOne
     private ILieferung lieferung;
 
     public Transportauftrag(Date ausgangsdatum, String transportdienstleister) {

@@ -4,6 +4,7 @@ import interfaces.IOrderbuch;
 import interfaces.IOrderbuchsatz;
 import interfaces.IProdukt;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +12,16 @@ import java.util.List;
 /**
  *
  */
+@Entity
+@Table(name = "Orderbuch")
 public class Orderbuch implements IOrderbuch, Serializable {
+    @Id
+    @GeneratedValue
+    private int id;
+    @Column(nullable = false)
+    @OneToOne
     private IProdukt produkt;
+    @OneToMany(mappedBy = "Orderbuch")
     private List<IOrderbuchsatz> orderbuchsatzList;
 
     public Orderbuch(IProdukt produkt) {

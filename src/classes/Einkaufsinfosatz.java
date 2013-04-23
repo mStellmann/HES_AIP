@@ -1,21 +1,39 @@
 package classes;
 
 import interfaces.IEinkaufsinfosatz;
+import interfaces.ILieferant;
 import interfaces.IProdukt;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  */
+@Entity
+@Table(name = "Einkaufsinfosatz")
 public class Einkaufsinfosatz implements IEinkaufsinfosatz, Serializable {
+    @Id
+    @GeneratedValue
+    private int id;
+    @Column(nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date gueltigAb;
+    @Column(nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date gueltigBis;
+    @Column(nullable = false)
     private int planlieferzeit; // in int => anzahl tage
+    @Column(nullable = false)
     private int normalmenge;
+    @Column(nullable = false)
     private float preis;
-
+    @ManyToOne
+    @JoinColumn(name = "Lieferant")
+    private ILieferant lieferant;
+    @ManyToOne
+    @JoinColumn(name = "Produkt")
     private IProdukt produkt;
 
     public Einkaufsinfosatz(Date gueltigAb, Date gueltigBis, int planlieferzeit, int normalmenge, float preis) {
