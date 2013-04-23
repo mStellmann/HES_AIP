@@ -24,7 +24,7 @@ public class Auftrag implements IAuftrag, Serializable {
     @Column //(nullable = false)
     private boolean istAbgeschlossen = false;
     @Column
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(value = TemporalType.DATE)
     private Date beauftragtAm;
 
 

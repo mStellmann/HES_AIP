@@ -4,17 +4,34 @@ import interfaces.ILieferant;
 import interfaces.IOrderbuch;
 import interfaces.IOrderbuchsatz;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  */
+
+@Entity
+@Table(name= "Orderbuchsatz")
 public class Orderbuchsatz implements IOrderbuchsatz, Serializable {
+
+    @Id
+    @GeneratedValue
+    private int id;
+    @Column(nullable = false)
+    @Temporal(value = TemporalType.DATE)
     private Date gueltigAb;
+    @Column(nullable = false)
+    @Temporal(value = TemporalType.DATE)
     private Date gueltigBis;
 
+
+    @ManyToOne
+    @JoinColumn(name ="lieferant")
     private ILieferant lieferant;
+    @ManyToOne
+    @JoinColumn(name ="orderbuch")
     private IOrderbuch orderbuch;
 
 
