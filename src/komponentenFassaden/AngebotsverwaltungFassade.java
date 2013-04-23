@@ -1,6 +1,7 @@
 package komponentenFassaden;
 
 import interfaces.IAngebot;
+import interfaces.IKunde;
 import komponentenInterfaces.extern.IAngebotsverwaltungExtern;
 import komponentenInterfaces.intern.IAngebotsverwaltungIntern;
 import komponentenInterfaces.intern.IKundenverwaltungIntern;
@@ -15,13 +16,7 @@ import typClasses.ProduktTyp;
 
 import java.util.Date;
 
-/**
- * Created with IntelliJ IDEA.
- * User: abe263
- * Date: 19.04.13
- * Time: 13:12
- * To change this template use File | Settings | File Templates.
- */
+
 public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAngebotsverwaltungExtern {
     private AngebotsverwaltungRepository repository;
     private AngebotsverwaltungLogik logik;
@@ -40,6 +35,11 @@ public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAn
     @Override
     public void addProduktMengeZuAngebot(AngebotTyp angebot, ProduktTyp produkt, int menge) {
         logik.addProduktMengeZuAngebot(repository.getAngebot(angebot.getAngebotsNummer()), produkt, menge);
+    }
+
+    @Override
+    public IAngebot erstelleAngebot(Date gueltigAb, Date gueltigBis, float gesamtPreis, IKunde kunde) {
+        return repository.erstelleAngebot(gueltigAb, gueltigBis, gesamtPreis, kunde);
     }
 
     @Override

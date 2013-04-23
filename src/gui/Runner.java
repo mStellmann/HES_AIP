@@ -5,9 +5,7 @@ import adapter.PersistenzAdapter;
 import adapter.TransaktionsAdapter;
 import adapter.TransportdienstleisterAdapter;
 import hibernate.HibernateUtil;
-import interfaces.IAngebot;
-import interfaces.IKunde;
-import interfaces.IProdukt;
+import interfaces.*;
 import komponentenFassaden.*;
 import komponentenInterfaces.intern.IPersitenz;
 import komponentenInterfaces.intern.ITransaktionsAdapter;
@@ -65,19 +63,24 @@ public class Runner {
         Date sampleDate = new DateTime().toDate();
         IProdukt produkt = produktverwaltung.createProdukt("USB-Stick", 10);
         IKunde kunde = kundenverwaltung.createKunde("Hans Dieter", "Musterstr. 123, 27232 Musterhausen");
-        KundeTyp kTyp = new KundeTyp(kunde.getKundennummer(), kunde.getKundenname(), kunde.getAdresse(), new ArrayList<IAngebot>());
-        AngebotTyp angTyp = angebotsverwaltung.erstelleAngebot(sampleDate, sampleDate, 10f, kTyp);
-        AuftragTyp aufTyp = auftragsverwaltung.erstelleAuftrag(sampleDate, angTyp);
+        IAngebot angebot = angebotsverwaltung.erstelleAngebot(sampleDate, sampleDate, 10f, kunde);
+        IAuftrag auftrag = auftragsverwaltung.erstelleAuftrag(sampleDate, angebot);
 
         lagerverwaltung.createWarenausgangsmeldung(5, sampleDate, produkt);
         lagerverwaltung.createWarenausgangsmeldung(25, sampleDate, produkt);
 
-        auftragsverwaltung.erstelleLieferung();
+
         buchhaltungverwaltung.erstelleZahlungseingang(sampleDate, 100f);
         buchhaltungverwaltung.erstelleRechnung(sampleDate, null);
 
-        auftragsverwaltung.markiereAuftragAlsVerschickt(aufTyp.getAuftragsNummer());
-        auftragsverwaltung.auftragAbschliessen(aufTyp.getAuftragsNummer());
+        ILieferung lieferung = auftragsverwaltung.erstelleLieferung();
+        lieferung.setTransportauftrag(auftragsverwaltung.erstelleTransportauftrag(sampleDate, "Super Heftig Transports"));
+        auftrag.setLieferung(lieferung);
+
+        persitenz.updateObject(auftrag);
+
+        auftragsverwaltung.markiereAuftragAlsVerschickt(auftrag.getAuftragsNummer());
+        auftragsverwaltung.auftragAbschliessen(auftrag.getAuftragsNummer());
 
         session.close();
     }

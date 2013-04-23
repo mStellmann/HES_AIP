@@ -1,7 +1,9 @@
 package komponentenFassaden;
 
+import interfaces.IAngebot;
 import interfaces.IAuftrag;
 import interfaces.ILieferung;
+import interfaces.ITransportauftrag;
 import komponentenInterfaces.extern.IAuftragsverwaltungExtern;
 import komponentenInterfaces.intern.*;
 import komponentenLogik.AuftragsverwaltungLogik;
@@ -45,6 +47,31 @@ public class AuftragsverwaltungFassade implements IAuftragsverwaltungIntern, IAu
     @Override
     public ILieferung erstelleLieferung() {
         return repository.erstelleLieferung();
+    }
+
+    @Override
+    public IAuftrag erstelleAuftrag(Date beauftragtAm, IAngebot angebot) {
+        return repository.erstelleAuftrag(beauftragtAm, angebot);
+    }
+
+    @Override
+    public ITransportauftrag erstelleTransportauftrag(Date ausgangsdatum, String transportdienstleister) {
+        return repository.erstelleTransportauftrag(ausgangsdatum, transportdienstleister);
+    }
+
+    @Override
+    public ITransportauftrag getTransportauftrag(int transportauftragsNummer) {
+        return repository.getTransportauftrag(transportauftragsNummer);
+    }
+
+    @Override
+    public IAuftrag getAuftrag(int auftragsNummer) {
+        return repository.getAuftrag(auftragsNummer);
+    }
+
+    @Override
+    public ILieferung getLieferung(int lieferungsNummer) {
+        return repository.getLieferung(lieferungsNummer);
     }
 
     @Override
