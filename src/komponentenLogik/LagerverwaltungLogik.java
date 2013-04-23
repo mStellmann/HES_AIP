@@ -32,10 +32,10 @@ public class LagerverwaltungLogik {
         this.einkaufsverwaltung = einkaufsverwaltung;
     }
 
-    public boolean pruefeLagerbestand(int warenNr, int geforderteMenge) {
+    public boolean pruefeLagerbestand(int warenNr, int geforderteMenge) throws IndexOutOfBoundsException{
         IProdukt produkt = getProdukt(warenNr);
         if (geforderteMenge <= produkt.getLagerbestand()) {
-            IWarenausgangsmeldung warenausgangsmeldung = repository.createWarenausgangsmeldung(geforderteMenge, new Date());
+            IWarenausgangsmeldung warenausgangsmeldung = repository.createWarenausgangsmeldung(geforderteMenge, new Date(), produkt);
             produktverwaltung.lagerbestendReduzieren(geforderteMenge);
             return true;
         } else {
@@ -60,7 +60,7 @@ public class LagerverwaltungLogik {
         return produktverwaltung.nrIstVorhanden(warenNr);
     }
 
-    private IProdukt getProdukt(int warenNr) {
+    private IProdukt getProdukt(int warenNr) throws IndexOutOfBoundsException {
         if (nrIstVorhanden(warenNr)) return produktverwaltung.getProdukt(warenNr);
         else throw new IndexOutOfBoundsException();
 
