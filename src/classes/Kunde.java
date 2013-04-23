@@ -10,12 +10,13 @@ public class Kunde implements IKunde{
     private int kundenNummer;
     private String name;
     private String adresse;
-    private List<IAngebot> angebotsList = new ArrayList<IAngebot>();
+    private List<IAngebot> angebotsList;
 
     public Kunde(int kundenNummer, String name, String adresse) {
         this.kundenNummer = kundenNummer;
         this.name = name;
         this.adresse = adresse;
+        angebotsList = new ArrayList<IAngebot>();
     }
 
     public Kunde() {

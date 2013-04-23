@@ -13,10 +13,10 @@ public class Produkt implements IProdukt {
     private String name;
     private int lagerbestand;
     private Orderbuch orderbuch;
-    private List<IWarenausgangsmeldung> warenausgangsmeldungList = new ArrayList<IWarenausgangsmeldung>();
-    private List<IAngebot> angebotList = new ArrayList<IAngebot>();
-    private List<IEinkaufsinfosatz> einkaufsinfosatzList = new ArrayList<IEinkaufsinfosatz>();
-    private List<IBestellung> bestellungList = new ArrayList<IBestellung>();
+    private List<IWarenausgangsmeldung> warenausgangsmeldungList;
+    private List<IAngebot> angebotList;
+    private List<IEinkaufsinfosatz> einkaufsinfosatzList;
+    private List<IBestellung> bestellungList;
 
 
     public Produkt(int produktNummer, String name, int lagerbestand, Orderbuch orderbuch, List<IWarenausgangsmeldung> warenausgangsmeldungList, List<IAngebot> angebotList, List<IEinkaufsinfosatz> einkaufsinfosatzList, List<IBestellung> bestellungList) {

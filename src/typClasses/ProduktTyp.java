@@ -12,24 +12,19 @@ import java.util.List;
 public class ProduktTyp {
 
     private int produktNummer;
-    private String name;
+    private String produktName;
     private int lagerbestand;
-    private Orderbuch orderbuch;
-    private List<IWarenausgangsmeldung> warenausgangsmeldungList = new ArrayList<IWarenausgangsmeldung>();
-    private List<IAngebot> angebotList = new ArrayList<IAngebot>();
-    private List<IEinkaufsinfosatz> einkaufsinfosatzList = new ArrayList<IEinkaufsinfosatz>();
-    private List<IBestellung> bestellungList = new ArrayList<IBestellung>();
 
+//    private Orderbuch orderbuch;
+//    private List<IWarenausgangsmeldung> warenausgangsmeldungList = new ArrayList<IWarenausgangsmeldung>();
+//    private List<IAngebot> angebotList = new ArrayList<IAngebot>();
+//    private List<IEinkaufsinfosatz> einkaufsinfosatzList = new ArrayList<IEinkaufsinfosatz>();
+//    private List<IBestellung> bestellungList = new ArrayList<IBestellung>();
 
-    public ProduktTyp(int produktNummer, String name, int lagerbestand, Orderbuch orderbuch, List<IWarenausgangsmeldung> warenausgangsmeldungList, List<IAngebot> angebotList, List<IEinkaufsinfosatz> einkaufsinfosatzList, List<IBestellung> bestellungList) {
+    public ProduktTyp(int produktNummer, String produktName, int lagerbestand) {
         this.produktNummer = produktNummer;
-        this.name = name;
+        this.produktName = produktName;
         this.lagerbestand = lagerbestand;
-        this.orderbuch = orderbuch;
-        this.warenausgangsmeldungList = warenausgangsmeldungList;
-        this.angebotList = angebotList;
-        this.einkaufsinfosatzList = einkaufsinfosatzList;
-        this.bestellungList = bestellungList;
     }
 
     public int getProduktNummer() {
@@ -37,30 +32,31 @@ public class ProduktTyp {
     }
 
     public String getProduktName() {
-        return name;
+        return produktName;
     }
 
     public int getLagerbestand() {
         return lagerbestand;
     }
 
-    public Orderbuch getOrderbuch() {
-        return orderbuch;
-    }
 
-    public List<IWarenausgangsmeldung> getWarenausgangsmeldungList() {
-        return warenausgangsmeldungList;
-    }
-
-    public List<IAngebot> getAngebotList() {
-        return angebotList;
-    }
-
-    public List<IEinkaufsinfosatz> getEinkaufsinfosatzList() {
-        return einkaufsinfosatzList;
-    }
-
-    public List<IBestellung> getBestellungList() {
-        return bestellungList;
-    }
+//    public Orderbuch getOrderbuch() {
+//        return orderbuch;
+//    }
+//
+//    public List<IWarenausgangsmeldung> getWarenausgangsmeldungList() {
+//        return warenausgangsmeldungList;
+//    }
+//
+//    public List<IAngebot> getAngebotList() {
+//        return angebotList;
+//    }
+//
+//    public List<IEinkaufsinfosatz> getEinkaufsinfosatzList() {
+//        return einkaufsinfosatzList;
+//    }
+//
+//    public List<IBestellung> getBestellungList() {
+//        return bestellungList;
+//    }
 }

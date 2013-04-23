@@ -17,7 +17,7 @@ public class KundeTyp {
     private int kundenNummer;
     private String name;
     private String adresse;
-    private List<IAngebot> angebotsList = new ArrayList<IAngebot>();
+    private List<IAngebot> angebotsList;
 
     public KundeTyp(int kundenNummer, String name, String adresse, List<IAngebot> angebotsList) {
         this.kundenNummer = kundenNummer;
