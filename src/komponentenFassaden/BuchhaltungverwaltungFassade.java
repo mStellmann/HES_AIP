@@ -2,6 +2,7 @@ package komponentenFassaden;
 
 import interfaces.IAuftrag;
 import interfaces.IRechnung;
+import interfaces.IZahlungseingang;
 import komponentenInterfaces.extern.IBuchhaltungsverwaltungExtern;
 import komponentenInterfaces.intern.IAuftragsverwaltungIntern;
 import komponentenInterfaces.intern.IBankAdapter;
@@ -32,7 +33,13 @@ public class BuchhaltungverwaltungFassade implements IBuchhaltungsverwaltungInte
     public IRechnung erstelleRechnung(Date rechnungsDatum, IAuftrag auftrag) {
         IRechnung rechnung = repository.erstelleRechnung(rechnungsDatum);
         rechnung.setAuftrag(auftrag);
+        repository.updateRechnung(rechnung);
         return rechnung;
+    }
+
+    @Override
+    public IZahlungseingang erstelleZahlungseingang(Date eingangsdatum, float betrag) {
+        return repository.erstelleZahlungseingang(eingangsdatum, betrag);
     }
 
     @Override

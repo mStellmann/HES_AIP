@@ -21,11 +21,15 @@ public class BuchhaltungsverwaltungRepository {
     }
 
     public IZahlungseingang erstelleZahlungseingang(Date eingangsdatum, float betrag) {
-        return new Zahlungseingang(eingangsdatum, betrag);
+        Zahlungseingang zahlungseingang = new Zahlungseingang(eingangsdatum, betrag);
+        saveZahlungseingang(zahlungseingang);
+        return zahlungseingang;
     }
 
     public IRechnung erstelleRechnung(Date rechnungsDatum) {
-        return new Rechnung(rechnungsDatum);
+        Rechnung rechnung = new Rechnung(rechnungsDatum);
+        saveRechnung(rechnung);
+        return rechnung;
     }
 
     // Getter

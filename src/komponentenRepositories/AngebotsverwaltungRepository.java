@@ -19,7 +19,9 @@ public class AngebotsverwaltungRepository {
     }
 
     public IAngebot erstelleAngebot(Date gueltigAb, Date gueltigBis, float gesamtPreis, IKunde kunde) {
-        return new Angebot(gueltigAb, gueltigBis, gesamtPreis, kunde);
+        Angebot angebot = new Angebot(gueltigAb, gueltigBis, gesamtPreis, kunde);
+        saveAngebot(angebot);
+        return angebot;
     }
 
     // Getter

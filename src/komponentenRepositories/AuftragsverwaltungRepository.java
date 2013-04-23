@@ -24,15 +24,21 @@ public class AuftragsverwaltungRepository {
     }
 
     public IAuftrag erstelleAuftrag(Date beauftragtAm, IAngebot angebot) {
-        return new Auftrag(beauftragtAm, angebot);
+        Auftrag auftrag = new Auftrag(beauftragtAm, angebot);
+        saveAuftrag(auftrag);
+        return auftrag;
     }
 
     public ITransportauftrag erstelleTransportauftrag(Date ausgangsdatum, String transportdienstleister) {
-        return new Transportauftrag(ausgangsdatum, transportdienstleister);
+        Transportauftrag transportauftrag = new Transportauftrag(ausgangsdatum, transportdienstleister);
+        saveTransportauftrag(transportauftrag);
+        return transportauftrag;
     }
 
     public ILieferung erstelleLieferung() {
-        return new Lieferung();
+        Lieferung lieferung = new Lieferung();
+        saveLieferung(lieferung);
+        return lieferung;
     }
 
     // Getter

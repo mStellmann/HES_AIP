@@ -10,6 +10,8 @@ import komponentenInterfaces.intern.IPersitenz;
 import komponentenInterfaces.intern.ITransaktionsAdapter;
 import org.hibernate.Session;
 
+import java.util.Date;
+
 /**
  *
  */
@@ -51,7 +53,7 @@ public class Runner {
          */
 
         // -----------------------------
-        System.out.println("HAHAHAHAHHAHAHAH");
+
         session.close();
     }
 }
