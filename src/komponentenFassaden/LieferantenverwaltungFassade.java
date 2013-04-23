@@ -2,6 +2,7 @@ package komponentenFassaden;
 
 import komponentenInterfaces.extern.ILieferantenverwaltungExtern;
 import komponentenInterfaces.intern.ILieferantenverwaltungIntern;
+import komponentenInterfaces.intern.IPersitenz;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,4 +12,9 @@ import komponentenInterfaces.intern.ILieferantenverwaltungIntern;
  * To change this template use File | Settings | File Templates.
  */
 public class LieferantenverwaltungFassade implements ILieferantenverwaltungIntern, ILieferantenverwaltungExtern {
+    private IPersitenz persitenz; // todo -> weiter an repo DUMMY
+
+    public LieferantenverwaltungFassade(IPersitenz persitenz) {
+        this.persitenz = persitenz;
+    }
 }
