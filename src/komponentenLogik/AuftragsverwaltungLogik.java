@@ -35,12 +35,12 @@ public class AuftragsverwaltungLogik {
 
     public IAuftrag erstelleAuftrag(Date beauftragtAm, AngebotTyp angebot) throws Exception {
 
-        Set<ProduktTyp> produktSet = angebot.getProduktMengeMap().keySet();
-
-        for (ProduktTyp elem : produktSet) {
-            if (!lagerverwaltungIntern.pruefeLagerbestand(elem.getProduktNummer(), angebot.getProduktMengeMap().get(elem)))
-                throw new Exception("Nicht genug Produkte vorhanden. ProduktNummer(" + elem + ")");
-        }
+//        Set<ProduktTyp> produktSet = angebot.getProduktMengeMap().keySet();
+//
+//        for (ProduktTyp elem : produktSet) {
+//            if (!lagerverwaltungIntern.pruefeLagerbestand(elem.getProduktNummer(), angebot.getProduktMengeMap().get(elem)))
+//                throw new Exception("Nicht genug Produkte vorhanden. ProduktNummer(" + elem + ")");
+//        }
 
         IAngebot angebotVar = angebotsverwaltungIntern.getAngebot(angebot.getAngebotsNummer());
         return repository.erstelleAuftrag(beauftragtAm, angebotVar);

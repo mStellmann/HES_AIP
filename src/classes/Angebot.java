@@ -50,7 +50,7 @@ public class Angebot implements IAngebot, Serializable {
     }
 
     public Angebot(Date gueltigAb, Date gueltigBis, float gesamtPreis, IKunde kunde) {
-        this(gueltigAb, gesamtPreis, gueltigBis, kunde, null, new HashMap<IProdukt, Integer>());
+        this(gueltigAb, gesamtPreis, gueltigBis, kunde, null, null);
     }
 
     public Angebot() {

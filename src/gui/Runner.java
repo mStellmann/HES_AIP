@@ -66,8 +66,8 @@ public class Runner {
         IProdukt produkt = produktverwaltung.createProdukt("USB-Stick", 10);
         IKunde kunde = kundenverwaltung.createKunde("Hans Dieter", "Musterstr. 123, 27232 Musterhausen");
         KundeTyp kTyp = new KundeTyp(kunde.getKundennummer(), kunde.getKundenname(), kunde.getAdresse(), new ArrayList<IAngebot>());
-//        AngebotTyp angTyp = angebotsverwaltung.erstelleAngebot(sampleDate, sampleDate, 10f, kTyp);
-//        AuftragTyp aufTyp = auftragsverwaltung.erstelleAuftrag(sampleDate, angTyp);
+        AngebotTyp angTyp = angebotsverwaltung.erstelleAngebot(sampleDate, sampleDate, 10f, kTyp);
+        AuftragTyp aufTyp = auftragsverwaltung.erstelleAuftrag(sampleDate, angTyp);
 
         lagerverwaltung.createWarenausgangsmeldung(5, sampleDate, produkt);
         lagerverwaltung.createWarenausgangsmeldung(25, sampleDate, produkt);
@@ -76,8 +76,8 @@ public class Runner {
         buchhaltungverwaltung.erstelleZahlungseingang(sampleDate, 100f);
         buchhaltungverwaltung.erstelleRechnung(sampleDate, null);
 
-//        auftragsverwaltung.markiereAuftragAlsVerschickt(aufTyp.getAuftragsNummer());
-//        auftragsverwaltung.auftragAbschliessen(aufTyp.getAuftragsNummer());
+        auftragsverwaltung.markiereAuftragAlsVerschickt(aufTyp.getAuftragsNummer());
+        auftragsverwaltung.auftragAbschliessen(aufTyp.getAuftragsNummer());
 
         session.close();
     }
