@@ -1,6 +1,7 @@
 package adapter;
 
 import komponentenInterfaces.intern.IPersitenz;
+import org.hibernate.Session;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,6 +11,12 @@ import komponentenInterfaces.intern.IPersitenz;
  * To change this template use File | Settings | File Templates.
  */
 public class PersistenzAdapter implements IPersitenz {
+    private Session session;
+
+    public PersistenzAdapter(Session session) {
+        this.session = session;
+    }
+
     @Override
     public <T> void saveObject(T objectToSave) {
         // todo

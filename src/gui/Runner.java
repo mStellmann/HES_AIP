@@ -4,18 +4,21 @@ import adapter.BankAdapter;
 import adapter.PersistenzAdapter;
 import adapter.TransaktionsAdapter;
 import adapter.TransportdienstleisterAdapter;
+import hibernate.HibernateUtil;
 import komponentenFassaden.*;
 import komponentenInterfaces.intern.IPersitenz;
 import komponentenInterfaces.intern.ITransaktionsAdapter;
+import org.hibernate.Session;
 
 /**
  *
  */
 public class Runner {
     public static void main(String[] args) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
         // adapter
-        IPersitenz persitenz = new PersistenzAdapter();
-        ITransaktionsAdapter transaktionsAdapter = new TransaktionsAdapter();
+        IPersitenz persitenz = new PersistenzAdapter(session);
+        ITransaktionsAdapter transaktionsAdapter = new TransaktionsAdapter(session);
         BankAdapter bankAdapter = new BankAdapter();
         TransportdienstleisterAdapter transportdienstleisterAdapter = new TransportdienstleisterAdapter();
 
@@ -33,6 +36,7 @@ public class Runner {
         // --- SIMULATING SOME STUFF ---
         //             TODO
         // -----------------------------
+        session.close();
     }
 
 }

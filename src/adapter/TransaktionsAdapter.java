@@ -1,6 +1,7 @@
 package adapter;
 
 import komponentenInterfaces.intern.ITransaktionsAdapter;
+import org.hibernate.Session;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,4 +11,9 @@ import komponentenInterfaces.intern.ITransaktionsAdapter;
  * To change this template use File | Settings | File Templates.
  */
 public class TransaktionsAdapter implements ITransaktionsAdapter {
+    private Session session;
+
+    public TransaktionsAdapter(Session session) {
+        this.session = session;
+    }
 }
