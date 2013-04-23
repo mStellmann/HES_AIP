@@ -32,7 +32,7 @@ public class Produkt implements IProdukt, Serializable {
         this.bestellungList = bestellungList;
     }
 
-    public Produkt(int produktNummer, String name, int lagerbestand, Orderbuch orderbuch, List<IAngebot> angebotList, List<IEinkaufsinfosatz> einkaufsinfosatzList, List<IBestellung> bestellungList) {
+    public Produkt(String name, int lagerbestand, Orderbuch orderbuch, List<IAngebot> angebotList, List<IEinkaufsinfosatz> einkaufsinfosatzList, List<IBestellung> bestellungList) {
         this.produktNummer = produktNummer;
         this.name = name;
         this.lagerbestand = lagerbestand;
@@ -43,7 +43,7 @@ public class Produkt implements IProdukt, Serializable {
         this.bestellungList = bestellungList;
     }
 
-    public Produkt(int produktNummer, String name, int lagerbestand) {
+    public Produkt( String name, int lagerbestand) {
         this.produktNummer = produktNummer;
         this.name = name;
         this.lagerbestand = lagerbestand;

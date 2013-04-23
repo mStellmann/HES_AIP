@@ -21,7 +21,7 @@ public class Bestellung implements IBestellung, Serializable {
     private IProdukt produkt;
     private ILieferant lieferant;
 
-    public Bestellung( Date bestelldatum, int menge, boolean freigabe) {
+    public Bestellung(Date bestelldatum, int menge, boolean freigabe) {
         this.bestellungsNummer = bestellungsNummer;
         this.bestelldatum = bestelldatum;
         this.menge = menge;

@@ -15,8 +15,8 @@ public class ProduktverwaltungRepository {
         this.persitenz = persitenz;
     }
 
-    public IProdukt erstelleProdukt(int produktNummer, String name, int lagerbestand) {
-        return new Produkt(produktNummer, name, lagerbestand);
+    public IProdukt erstelleProdukt( String name, int lagerbestand) {
+        return new Produkt(name, lagerbestand);
     }
 
     // Getter

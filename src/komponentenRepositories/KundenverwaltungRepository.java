@@ -18,8 +18,8 @@ public class KundenverwaltungRepository {
         this.persitenz = persitenz;
     }
 
-    public IKunde erstelleKunde(int kundenNummer, String name, String adresse) {
-        return new Kunde(kundenNummer, name, adresse);
+    public IKunde erstelleKunde( String name, String adresse) {
+        return new Kunde( name, adresse);
     }
 
     // Getter

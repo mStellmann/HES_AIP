@@ -1,5 +1,6 @@
 package komponentenFassaden;
 
+import interfaces.IKunde;
 import komponentenInterfaces.extern.IKundenverwaltungExtern;
 import komponentenInterfaces.intern.IKundenverwaltungIntern;
 
@@ -11,4 +12,8 @@ import komponentenInterfaces.intern.IKundenverwaltungIntern;
  * To change this template use File | Settings | File Templates.
  */
 public class EinkaufsverwaltungFassade implements IKundenverwaltungIntern, IKundenverwaltungExtern {
+    @Override
+    public IKunde getKunde(int kundenNummer) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 }
