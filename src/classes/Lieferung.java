@@ -19,7 +19,7 @@ public class Lieferung implements ILieferung, Serializable {
     }
 
     public Lieferung(int lieferungsNummer) {
-        this.lieferungsNummer = lieferungsNummer;
+        this(lieferungsNummer, null);
     }
 
     public Lieferung() {

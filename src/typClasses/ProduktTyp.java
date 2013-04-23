@@ -8,11 +8,7 @@ package typClasses;
  * To change this template use File | Settings | File Templates.
  */
 public class ProduktTyp {
-    private int menge;
-
-    public int getMenge() {
-        return menge;
+    public int getProduktNummer() {
+        return 0; // todo
     }
-
-
 }

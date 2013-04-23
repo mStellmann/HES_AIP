@@ -24,8 +24,4 @@ public class LieferungTyp {
     public TransportauftragTyp getTransportauftrag() {
         return transportauftrag;
     }
-
-    public int getBestellNr() {
-        return 0; // todo  - HAE WARUM ?!?!?!
-    }
 }

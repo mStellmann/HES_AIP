@@ -2,16 +2,15 @@ package komponentenLogik;
 
 import interfaces.IAngebot;
 import interfaces.IAuftrag;
+import interfaces.IProdukt;
 import komponentenInterfaces.intern.IAngebotsverwaltungIntern;
 import komponentenInterfaces.intern.ILagerverwaltungIntern;
 import komponentenInterfaces.intern.ITransportdienstleisterAdapter;
 import komponentenRepositories.AuftragsverwaltungRepository;
-import typClasses.AngebotTyp;
-import typClasses.AuftragTyp;
-import typClasses.LieferungTyp;
-import typClasses.RechnungTyp;
+import typClasses.*;
 
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -35,8 +34,14 @@ public class AuftragsverwaltungLogik {
     }
 
     public IAuftrag erstelleAuftrag(int auftragsNummer, Date beauftragtAm, AngebotTyp angebot) {
-        angebot.
+
+//        Set<ProduktTyp> produktSet = angebot.getProduktMengeMap().keySet();
+//
+//        for (ProduktTyp elem : produktSet) {
+//            if(!lagerverwaltungIntern.pruefeLagerbestand(elem.))
+//        }        todo abfrage
+
         IAngebot angebotVar = angebotsverwaltungIntern.getAngebot(angebot.getAngebotsNummer());
-        return repository.erstelleAuftrag(auftragsNummer,beauftragtAm,angebotVar);
+        return repository.erstelleAuftrag(auftragsNummer, beauftragtAm, angebotVar);
     }
 }

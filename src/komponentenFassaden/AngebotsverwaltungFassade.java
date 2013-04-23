@@ -38,7 +38,7 @@ public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAn
 
     @Override
     public void addProduktMengeZuAngebot(AngebotTyp angebot, ProduktTyp produkt, int menge) {
-        // todo
+        logik.addProduktMengeZuAngebot(repository.getAngebot(angebot.getAngebotsNummer()), produkt, menge);
     }
 
     @Override

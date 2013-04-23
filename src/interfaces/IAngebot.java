@@ -13,7 +13,7 @@ import java.util.Map;
 public interface IAngebot {
     int getAngebotsNummer();
 
-    void addProduktMenge(IProdukt produkt, int Menge);
+    void addProduktMenge(IProdukt produkt, int menge);
 
     Date getGueltigAb();
 
