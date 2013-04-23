@@ -19,4 +19,71 @@ public class Bestellung implements IBestellung {
     private IWareneingangsmeldung wareneingangsmeldung;
     private IProdukt produkt;
     private ILieferant lieferant;
+
+    public Bestellung(int bestellungsNummer, Date bestelldatum, int menge, boolean freigabe){
+        this.bestellungsNummer = bestellungsNummer;
+        this.bestelldatum = bestelldatum;
+        this.menge = menge;
+        this.freigabe = freigabe;
+    }
+
+    public Bestellung(){
+
+    }
+
+    public int getBestellungsNummer() {
+        return bestellungsNummer;
+    }
+
+    public void setBestellungsNummer(int bestellungsNummer) {
+        this.bestellungsNummer = bestellungsNummer;
+    }
+
+    public Date getBestelldatum() {
+        return bestelldatum;
+    }
+
+    public void setBestelldatum(Date bestelldatum) {
+        this.bestelldatum = bestelldatum;
+    }
+
+    public int getMenge() {
+        return menge;
+    }
+
+    public void setMenge(int menge) {
+        this.menge = menge;
+    }
+
+    public boolean isFreigabe() {
+        return freigabe;
+    }
+
+    public void setFreigabe(boolean freigabe) {
+        this.freigabe = freigabe;
+    }
+
+    public IWareneingangsmeldung getWareneingangsmeldung() {
+        return wareneingangsmeldung;
+    }
+
+    public void setWareneingangsmeldung(IWareneingangsmeldung wareneingangsmeldung) {
+        this.wareneingangsmeldung = wareneingangsmeldung;
+    }
+
+    public IProdukt getProdukt() {
+        return produkt;
+    }
+
+    public void setProdukt(IProdukt produkt) {
+        this.produkt = produkt;
+    }
+
+    public ILieferant getLieferant() {
+        return lieferant;
+    }
+
+    public void setLieferant(ILieferant lieferant) {
+        this.lieferant = lieferant;
+    }
 }
