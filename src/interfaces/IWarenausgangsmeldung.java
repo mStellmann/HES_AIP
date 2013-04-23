@@ -1,5 +1,7 @@
 package interfaces;
 
+import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * User: aaz527
@@ -8,4 +10,16 @@ package interfaces;
  * To change this template use File | Settings | File Templates.
  */
 public interface IWarenausgangsmeldung {
+
+    Date getDatum();
+
+    void setDatum(Date datum);
+
+    int getMenge();
+
+    void setMenge(int menge);
+
+    IProdukt getProdukt();
+
+    void setProdukt(IProdukt produkt);
 }
