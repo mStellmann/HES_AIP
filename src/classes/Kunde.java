@@ -3,11 +3,18 @@ package classes;
 import interfaces.IAngebot;
 import interfaces.IKunde;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+@Entity
+@Table(name = "Kunde")
 public class Kunde implements IKunde, Serializable {
+    @Id
+    @GeneratedValue
     private int kundenNummer;
     private String name;
     private String adresse;
