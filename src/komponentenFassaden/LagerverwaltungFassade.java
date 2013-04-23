@@ -23,4 +23,11 @@ public class LagerverwaltungFassade implements ILagerverwaltungIntern, ILagerver
         repositorie = new LagerverwaltungRepository();
         logik = new LagerverwaltungLogik(repositorie, produkt, einkauf);
     }
+
+
+
+    @Override
+    public boolean pruefeLagerbestand(int produktNummer, int geforderteProduktMenge) {
+        return false;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

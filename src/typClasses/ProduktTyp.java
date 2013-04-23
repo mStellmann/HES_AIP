@@ -13,4 +13,6 @@ public class ProduktTyp {
     public int getMenge() {
         return menge;
     }
+
+
 }

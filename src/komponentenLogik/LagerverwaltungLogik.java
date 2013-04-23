@@ -2,6 +2,7 @@ package komponentenLogik;
 
 import classes.Warenausgangsmeldung;
 import classes.Wareneingangsmeldung;
+import interfaces.IProdukt;
 import interfaces.IWarenausgangsmeldung;
 import interfaces.IWareneingangsmeldung;
 import komponentenInterfaces.intern.IEinkaufsverwaltungIntern;
@@ -31,18 +32,21 @@ public class LagerverwaltungLogik {
         this.einkaufsverwaltung = einkaufsverwaltung;
     }
 
-    public void produktAusliefern(int warenNr, int geforderteMenge) {
-        ProduktTyp produkt = getProduktTyp(warenNr);
-        if (geforderteMenge <= produkt.getMenge()) {
-            int rausgehendeMenge = produkt.getMenge();
-            IWarenausgangsmeldung warenausgangsmeldung = repository.createWarenausgangsmeldung(rausgehendeMenge, new Date());
-            produktverwaltung.lagerbestendReduzieren(rausgehendeMenge);
+    public boolean pruefeLagerbestand(int warenNr, int geforderteMenge) {
+        IProdukt produkt = getProdukt(warenNr);
+        if (geforderteMenge <= produkt.getLagerbestand()) {
+            IWarenausgangsmeldung warenausgangsmeldung = repository.createWarenausgangsmeldung(geforderteMenge, new Date());
+            produktverwaltung.lagerbestendReduzieren(geforderteMenge);
+            return true;
         } else {
-            LieferungTyp lieferung = wareBestellen(warenNr);
-            IWareneingangsmeldung wareneingangsmeldung = repository.createWareneingangsmeldung(lieferung.getBestellNr(), new Date()); //Date platzhalter für JodaTime
-            produktAusliefern(warenNr,geforderteMenge); // da jetzt vorhanden wird eine warenausgangsmeldung erzeugt.
+              return false;
+//            LieferungTyp lieferung = wareBestellen(warenNr);
+//            IWareneingangsmeldung wareneingangsmeldung = repository.createWareneingangsmeldung(lieferung.getBestellNr(), new Date()); //Date platzhalter für JodaTime
+//            pruefeLagerbestand(warenNr,geforderteMenge); // da jetzt vorhanden wird eine warenausgangsmeldung erzeugt.
         }
     }
+
+
 
     private LieferungTyp wareBestellen(int warenNr) {
         return einkaufsverwaltung.wareBestellen(warenNr);
@@ -56,8 +60,8 @@ public class LagerverwaltungLogik {
         return produktverwaltung.nrIstVorhanden(warenNr);
     }
 
-    private ProduktTyp getProduktTyp(int warenNr) {
-        if (nrIstVorhanden(warenNr)) return produktverwaltung.getProduktTyp(warenNr);
+    private IProdukt getProdukt(int warenNr) {
+        if (nrIstVorhanden(warenNr)) return produktverwaltung.getProdukt(warenNr);
         else throw new IndexOutOfBoundsException();
 
     }
