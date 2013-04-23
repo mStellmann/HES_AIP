@@ -5,20 +5,34 @@ import interfaces.IEinkaufsinfosatz;
 import interfaces.ILieferant;
 import interfaces.IOrderbuchsatz;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  */
+
+@Entity
+@Table(name = "Lieferant")
 public class Lieferant implements ILieferant, Serializable {
+
+    @Id
+    @GeneratedValue
     private int lieferantenNummer;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String adresse;
+    @Column(nullable = false)
     private String kontoverbindung;
 
+
+    @OneToMany(mappedBy = "Lieferant")
     private List<IEinkaufsinfosatz> einkaufsinfosatzList;
+    @OneToMany(mappedBy = "Lieferant")
     private List<IBestellung> bestellungList;
+    @OneToMany(mappedBy = "Lieferant")
     private List<IOrderbuchsatz> orderbuchsatzList;
 
     public Lieferant(String name, String adresse, String kontoverbindung) {
