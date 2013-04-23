@@ -15,7 +15,7 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name = "auftraege")
+@Table(name = "Auftrag")
 public class Auftrag implements IAuftrag, Serializable {
 
     @Id
@@ -23,6 +23,7 @@ public class Auftrag implements IAuftrag, Serializable {
     private int auftragsNummer;
     @Column //(nullable = false)
     private boolean istAbgeschlossen = false;
+    @Column
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date beauftragtAm;
 
