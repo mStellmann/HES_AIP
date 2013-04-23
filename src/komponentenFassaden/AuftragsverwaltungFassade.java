@@ -49,11 +49,15 @@ public class AuftragsverwaltungFassade implements IAuftragsverwaltungIntern, IAu
 
     @Override
     public void markiereAuftragAlsVerschickt(int auftragsNummer) {
-        repository.getAuftrag(auftragsNummer).getLieferung().getTransportauftrag().setLieferungErfolgt(true);
+        IAuftrag auftrag = repository.getAuftrag(auftragsNummer);
+        auftrag.getLieferung().getTransportauftrag().setLieferungErfolgt(true);
+        repository.updateAuftrag(auftrag);
     }
 
     @Override
     public void auftragAbschliessen(int auftragsNummer) {
-        repository.getAuftrag(auftragsNummer).setIstAbgeschlossen(true);
+        IAuftrag auftrag = repository.getAuftrag(auftragsNummer);
+        auftrag.setIstAbgeschlossen(true);
+        repository.updateAuftrag(auftrag);
     }
 }

@@ -7,11 +7,14 @@ import adapter.TransportdienstleisterAdapter;
 import hibernate.HibernateUtil;
 import interfaces.IAngebot;
 import interfaces.IKunde;
+import interfaces.IProdukt;
 import komponentenFassaden.*;
 import komponentenInterfaces.intern.IPersitenz;
 import komponentenInterfaces.intern.ITransaktionsAdapter;
 import org.hibernate.Session;
 import org.joda.time.DateTime;
+import typClasses.AngebotTyp;
+import typClasses.AuftragTyp;
 import typClasses.KundeTyp;
 
 import java.util.ArrayList;
@@ -60,10 +63,21 @@ public class Runner {
 
         // -----------------------------
         Date sampleDate = new DateTime().toDate();
-        produktverwaltung.createProdukt("USB-Stick", 10);
+        IProdukt produkt = produktverwaltung.createProdukt("USB-Stick", 10);
         IKunde kunde = kundenverwaltung.createKunde("Hans Dieter", "Musterstr. 123, 27232 Musterhausen");
         KundeTyp kTyp = new KundeTyp(kunde.getKundennummer(), kunde.getKundenname(), kunde.getAdresse(), new ArrayList<IAngebot>());
-        angebotsverwaltung.erstelleAngebot(sampleDate, sampleDate, 10f, kTyp);
+//        AngebotTyp angTyp = angebotsverwaltung.erstelleAngebot(sampleDate, sampleDate, 10f, kTyp);
+//        AuftragTyp aufTyp = auftragsverwaltung.erstelleAuftrag(sampleDate, angTyp);
+
+        lagerverwaltung.createWarenausgangsmeldung(5, sampleDate, produkt);
+        lagerverwaltung.createWarenausgangsmeldung(25, sampleDate, produkt);
+
+        auftragsverwaltung.erstelleLieferung();
+        buchhaltungverwaltung.erstelleZahlungseingang(sampleDate, 100f);
+        buchhaltungverwaltung.erstelleRechnung(sampleDate, null);
+
+//        auftragsverwaltung.markiereAuftragAlsVerschickt(aufTyp.getAuftragsNummer());
+//        auftragsverwaltung.auftragAbschliessen(aufTyp.getAuftragsNummer());
 
         session.close();
     }
