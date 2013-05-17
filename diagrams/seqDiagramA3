@@ -1,0 +1,45 @@
+title Sequenzdiagramm
+
+GUI->Dispatcher: erstelleKunde("Klaus Dieter", "Musterstr. 12, 76543 Hasencity")
+Dispatcher->Dispatcher: getNaechstesHES()
+Dispatcher->HES I: erstelleKunde("Klaus Dieter", "Musterstr. 12, 76543 Hasencity")
+HES I-->Dispatcher: Kunde k1
+Dispatcher-->GUI:  Kunde k1
+
+GUI->Dispatcher: erstelleAngebot("15.05.2013","20.05.2013",k1)
+Dispatcher->Dispatcher: getNaechstesHES()
+Dispatcher->HES II: erstelleAngebot("15.05.2013","20.05.2013",k1)
+HES II-->Dispatcher: Angebot a1
+Dispatcher-->GUI: Angebot a1
+
+GUI->Dispatcher: sucheProdukt("HDD")
+Dispatcher->Dispatcher: getNaechstesHES()
+Dispatcher->HES I: sucheProdukt("HDD")
+HES I-->Dispatcher: Produkt p1
+Dispatcher-->GUI:  Produkt p1
+
+GUI->Dispatcher: addProduktMengeZuAngebot(a1, p1, 10)
+Dispatcher->Dispatcher: getNaechstesHES()
+Dispatcher->HES II: addProduktMengeZuAngebot(a1,p1,10)
+HES II-->Dispatcher: ok
+Dispatcher-->GUI: ok
+GUI->Dispatcher: erstelleAuftrag("17.05.2013", a1)
+Dispatcher->Dispatcher: getNaechstesHES()
+Dispatcher->HES I: erstelleAuftrag("17.05.2013", a1)
+HES I-->Dispatcher: Auftrag auf1
+Dispatcher-->GUI: Auftrag auf1
+
+loop every 500ms
+Monitor->Monitor: pruefeSysteme()
+alt true
+else false
+    Monitor->Dispatcher: meldeAusfall(HESSystemRef)
+end
+end
+
+loop every 500ms
+    HES I->Monitor: isAliveMessage per UDP
+end
+loop every 500ms
+    HES II->Monitor: isAliveMessage per UDP
+end
