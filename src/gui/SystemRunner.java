@@ -22,7 +22,7 @@ import java.util.GregorianCalendar;
 /**
  *
  */
-public class Runner {
+public class SystemRunner {
     public static void main(String[] args) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         // adapter

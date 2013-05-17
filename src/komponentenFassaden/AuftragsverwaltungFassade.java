@@ -13,7 +13,10 @@ import typClasses.AuftragTyp;
 import typClasses.LieferungTyp;
 import typClasses.RechnungTyp;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,11 +25,11 @@ import java.util.Date;
  * Time: 13:11
  * To change this template use File | Settings | File Templates.
  */
-public class AuftragsverwaltungFassade implements IAuftragsverwaltungIntern, IAuftragsverwaltungExtern {
+public class AuftragsverwaltungFassade extends UnicastRemoteObject implements IAuftragsverwaltungIntern, IAuftragsverwaltungExtern {
     private AuftragsverwaltungLogik logik;
     private AuftragsverwaltungRepository repository;
 
-    public AuftragsverwaltungFassade(IAngebotsverwaltungIntern angebotsverwaltungIntern, ILagerverwaltungIntern lagerverwaltungIntern, ITransportdienstleisterAdapter transportdienstleisterAdapter, IPersitenz persitenz) {
+    public AuftragsverwaltungFassade(IAngebotsverwaltungIntern angebotsverwaltungIntern, ILagerverwaltungIntern lagerverwaltungIntern, ITransportdienstleisterAdapter transportdienstleisterAdapter, IPersitenz persitenz) throws RemoteException {
         repository = new AuftragsverwaltungRepository(persitenz);
         logik = new AuftragsverwaltungLogik(angebotsverwaltungIntern, lagerverwaltungIntern, transportdienstleisterAdapter, repository);
     }
@@ -41,6 +44,16 @@ public class AuftragsverwaltungFassade implements IAuftragsverwaltungIntern, IAu
             e.printStackTrace();  // todo -> exception catchen
         }
         return new AuftragTyp(auftrag.getAuftragsNummer(), auftrag.getBeauftragtAm(), angebot);
+    }
+
+    @Override
+    public List<AuftragTyp> getAlleAuftraege() throws RemoteException {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public AuftragTyp sucheAuftrag(int id) throws RemoteException {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     // from intern
