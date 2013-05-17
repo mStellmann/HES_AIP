@@ -2,6 +2,7 @@ package dispatcherMonitor;
 
 import dispatcherMonitor.interfaces.IDispatcher;
 import typClasses.AngebotTyp;
+import typClasses.AuftragTyp;
 import typClasses.KundeTyp;
 import typClasses.ProduktTyp;
 
@@ -69,6 +70,21 @@ public class Dispatcher implements IDispatcher {
 
     @Override
     public List<KundeTyp> getAlleKunden() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public AuftragTyp erstelleAuftrag(Date beauftragtAm, AngebotTyp angebot) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public List<AuftragTyp> getAlleAuftraege() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public AuftragTyp sucheAuftrag(int id) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }
