@@ -8,9 +8,7 @@ import typClasses.AuftragTyp;
 import typClasses.KundeTyp;
 import typClasses.ProduktTyp;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  *
@@ -18,19 +16,39 @@ import java.util.Set;
 public class Dispatcher implements IDispatcher {
 
     private IMonitor monitor;
-    private Set<String> systeme;
+    private Map<String, ICallCenterServerFassade> systemMap;
+    private Map<String, ICallCenterServerFassade> benutzteSysteme;
+//    private ICallCenterServerFassade activesSystem;
+//    private String activesSystemName;
 
-    public Dispatcher(IMonitor monitor) {
+    public Dispatcher(IMonitor monitor, Map systemMap) {
         this.monitor = monitor;
+        this.systemMap = systemMap;
+        this.benutzteSysteme = new HashMap<String, ICallCenterServerFassade>();
     }
 
     public ICallCenterServerFassade getNaechstesHES(){
-        systeme.
+        if(benutzteSysteme.size() == systemMap.size()){
+           benutzteSysteme.clear();
+        }
+        String[] systemNamen = (String[]) systemMap.keySet().toArray();
+        for(int i = 0;i<systemNamen.length;i++){
+            if(!(benutzteSysteme.containsKey(systemNamen[i]))&& monitor.isVerfuegbar(systemNamen[i])){
+//                activesSystemName =  systemNamen[i];
+//                activesSystem =  systemMap.get(systemNamen[i]);
+                ICallCenterServerFassade naechstesHES = systemMap.get(systemNamen[i]);
+                benutzteSysteme.put(systemNamen[i],naechstesHES);
+                return naechstesHES;
+            }
+
+        }
+
+        return null;  //sollte nie passieren
     }
 
-    public void getSysteme(){
-        systeme = monitor.getSysteme();
-    }
+//    public void getSysteme(){
+//        systeme = monitor.getSysteme();
+//    }
 
     @Override
     public AngebotTyp erstelleAngebot(Date gueltigAb, Date gueltigBis, float gesamtPreis, KundeTyp kunde) {

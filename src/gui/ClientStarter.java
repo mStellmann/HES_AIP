@@ -1,5 +1,7 @@
 package gui;
 
+import dispatcherMonitor.Dispatcher;
+import dispatcherMonitor.Monitor;
 import serverFassaden.CallCenterServerFassade;
 
 import java.rmi.Naming;
@@ -31,5 +33,10 @@ public class ClientStarter {
         String url = new String("rmi://" + args[i] + "/" + args[i+1]);
         serverMap.put(args[i+1],(CallCenterServerFassade) lookup(url));
         }
+
+        Monitor monitor = new Monitor();
+        Dispatcher dispetcher = new Dispetcher(monitor, serverMap);
+
+
     }
 }
