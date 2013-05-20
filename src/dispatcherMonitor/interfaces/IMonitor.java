@@ -1,5 +1,7 @@
 package dispatcherMonitor.interfaces;
 
+import java.util.Set;
+
 /**
  *
  */
@@ -10,4 +12,6 @@ public interface IMonitor {
     void schalteAn(int hesSystemRef);
 
     void schalteAus(int hesSystemRef);
+
+    Set<Integer> getSysteme();
 }
