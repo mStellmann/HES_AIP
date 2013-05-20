@@ -14,7 +14,7 @@ import java.util.List;
 /**
  *
  */
-public interface IAngebotsverwaltungExtern extends Remote {
+public interface IAngebotsverwaltungExtern  {
 
     AngebotTyp erstelleAngebot(Date gueltigAb, Date gueltigBis, float gesamtPreis, KundeTyp kunde) throws RemoteException;
 

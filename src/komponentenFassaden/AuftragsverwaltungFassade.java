@@ -25,7 +25,7 @@ import java.util.List;
  * Time: 13:11
  * To change this template use File | Settings | File Templates.
  */
-public class AuftragsverwaltungFassade extends UnicastRemoteObject implements IAuftragsverwaltungIntern, IAuftragsverwaltungExtern {
+public class AuftragsverwaltungFassade implements IAuftragsverwaltungIntern, IAuftragsverwaltungExtern {
     private AuftragsverwaltungLogik logik;
     private AuftragsverwaltungRepository repository;
 
