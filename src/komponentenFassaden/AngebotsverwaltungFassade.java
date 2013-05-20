@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class AngebotsverwaltungFassade extends UnicastRemoteObject implements IAngebotsverwaltungIntern, IAngebotsverwaltungExtern {
+public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAngebotsverwaltungExtern {
     private AngebotsverwaltungRepository repository;
     private AngebotsverwaltungLogik logik;
 
