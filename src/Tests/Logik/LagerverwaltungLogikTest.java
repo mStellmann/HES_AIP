@@ -6,9 +6,9 @@ import org.junit.Test;
 
 /**
  * Created with IntelliJ IDEA.
- * User: aaz527
+ * User: Admin
  * Date: 23.04.13
- * Time: 13:51
+ * Time: 23:09
  * To change this template use File | Settings | File Templates.
  */
 public class LagerverwaltungLogikTest {

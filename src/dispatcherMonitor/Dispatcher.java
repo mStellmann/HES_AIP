@@ -13,6 +13,9 @@ import java.util.List;
  *
  */
 public class Dispatcher implements IDispatcher {
+
+    pubblic getNaechstesHES()
+
     @Override
     public AngebotTyp erstelleAngebot(Date gueltigAb, Date gueltigBis, float gesamtPreis, KundeTyp kunde) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
