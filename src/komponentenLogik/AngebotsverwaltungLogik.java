@@ -1,15 +1,17 @@
 package komponentenLogik;
 
+
 import interfaces.IAngebot;
+import interfaces.IKunde;
 import interfaces.IProdukt;
 import komponentenInterfaces.intern.IKundenverwaltungIntern;
 import komponentenInterfaces.intern.IProduktverwaltungIntern;
 import komponentenRepositories.AngebotsverwaltungRepository;
-import typClasses.AngebotTyp;
 import typClasses.KundeTyp;
 import typClasses.ProduktTyp;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -32,5 +34,37 @@ public class AngebotsverwaltungLogik {
 
     public IAngebot erstelleAngebot(Date gueltigAb, Date gueltigBis, float gesamtPreis, KundeTyp kunde) {
         return repository.erstelleAngebot(gueltigAb, gueltigBis, gesamtPreis, kundenverwaltungIntern.getKunde(kunde.getKundenNummer()));
+    }
+
+    public List<IKunde> getAlleKunden() {
+        return null;  // TODO
+    }
+
+    public IKunde sucheKunde(int id) {
+        return null;  // TODO
+    }
+
+    public IKunde sucheKunde(String name) {
+        return null;  // TODO
+    }
+
+    public IKunde erstelleKunde(String name, String adresse) {
+        return null;  // TODO
+    }
+
+    public List<IProdukt> getAlleProdukte() {
+        return null;  // TODO
+    }
+
+    public IProdukt sucheProdukt(int id) {
+        return null;  // TODO
+    }
+
+    public IProdukt sucheProdukt(String name) {
+        return null;  // TODO
+    }
+
+    public IProdukt erstelleProdukt(String name, int lagerbestand) {
+        return null;  // TODO
     }
 }

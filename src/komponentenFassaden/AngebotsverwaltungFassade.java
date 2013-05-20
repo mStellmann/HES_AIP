@@ -2,6 +2,7 @@ package komponentenFassaden;
 
 import interfaces.IAngebot;
 import interfaces.IKunde;
+import interfaces.IProdukt;
 import komponentenInterfaces.extern.IAngebotsverwaltungExtern;
 import komponentenInterfaces.intern.IAngebotsverwaltungIntern;
 import komponentenInterfaces.intern.IKundenverwaltungIntern;
@@ -19,7 +20,9 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Date;
 import java.util.List;
 
-
+/**
+ *
+ */
 public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAngebotsverwaltungExtern {
     private AngebotsverwaltungRepository repository;
     private AngebotsverwaltungLogik logik;
@@ -29,6 +32,7 @@ public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAn
         logik = new AngebotsverwaltungLogik(produktverwaltungIntern, kundenverwaltungIntern, repository);
     }
 
+    // from extern
     @Override
     public AngebotTyp erstelleAngebot(Date gueltigAb, Date gueltigBis, float gesamtPreis, KundeTyp kunde) {
         IAngebot angebot = logik.erstelleAngebot(gueltigAb, gueltigBis, gesamtPreis, kunde);
@@ -37,12 +41,14 @@ public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAn
 
     @Override
     public AngebotTyp sucheAngebot(int id) throws RemoteException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        IAngebot angebot = repository.sucheAngebot(id);
+        return null; // TODO
     }
 
     @Override
     public List<AngebotTyp> getAlleAngebote() throws RemoteException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        List<IAngebot> angebotList = repository.getAlleAngebote();
+        return null; // TODO
     }
 
     @Override
@@ -52,44 +58,54 @@ public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAn
 
     @Override
     public ProduktTyp erstelleProdukt(String name, int lagerbestand) throws RemoteException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        IProdukt produkt = logik.erstelleProdukt(name, lagerbestand);
+        return null; // TODO
     }
 
     @Override
     public ProduktTyp sucheProdukt(String name) throws RemoteException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        IProdukt produkt = logik.sucheProdukt(name);
+        return null; // TODO
     }
 
     @Override
     public ProduktTyp sucheProdukt(int id) throws RemoteException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        IProdukt produkt = logik.sucheProdukt(id);
+        return null; // TODO
     }
 
     @Override
     public List<ProduktTyp> getAlleProdukte() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        List<IProdukt> produktList = logik.getAlleProdukte();
+        return null; // TODO
     }
 
     @Override
     public KundeTyp erstelleKunde(String name, String adresse) throws RemoteException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        IKunde kunde = logik.erstelleKunde(name, adresse);
+        return null; // TODO
     }
 
     @Override
     public KundeTyp sucheKunde(String name) throws RemoteException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        IKunde kunde = logik.sucheKunde(name);
+        return null; // TODO
     }
 
     @Override
     public KundeTyp sucheKunde(int id) throws RemoteException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        IKunde kunde = logik.sucheKunde(id);
+        return null; // TODO
     }
 
     @Override
     public List<KundeTyp> getAlleKunden() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        List<IKunde> kundeList = logik.getAlleKunden();
+        return null; // TODO
     }
 
+
+    // from intern
     @Override
     public IAngebot erstelleAngebot(Date gueltigAb, Date gueltigBis, float gesamtPreis, IKunde kunde) {
         return repository.erstelleAngebot(gueltigAb, gueltigBis, gesamtPreis, kunde);

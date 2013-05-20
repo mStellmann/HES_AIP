@@ -4,8 +4,11 @@ import classes.Angebot;
 import interfaces.IAngebot;
 import interfaces.IKunde;
 import komponentenInterfaces.intern.IPersitenz;
+import typClasses.AngebotTyp;
+import typClasses.KundeTyp;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * This Repository includes the CRUD-Functions for the following Classes: <br>
@@ -39,4 +42,12 @@ public class AngebotsverwaltungRepository {
         persitenz.saveObject(angebot);
     }
 
+
+    public IAngebot sucheAngebot(int id) {
+        return persitenz.getObjectByID(id, Angebot.class);
+    }
+
+    public List<IAngebot> getAlleAngebote() {
+        return null; // TODO
+    }
 }

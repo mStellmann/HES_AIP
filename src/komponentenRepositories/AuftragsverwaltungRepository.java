@@ -8,8 +8,10 @@ import interfaces.IAuftrag;
 import interfaces.ILieferung;
 import interfaces.ITransportauftrag;
 import komponentenInterfaces.intern.IPersitenz;
+import typClasses.AuftragTyp;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * This Repository includes the CRUD-Functions for the following Classes: <br>
@@ -81,4 +83,11 @@ public class AuftragsverwaltungRepository {
     }
 
 
+    public List<IAuftrag> getAlleAuftraege() {
+        return null;  // TODO
+    }
+
+    public IAuftrag sucheAuftrag(int id) {
+        return persitenz.getObjectByID(id, Auftrag.class);
+    }
 }

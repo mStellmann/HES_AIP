@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * TODO UDP-Anbindung bauen
+ *
  */
 public class Monitor implements IMonitor {
 

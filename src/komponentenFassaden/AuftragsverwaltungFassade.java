@@ -1,5 +1,6 @@
 package komponentenFassaden;
 
+import classes.Auftrag;
 import interfaces.IAngebot;
 import interfaces.IAuftrag;
 import interfaces.ILieferung;
@@ -19,11 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: abe263
- * Date: 19.04.13
- * Time: 13:11
- * To change this template use File | Settings | File Templates.
+ *
  */
 public class AuftragsverwaltungFassade implements IAuftragsverwaltungIntern, IAuftragsverwaltungExtern {
     private AuftragsverwaltungLogik logik;
@@ -34,29 +31,31 @@ public class AuftragsverwaltungFassade implements IAuftragsverwaltungIntern, IAu
         logik = new AuftragsverwaltungLogik(angebotsverwaltungIntern, lagerverwaltungIntern, transportdienstleisterAdapter, repository);
     }
 
-    // from extern
+    // ----- from extern -----
     @Override
     public AuftragTyp erstelleAuftrag(Date beauftragtAm, AngebotTyp angebot) {
         IAuftrag auftrag = null;
         try {
             auftrag = logik.erstelleAuftrag(beauftragtAm, angebot);
         } catch (Exception e) {
-            e.printStackTrace();  // todo -> exception catchen
+            e.printStackTrace();
         }
         return new AuftragTyp(auftrag.getAuftragsNummer(), auftrag.getBeauftragtAm(), angebot);
     }
 
     @Override
     public List<AuftragTyp> getAlleAuftraege() throws RemoteException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        List<IAuftrag> auftrag = repository.getAlleAuftraege();
+        return null;     // TODO
     }
 
     @Override
     public AuftragTyp sucheAuftrag(int id) throws RemoteException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        IAuftrag auftrag = repository.sucheAuftrag(id);
+        return new AuftragTyp(auftrag.getAuftragsNummer(), auftrag.getBeauftragtAm(), null); // TODO - scheiss null
     }
 
-    // from intern
+    // ----- from intern -----
     @Override
     public ILieferung erstelleLieferung() {
         return repository.erstelleLieferung();

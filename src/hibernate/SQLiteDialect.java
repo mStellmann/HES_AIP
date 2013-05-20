@@ -134,7 +134,7 @@ toString();
     }
 
     public boolean dropTemporaryTableAfterUse() {
-        return true; // TODO Validate
+        return true;
     }
 
     public boolean supportsCurrentTimestampSelection() {
