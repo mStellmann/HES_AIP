@@ -6,12 +6,12 @@ import java.util.Set;
  *
  */
 public interface IMonitor {
-    boolean isVerfuegbar(int hesSystemRef);
+    boolean isVerfuegbar(String hesSystemRef);
 
     // TODO -> An/Aus nur simulieren.. nichts richtig abschalten.. (intern merken)
-    void schalteAn(int hesSystemRef);
+    void schalteAn(String hesSystemRef);
 
-    void schalteAus(int hesSystemRef);
+    void schalteAus(String hesSystemRef);
 
-    Set<Integer> getSysteme();
+    Set<String> getSysteme();
 }

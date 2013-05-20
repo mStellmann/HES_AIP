@@ -31,7 +31,7 @@ public class Monitor implements IMonitor {
         } catch (SocketException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
-        hesSystemsMap = new HashMap<Integer, InetAddress>();
+        hesSystemsMap = new HashMap<String, InetAddress>();
         isAliveAry = new boolean[10];
 
         new Thread() {
@@ -69,22 +69,22 @@ public class Monitor implements IMonitor {
     }
 
     @Override
-    public boolean isVerfuegbar(int hesSystemRef) {
+    public boolean isVerfuegbar(String hesSystemRef) {
         return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public void schalteAn(int hesSystemRef) {
+    public void schalteAn(String hesSystemRef) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public void schalteAus(int hesSystemRef) {
+    public void schalteAus(String hesSystemRef) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public Set<Integer> getSysteme() {
+    public Set<String> getSysteme() {
         return hesSystemsMap.keySet();
     }
 }
