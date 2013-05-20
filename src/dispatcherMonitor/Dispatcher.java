@@ -1,6 +1,8 @@
 package dispatcherMonitor;
 
 import dispatcherMonitor.interfaces.IDispatcher;
+import dispatcherMonitor.interfaces.IMonitor;
+import serverFassaden.interfaces.ICallCenterServerFassade;
 import typClasses.AngebotTyp;
 import typClasses.AuftragTyp;
 import typClasses.KundeTyp;
@@ -8,13 +10,27 @@ import typClasses.ProduktTyp;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
  */
 public class Dispatcher implements IDispatcher {
 
-    pubblic getNaechstesHES()
+    private IMonitor monitor;
+    private Set<String> systeme;
+
+    public Dispatcher(IMonitor monitor) {
+        this.monitor = monitor;
+    }
+
+    public ICallCenterServerFassade getNaechstesHES(){
+        systeme.
+    }
+
+    public void getSysteme(){
+        systeme = monitor.getSysteme();
+    }
 
     @Override
     public AngebotTyp erstelleAngebot(Date gueltigAb, Date gueltigBis, float gesamtPreis, KundeTyp kunde) {

@@ -47,10 +47,9 @@ public class SystemRunner {
         BuchhaltungverwaltungFassade buchhaltungverwaltung = new BuchhaltungverwaltungFassade(bankAdapter, auftragsverwaltung, persitenz);
 
         // Systeme  A3
-        CallCenterServerFassade system1 = new CallCenterServerFassade(angebotsverwaltung,auftragsverwaltung);
-        CallCenterServerFassade system2 = new CallCenterServerFassade(angebotsverwaltung,auftragsverwaltung);
-        Naming.rebind("system1", system1);
-        Naming.rebind("system2", system2);
+        CallCenterServerFassade system = new CallCenterServerFassade(angebotsverwaltung,auftragsverwaltung);
+        Naming.rebind("args[0]", system);
+
 
 
         // --- SIMULATING SOME STUFF ---
