@@ -48,7 +48,7 @@ public class SystemRunner {
 
         // Systeme  A3
         CallCenterServerFassade system = new CallCenterServerFassade(angebotsverwaltung,auftragsverwaltung);
-        Naming.rebind("args[0]", system);
+        Naming.rebind(args[0], system);
 
 
 
