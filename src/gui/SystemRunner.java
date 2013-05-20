@@ -11,10 +11,14 @@ import komponentenInterfaces.intern.IPersitenz;
 import komponentenInterfaces.intern.ITransaktionsAdapter;
 import org.hibernate.Session;
 import org.joda.time.DateTime;
+import serverFassaden.CallCenterServerFassade;
 import typClasses.AngebotTyp;
 import typClasses.AuftragTyp;
 import typClasses.KundeTyp;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -23,7 +27,7 @@ import java.util.GregorianCalendar;
  * TODO UDP-Heartbeat
  */
 public class SystemRunner {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RemoteException, MalformedURLException {
         Session session = HibernateUtil.getSessionFactory().openSession();
         // adapter
         IPersitenz persitenz = new PersistenzAdapter(session);
@@ -41,6 +45,13 @@ public class SystemRunner {
         LagerverwaltungFassade lagerverwaltung = new LagerverwaltungFassade(produktverwaltung, einkaufsverwaltung, persitenz);
         AuftragsverwaltungFassade auftragsverwaltung = new AuftragsverwaltungFassade(angebotsverwaltung, lagerverwaltung, transportdienstleisterAdapter, persitenz);
         BuchhaltungverwaltungFassade buchhaltungverwaltung = new BuchhaltungverwaltungFassade(bankAdapter, auftragsverwaltung, persitenz);
+
+        // Systeme  A3
+        CallCenterServerFassade system1 = new CallCenterServerFassade(angebotsverwaltung,auftragsverwaltung);
+        CallCenterServerFassade system2 = new CallCenterServerFassade(angebotsverwaltung,auftragsverwaltung);
+        Naming.rebind("system1", system1);
+        Naming.rebind("system2", system2);
+
 
         // --- SIMULATING SOME STUFF ---
 
