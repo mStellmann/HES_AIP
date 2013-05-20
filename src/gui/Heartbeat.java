@@ -14,17 +14,16 @@ import java.net.SocketException;
 public class Heartbeat extends Thread {
 
     private final int UPDATEINTERVAL = 500;
-    private final int HEARTBEAT_PORT = 50001;
     private final int MONITOR_PORT = 50000;
     private final String MONITOR_ADRESS = "localhost";
 
     private DatagramSocket udpSocket;
     private String name;
 
-    public Heartbeat(String name) {
+    public Heartbeat(String name, int port) {
         this.name = name;
         try {
-            udpSocket = new DatagramSocket(HEARTBEAT_PORT);
+            udpSocket = new DatagramSocket(port);
         } catch (SocketException e) {
             e.printStackTrace();
         }
@@ -39,6 +38,7 @@ public class Heartbeat extends Thread {
                 Thread.sleep(UPDATEINTERVAL);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                break;
             }
         }
     }

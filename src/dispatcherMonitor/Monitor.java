@@ -1,12 +1,14 @@
 package dispatcherMonitor;
 
 import dispatcherMonitor.interfaces.IMonitor;
+import org.javatuples.Triplet;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -17,28 +19,38 @@ import java.util.Set;
 public class Monitor implements IMonitor {
 
     private final int UPDATEINTERVAL = 500;
-    private final int HEARTBEAT_PORT = 50001;
     private final int MONITOR_PORT = 50000;
 
     private int nextSystem = 0;
-    private Map<String, InetAddress> hesSystemsMap;  // Name (Nummer) -> Adresse
-    private boolean[] isAliveAry;
+    private Map<String, Triplet<InetAddress, Boolean, Long>> hesSystemsMap;  // IP, isAlive, lastTimeStamp
+    private Map<String, Boolean> SystemStatusForceOff;
     private DatagramSocket udpSocket;
 
     public Monitor() {
         try {
             udpSocket = new DatagramSocket(MONITOR_PORT);
         } catch (SocketException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
         }
-        hesSystemsMap = new HashMap<String, InetAddress>();
-        isAliveAry = new boolean[10];
+        hesSystemsMap = new HashMap<String, Triplet<InetAddress, Boolean, Long>>();
+        SystemStatusForceOff = new HashMap<String, Boolean>();
 
+        // Dieser Thread empfängt alle Nachrichten..
         new Thread() {
             @Override
             public void run() {
                 while (true) {
                     receiveMessages();
+                }
+            }
+        }.start();
+
+        // Dieser Thread prueft ob das System noch am leben ist
+        new Thread() {
+            @Override
+            public void run() {
+                while (true) {
+                    pruefeSystemAmLeben();
                 }
             }
         }.start();
@@ -53,34 +65,62 @@ public class Monitor implements IMonitor {
             ex.printStackTrace();
         }
         String rcvText = new String(receivePacket.getData(), 0, receivePacket.getLength());
-        String rcvName = rcvText.split("_")[1];
-        String rcvCommand = rcvText.split("_")[0];
+        String rcvName = rcvText.split("_")[0];
+        String rcvCommand = rcvText.split("_")[1];
         switch (rcvCommand) {
             case "CONNECT":
-                hesSystemsMap.put(rcvName, receivePacket.getAddress());
+                hesSystemsMap.put(rcvName, Triplet.with(receivePacket.getAddress(), true, System.currentTimeMillis()));
+                System.out.println("[Monitor-Info] " + getTimeStamp() + " System connected: " + rcvName);
                 break;
             case "ALIVE":
-
+                hesSystemsMap.put(rcvName, Triplet.with(receivePacket.getAddress(), true, System.currentTimeMillis()));
+                System.out.println("[Monitor-Info] " + getTimeStamp() + " System alive: " + rcvName);
                 break;
             default:
-                System.out.println("Monitor-Error - received Message: " + rcvText);
+                System.out.println("[Monitor-Error] " + getTimeStamp() + " received Message: " + rcvText);
                 break;
         }
     }
 
+    private void pruefeSystemAmLeben() {
+        while (true) {
+            try {
+                for (String elem : hesSystemsMap.keySet()) {
+                    if (System.currentTimeMillis() - hesSystemsMap.get(elem).getValue2() > 1600) {
+                        hesSystemsMap.put(elem, Triplet.with(hesSystemsMap.get(elem).getValue0(), false, System.currentTimeMillis()));
+                        System.out.println("[Monitor-Info] " + getTimeStamp() + " System dead: " + elem);
+                    }
+                }
+                Thread.sleep(UPDATEINTERVAL);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public String getTimeStamp() {
+        String datum = new Date().toString().split(" ")[3];
+        return datum = "(" + datum + ") ";
+    }
+
     @Override
     public boolean isVerfuegbar(String hesSystemRef) {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        if (!SystemStatusForceOff.get(hesSystemRef))
+            return hesSystemsMap.get(hesSystemRef).getValue1();
+        else
+            return false;
     }
 
     @Override
     public void schalteAn(String hesSystemRef) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        System.out.println("[Monitor-Info] " + getTimeStamp() + " System switched On: " + hesSystemRef);
+        SystemStatusForceOff.put(hesSystemRef, false);
     }
 
     @Override
     public void schalteAus(String hesSystemRef) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        System.out.println("[Monitor-Info] " + getTimeStamp() + " System switched Off: " + hesSystemRef);
+        SystemStatusForceOff.put(hesSystemRef, true);
     }
 
     @Override
