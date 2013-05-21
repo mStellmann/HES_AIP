@@ -1,10 +1,7 @@
 package typClasses;
 
 import classes.Orderbuch;
-import interfaces.IAngebot;
-import interfaces.IBestellung;
-import interfaces.IEinkaufsinfosatz;
-import interfaces.IWarenausgangsmeldung;
+import interfaces.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +22,10 @@ public class ProduktTyp {
         this.produktNummer = produktNummer;
         this.produktName = produktName;
         this.lagerbestand = lagerbestand;
+    }
+
+    public ProduktTyp(IProdukt produkt) {
+        this(produkt.getProduktNummer(), produkt.getProduktName(), produkt.getLagerbestand());
     }
 
     public int getProduktNummer() {

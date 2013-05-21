@@ -52,6 +52,8 @@ public class AuftragsverwaltungFassade implements IAuftragsverwaltungIntern, IAu
     @Override
     public AuftragTyp sucheAuftrag(int id) throws RemoteException {
         IAuftrag auftrag = repository.sucheAuftrag(id);
+        IAngebot angebot = auftrag.getAngebot();
+        AngebotTyp angebotTyp = new AngebotTyp(ange)
         return new AuftragTyp(auftrag.getAuftragsNummer(), auftrag.getBeauftragtAm(), null); // TODO - scheiss null
     }
 

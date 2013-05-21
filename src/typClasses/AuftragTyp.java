@@ -1,14 +1,9 @@
 package typClasses;
 
+import interfaces.IAuftrag;
+
 import java.util.Date;
 
-/**
- * Created with IntelliJ IDEA.
- * User: abe263
- * Date: 19.04.13
- * Time: 12:40
- * To change this template use File | Settings | File Templates.
- */
 public class AuftragTyp {
     private final int auftragsNummer;
     private final boolean istAbgeschlossen;
@@ -29,6 +24,10 @@ public class AuftragTyp {
 
     public AuftragTyp(int auftragsNummer, Date beauftragtAm, AngebotTyp angebot) {
         this(auftragsNummer, false, beauftragtAm, angebot, null, null);
+    }
+
+    public AuftragTyp(IAuftrag auftrag) {
+        this(auftrag.getAuftragsNummer(), false, auftrag.getBeauftragtAm(), new AngebotTyp(auftrag.getAngebot()), null, null);
     }
 
     public int getAuftragsNummer() {
