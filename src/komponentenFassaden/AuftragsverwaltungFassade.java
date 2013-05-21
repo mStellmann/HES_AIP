@@ -1,6 +1,5 @@
 package komponentenFassaden;
 
-import classes.Auftrag;
 import interfaces.IAngebot;
 import interfaces.IAuftrag;
 import interfaces.ILieferung;
@@ -11,11 +10,9 @@ import komponentenLogik.AuftragsverwaltungLogik;
 import komponentenRepositories.AuftragsverwaltungRepository;
 import typClasses.AngebotTyp;
 import typClasses.AuftragTyp;
-import typClasses.LieferungTyp;
-import typClasses.RechnungTyp;
 
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -45,14 +42,17 @@ public class AuftragsverwaltungFassade implements IAuftragsverwaltungIntern, IAu
 
     @Override
     public List<AuftragTyp> getAlleAuftraege() throws RemoteException {
-        List<IAuftrag> auftrag = repository.getAlleAuftraege();
-        return null;     // TODO
+        List<? extends IAuftrag> auftragList = repository.getAlleAuftraege();
+        List<AuftragTyp> auftragTypList = new ArrayList<AuftragTyp>();
+        for (IAuftrag elem : auftragList)
+            auftragTypList.add(new AuftragTyp(elem));
+        return auftragTypList;
     }
 
     @Override
     public AuftragTyp sucheAuftrag(int id) throws RemoteException {
         IAuftrag auftrag = repository.sucheAuftrag(id);
-        return new AuftragTyp(auftrag.getAuftragsNummer(), auftrag.getBeauftragtAm(), null); // TODO - scheiss null
+        return new AuftragTyp(auftrag);
     }
 
     // ----- from intern -----

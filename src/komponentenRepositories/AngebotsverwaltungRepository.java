@@ -47,7 +47,7 @@ public class AngebotsverwaltungRepository {
         return persitenz.getObjectByID(id, Angebot.class);
     }
 
-    public List<IAngebot> getAlleAngebote() {
-        return null; // TODO
+    public List<? extends IAngebot> getAlleAngebote() {
+        return persitenz.getAllObjects(Angebot.class);
     }
 }

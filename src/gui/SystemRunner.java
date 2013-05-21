@@ -19,6 +19,8 @@ import typClasses.KundeTyp;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -28,6 +30,14 @@ import java.util.GregorianCalendar;
  */
 public class SystemRunner {
     public static void main(String[] args) throws RemoteException, MalformedURLException {
+
+        try {
+            LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
+        } catch (RemoteException e) { /* ... */ }
+
+        Heartbeat hbeat = new Heartbeat(args[0], Integer.parseInt(args[1]));
+        hbeat.start();
+
         Session session = HibernateUtil.getSessionFactory().openSession();
         // adapter
         IPersitenz persitenz = new PersistenzAdapter(session);
@@ -47,10 +57,14 @@ public class SystemRunner {
         BuchhaltungverwaltungFassade buchhaltungverwaltung = new BuchhaltungverwaltungFassade(bankAdapter, auftragsverwaltung, persitenz);
 
         // Systeme  A3
-        CallCenterServerFassade system = new CallCenterServerFassade(angebotsverwaltung,auftragsverwaltung);
-        Naming.rebind(args[0], system);
+        CallCenterServerFassade system = new CallCenterServerFassade(angebotsverwaltung, auftragsverwaltung);
+        Naming.rebind("//localhost:" + Registry.REGISTRY_PORT + "/" + args[0], system);
 
-
+        try {
+            hbeat.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
 
         // --- SIMULATING SOME STUFF ---
 
@@ -70,27 +84,29 @@ public class SystemRunner {
          */
 
         // -----------------------------
-        Date sampleDate = new DateTime().toDate();
-        IProdukt produkt = produktverwaltung.createProdukt("USB-Stick", 10);
-        IKunde kunde = kundenverwaltung.createKunde("Hans Dieter", "Musterstr. 123, 27232 Musterhausen");
-        IAngebot angebot = angebotsverwaltung.erstelleAngebot(sampleDate, sampleDate, 10f, kunde);
-        IAuftrag auftrag = auftragsverwaltung.erstelleAuftrag(sampleDate, angebot);
-
-        lagerverwaltung.createWarenausgangsmeldung(5, sampleDate, produkt);
-        lagerverwaltung.createWarenausgangsmeldung(25, sampleDate, produkt);
-
-
-        buchhaltungverwaltung.erstelleZahlungseingang(sampleDate, 100f);
-        buchhaltungverwaltung.erstelleRechnung(sampleDate, null);
-
-        ILieferung lieferung = auftragsverwaltung.erstelleLieferung();
-        lieferung.setTransportauftrag(auftragsverwaltung.erstelleTransportauftrag(sampleDate, "Super Heftig Transports"));
-        auftrag.setLieferung(lieferung);
-
-        persitenz.updateObject(auftrag);
-
-        auftragsverwaltung.markiereAuftragAlsVerschickt(auftrag.getAuftragsNummer());
-        auftragsverwaltung.auftragAbschliessen(auftrag.getAuftragsNummer());
+//        Date sampleDate = new DateTime().toDate();
+//        IProdukt produkt = produktverwaltung.createProdukt("USB-Stick", 10);
+//        IProdukt p2 = produktverwaltung.getProdukt("USB-Stick");
+//        System.out.println(p2);
+//        IKunde kunde = kundenverwaltung.createKunde("Hans Dieter", "Musterstr. 123, 27232 Musterhausen");
+//        IAngebot angebot = angebotsverwaltung.erstelleAngebot(sampleDate, sampleDate, 10f, kunde);
+//        IAuftrag auftrag = auftragsverwaltung.erstelleAuftrag(sampleDate, angebot);
+//
+//        lagerverwaltung.createWarenausgangsmeldung(5, sampleDate, produkt);
+//        lagerverwaltung.createWarenausgangsmeldung(25, sampleDate, produkt);
+//
+//
+//        buchhaltungverwaltung.erstelleZahlungseingang(sampleDate, 100f);
+//        buchhaltungverwaltung.erstelleRechnung(sampleDate, null);
+//
+//        ILieferung lieferung = auftragsverwaltung.erstelleLieferung();
+//        lieferung.setTransportauftrag(auftragsverwaltung.erstelleTransportauftrag(sampleDate, "Super Heftig Transports"));
+//        auftrag.setLieferung(lieferung);
+//
+//        persitenz.updateObject(auftrag);
+//
+//        auftragsverwaltung.markiereAuftragAlsVerschickt(auftrag.getAuftragsNummer());
+//        auftragsverwaltung.auftragAbschliessen(auftrag.getAuftragsNummer());
 
         session.close();
     }

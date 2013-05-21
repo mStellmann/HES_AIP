@@ -36,35 +36,35 @@ public class AngebotsverwaltungLogik {
         return repository.erstelleAngebot(gueltigAb, gueltigBis, gesamtPreis, kundenverwaltungIntern.getKunde(kunde.getKundenNummer()));
     }
 
-    public List<IKunde> getAlleKunden() {
-        return null;  // TODO
+    public List<? extends IKunde> getAlleKunden() {
+        return kundenverwaltungIntern.getAllKunden();
     }
 
     public IKunde sucheKunde(int id) {
-        return null;  // TODO
+        return kundenverwaltungIntern.getKunde(id);
     }
 
     public IKunde sucheKunde(String name) {
-        return null;  // TODO
+        return kundenverwaltungIntern.getKunde(name);
     }
 
     public IKunde erstelleKunde(String name, String adresse) {
-        return null;  // TODO
+        return kundenverwaltungIntern.createKunde(name, adresse);
     }
 
-    public List<IProdukt> getAlleProdukte() {
-        return null;  // TODO
+    public List<? extends IProdukt> getAlleProdukte() {
+        return produktverwaltungIntern.getAllProdukte();
     }
 
     public IProdukt sucheProdukt(int id) {
-        return null;  // TODO
+        return produktverwaltungIntern.getProdukt(id);
     }
 
     public IProdukt sucheProdukt(String name) {
-        return null;  // TODO
+        return produktverwaltungIntern.getProdukt(name);
     }
 
     public IProdukt erstelleProdukt(String name, int lagerbestand) {
-        return null;  // TODO
+        return produktverwaltungIntern.createProdukt(name, lagerbestand);
     }
 }

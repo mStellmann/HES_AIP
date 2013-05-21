@@ -19,7 +19,7 @@ import java.util.List;
  * Time: 17:50
  * To change this template use File | Settings | File Templates.
  */
-public interface ICallCenterServerFassade extends Remote{
+public interface ICallCenterServerFassade extends Remote {
 
     AngebotTyp erstelleAngebot(Date gueltigAb, Date gueltigBis, float gesamtPreis, KundeTyp kunde) throws RemoteException;
 
@@ -35,7 +35,7 @@ public interface ICallCenterServerFassade extends Remote{
 
     ProduktTyp sucheProdukt(int id) throws RemoteException;
 
-    List<ProduktTyp> getAlleProdukte();
+    List<ProduktTyp> getAlleProdukte() throws RemoteException;
 
     KundeTyp erstelleKunde(String name, String adresse) throws RemoteException;
 
@@ -43,7 +43,7 @@ public interface ICallCenterServerFassade extends Remote{
 
     KundeTyp sucheKunde(int id) throws RemoteException;
 
-    List<KundeTyp> getAlleKunden();
+    List<KundeTyp> getAlleKunden() throws RemoteException;
 
     AuftragTyp erstelleAuftrag(Date beauftragtAm, AngebotTyp angebot) throws RemoteException;
 

@@ -82,9 +82,8 @@ public class AuftragsverwaltungRepository {
         persitenz.saveObject(lieferung);
     }
 
-
-    public List<IAuftrag> getAlleAuftraege() {
-        return null;  // TODO
+    public List<? extends IAuftrag> getAlleAuftraege() {
+        return persitenz.getAllObjects(Auftrag.class);
     }
 
     public IAuftrag sucheAuftrag(int id) {

@@ -12,6 +12,6 @@ import komponentenInterfaces.intern.ITransportdienstleisterAdapter;
 public class TransportdienstleisterAdapter implements ITransportdienstleisterAdapter {
     @Override
     public ITransportauftrag erstelleTransportauftrag(int transportauftragsNummer, String transportdienstleister, ILieferung lieferung) {
-        return null;  // todo
+        return null;
     }
 }

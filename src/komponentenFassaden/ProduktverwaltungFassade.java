@@ -6,6 +6,8 @@ import komponentenInterfaces.intern.IPersitenz;
 import komponentenInterfaces.intern.IProduktverwaltungIntern;
 import komponentenRepositories.ProduktverwaltungRepository;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: abe263
@@ -18,27 +20,37 @@ public class ProduktverwaltungFassade implements IProduktverwaltungIntern, IProd
     //private ProduktverwaltungLogik logik;
     private ProduktverwaltungRepository repository;
 
-    public ProduktverwaltungFassade(IPersitenz persistenz){
+    public ProduktverwaltungFassade(IPersitenz persistenz) {
         this.repository = new ProduktverwaltungRepository(persistenz);
     }
 
     @Override
     public void lagerbestendReduzieren(int rausgehendeMenge) {
-        //To change body of implemented methods use File | Settings | File Templates.
+
     }
 
     @Override
     public boolean nrIstVorhanden(int warenNr) {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return false;
     }
 
     @Override
     public IProdukt getProdukt(int warenNr) {
-        return repository.getProdukt(warenNr);  //To change body of implemented methods use File | Settings | File Templates.
+        return repository.getProdukt(warenNr);
     }
 
     @Override
     public IProdukt createProdukt(String name, int lagerbestand) {
-        return repository.erstelleProdukt(name,lagerbestand);  //To change body of implemented methods use File | Settings | File Templates.
+        return repository.erstelleProdukt(name, lagerbestand);
+    }
+
+    @Override
+    public List<? extends IProdukt> getAllProdukte() {
+        return repository.getAllProdukte();
+    }
+
+    @Override
+    public IProdukt getProdukt(String name) {
+        return repository.getProdukt(name);
     }
 }

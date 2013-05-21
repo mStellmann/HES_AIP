@@ -7,6 +7,7 @@ import interfaces.IProdukt;
 import komponentenInterfaces.intern.IPersitenz;
 
 import java.util.Date;
+import java.util.List;
 
 public class ProduktverwaltungRepository {
     private IPersitenz persitenz;
@@ -35,5 +36,13 @@ public class ProduktverwaltungRepository {
     // Saves
     private void saveProdukt(Produkt produkt) {
         persitenz.saveObject(produkt);
+    }
+
+    public List<? extends IProdukt> getAllProdukte() {
+        return persitenz.getAllObjects(Produkt.class);
+    }
+
+    public IProdukt getProdukt(String name) {
+        return persitenz.searchObjectByName(name, Produkt.class);
     }
 }

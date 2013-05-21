@@ -1,7 +1,9 @@
 package typClasses;
 
 import interfaces.IAngebot;
+import interfaces.IKunde;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +14,7 @@ import java.util.List;
  * Time: 12:41
  * To change this template use File | Settings | File Templates.
  */
-public class KundeTyp {
+public class KundeTyp implements Serializable {
 
     private int kundenNummer;
     private String name;
@@ -23,7 +25,11 @@ public class KundeTyp {
         this.kundenNummer = kundenNummer;
         this.name = name;
         this.adresse = adresse;
-        this.angebotsList=angebotsList;
+        this.angebotsList = angebotsList;
+    }
+
+    public KundeTyp(IKunde kunde) {
+        this(kunde.getKundennummer(), kunde.getKundenname(), kunde.getAdresse(), null); // oh shit null für eine Leere Liste <- Marker fuer spaeter
     }
 
     public int getKundenNummer() {

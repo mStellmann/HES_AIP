@@ -1,5 +1,7 @@
 package typClasses;
 
+import java.io.Serializable;
+
 /**
  * Created with IntelliJ IDEA.
  * User: abe263
@@ -7,5 +9,5 @@ package typClasses;
  * Time: 12:44
  * To change this template use File | Settings | File Templates.
  */
-public class OrderbuchsatzTyp {
+public class OrderbuchsatzTyp implements Serializable {
 }

@@ -1,5 +1,6 @@
 package typClasses;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Date;
  * Time: 12:45
  * To change this template use File | Settings | File Templates.
  */
-public class TransportauftragTyp {
+public class TransportauftragTyp implements Serializable {
     private final int transportauftragsNummer;
     private final Date ausgangsdatum;
     private final boolean lieferungErfolgt;
