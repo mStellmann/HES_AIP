@@ -28,6 +28,7 @@ import typClasses.AngebotTyp;
  */
 public class GUIClient extends javax.swing.JFrame {
     Dispatcher dispatcher;
+    List<AngebotTyp> angebote;
     
     
    // ProduktTyp produkt;
@@ -36,8 +37,16 @@ public class GUIClient extends javax.swing.JFrame {
     
     /** Creates new form ClientGUI */
    public GUIClient(Dispatcher dispatcher) {
-        this.dispatcher = dispatcher;
-        initComponents();
+       initComponents(); 
+       this.dispatcher = dispatcher;
+       this.angebote=dispatcher.getAlleAngebote();
+       if (angebote != null) {
+            initList(angebote);
+        }
+    }
+   
+   private void initList(List<AngebotTyp> angebote) {
+        jList1.setListData(angebote.toArray());
     }
    
     /** This method is called from within the constructor to
@@ -131,7 +140,6 @@ public class GUIClient extends javax.swing.JFrame {
 
         jTextField7.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jTextField7.setToolTipText("Bitte den Namen des Gesuchten Produkts eingeben!");
-        jTextField7.setFocusable(false);
 
         jTextField8.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jTextField8.setToolTipText("Bitte den Namen des Gesuchten Produkts eingeben!");
@@ -192,7 +200,7 @@ public class GUIClient extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Name des Produkts:");
 
-        jButton1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Verdana", 0, 12));
         jButton1.setText("Suchen");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -300,7 +308,6 @@ public class GUIClient extends javax.swing.JFrame {
 
         jTextField12.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jTextField12.setToolTipText("Bitte den Namen des Gesuchten Produkts eingeben!");
-        jTextField12.setFocusable(false);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -350,7 +357,7 @@ public class GUIClient extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("ID:");
 
-        jTextField5.setFont(new java.awt.Font("Verdana", 0, 12));
+        jTextField5.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jTextField5.setToolTipText("Bitte den Namen des Gesuchten Produkts eingeben!");
         jTextField5.setFocusable(false);
 
@@ -358,7 +365,7 @@ public class GUIClient extends javax.swing.JFrame {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("Name des Kunden:");
 
-        jTextField6.setFont(new java.awt.Font("Verdana", 0, 12));
+        jTextField6.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jTextField6.setToolTipText("Bitte den Namen des Gesuchten Produkts eingeben!");
         jTextField6.setFocusable(false);
 
@@ -370,7 +377,7 @@ public class GUIClient extends javax.swing.JFrame {
             }
         });
 
-        jTextField9.setFont(new java.awt.Font("Verdana", 0, 12));
+        jTextField9.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jTextField9.setToolTipText("Bitte den Namen des Gesuchten Produkts eingeben!");
         jTextField9.setFocusable(false);
 
@@ -483,7 +490,7 @@ public class GUIClient extends javax.swing.JFrame {
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel14.setText("Name des Produkts:");
 
-        jTextField14.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTextField14.setFont(new java.awt.Font("Verdana", 0, 12));
         jTextField14.setToolTipText("Bitte den Namen des Gesuchten Produkts eingeben!");
         jTextField14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
