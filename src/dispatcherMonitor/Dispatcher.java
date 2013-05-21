@@ -32,13 +32,22 @@ public class Dispatcher implements IDispatcher {
         if(benutzteSysteme.size() == systemMap.size()){
            benutzteSysteme.clear();
         }
-        String[] systemNamen = (String[]) systemMap.keySet().toArray();
-        for(int i = 0;i<systemNamen.length;i++){
-            if(!(benutzteSysteme.containsKey(systemNamen[i]))&& monitor.isVerfuegbar(systemNamen[i])){
-//                activesSystemName =  systemNamen[i];
-//                activesSystem =  systemMap.get(systemNamen[i]);
-                ICallCenterServerFassade naechstesHES = systemMap.get(systemNamen[i]);
-                benutzteSysteme.put(systemNamen[i],naechstesHES);
+//        String[] systemNamen = (String[]) systemMap.keySet().toArray();
+//        for(int i = 0;i<systemNamen.length;i++){
+//            if(!(benutzteSysteme.containsKey(systemNamen[i]))&& monitor.isVerfuegbar(systemNamen[i])){
+////                activesSystemName =  systemNamen[i];
+////                activesSystem =  systemMap.get(systemNamen[i]);
+//                ICallCenterServerFassade naechstesHES = systemMap.get(systemNamen[i]);
+//                benutzteSysteme.put(systemNamen[i],naechstesHES);
+//                return naechstesHES;
+//            }
+//
+//        }
+        Set<String> systemNamen =  systemMap.keySet();
+        for (String elem :systemNamen) {
+            if(!(benutzteSysteme.containsKey(elem))&& monitor.isVerfuegbar(elem)){
+                ICallCenterServerFassade naechstesHES = systemMap.get(elem);
+                benutzteSysteme.put(elem,naechstesHES);
                 return naechstesHES;
             }
 
