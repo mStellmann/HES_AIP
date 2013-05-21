@@ -8,10 +8,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  *
@@ -25,8 +22,15 @@ public class Monitor implements IMonitor {
     private Map<String, Triplet<InetAddress, Boolean, Long>> hesSystemsMap;  // IP, isAlive, lastTimeStamp
     private Map<String, Boolean> systemStatusForceOff;
     private DatagramSocket udpSocket;
+    private Map<String, Integer> upTimeMap;
+    private Map<String, Integer> downTimeMap;
+    private Map<String, Integer> opCountMap;
 
     public Monitor() {
+        upTimeMap = new HashMap<String, Integer>();
+        downTimeMap = new HashMap<String, Integer>();
+        opCountMap = new HashMap<String, Integer>();
+
         try {
             udpSocket = new DatagramSocket(MONITOR_PORT);
         } catch (SocketException e) {
@@ -72,6 +76,7 @@ public class Monitor implements IMonitor {
                 hesSystemsMap.put(rcvName, Triplet.with(receivePacket.getAddress(), true, System.currentTimeMillis()));
                 if (!systemStatusForceOff.containsKey(rcvName))
                     schalteAn(rcvName);
+
                 System.out.println("[Monitor-Info] " + getTimeStamp() + " System connected: " + rcvName);
                 break;
             case "ALIVE":
