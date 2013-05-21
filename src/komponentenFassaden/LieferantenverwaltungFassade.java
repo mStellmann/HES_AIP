@@ -12,7 +12,7 @@ import komponentenInterfaces.intern.IPersitenz;
  * To change this template use File | Settings | File Templates.
  */
 public class LieferantenverwaltungFassade implements ILieferantenverwaltungIntern, ILieferantenverwaltungExtern {
-    private IPersitenz persitenz; // todo -> weiter an repo DUMMY
+    private IPersitenz persitenz;
 
     public LieferantenverwaltungFassade(IPersitenz persitenz) {
         this.persitenz = persitenz;

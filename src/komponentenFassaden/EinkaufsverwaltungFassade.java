@@ -27,6 +27,6 @@ public class EinkaufsverwaltungFassade implements IEinkaufsverwaltungIntern, IEi
 
     @Override
     public LieferungTyp wareBestellen(int warenNr) {
-        return null;  // todo
+        return null;
     }
 }
