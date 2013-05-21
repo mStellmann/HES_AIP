@@ -17,6 +17,7 @@ import typClasses.ProduktTyp;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -48,7 +49,11 @@ public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAn
     @Override
     public List<AngebotTyp> getAlleAngebote() throws RemoteException {
         List<? extends IAngebot> angebotList = repository.getAlleAngebote();
-        return null; // TODO
+        List<AngebotTyp> angebotTypList = new ArrayList<AngebotTyp>();
+        for(IAngebot elem: angebotList){
+             angebotTypList.add(new AngebotTyp(elem));
+        }
+        return angebotTypList;
     }
 
     @Override
@@ -59,49 +64,57 @@ public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAn
     @Override
     public ProduktTyp erstelleProdukt(String name, int lagerbestand) throws RemoteException {
         IProdukt produkt = logik.erstelleProdukt(name, lagerbestand);
-        return null; // TODO
+        return new ProduktTyp(produkt);
     }
 
     @Override
     public ProduktTyp sucheProdukt(String name) throws RemoteException {
         IProdukt produkt = logik.sucheProdukt(name);
-        return null; // TODO
+        return new ProduktTyp(produkt);
     }
 
     @Override
     public ProduktTyp sucheProdukt(int id) throws RemoteException {
         IProdukt produkt = logik.sucheProdukt(id);
-        return null; // TODO
+        return new ProduktTyp(produkt);
     }
 
     @Override
     public List<ProduktTyp> getAlleProdukte() {
         List<? extends IProdukt> produktList = logik.getAlleProdukte();
-        return null; // TODO
+        List<ProduktTyp> produktTypList = new ArrayList<ProduktTyp>();
+        for(IProdukt elem : produktList){
+            produktTypList.add(new ProduktTyp(elem));
+        }
+        return produktTypList;
     }
 
     @Override
     public KundeTyp erstelleKunde(String name, String adresse) throws RemoteException {
         IKunde kunde = logik.erstelleKunde(name, adresse);
-        return null; // TODO
+        return new KundeTyp(kunde);
     }
 
     @Override
     public KundeTyp sucheKunde(String name) throws RemoteException {
         IKunde kunde = logik.sucheKunde(name);
-        return null; // TODO
+        return new KundeTyp(kunde);
     }
 
     @Override
     public KundeTyp sucheKunde(int id) throws RemoteException {
         IKunde kunde = logik.sucheKunde(id);
-        return null; // TODO
+        return new KundeTyp(kunde);
     }
 
     @Override
     public List<KundeTyp> getAlleKunden() {
         List<? extends IKunde> kundeList = logik.getAlleKunden();
-        return null; // TODO
+        List<KundeTyp> kundeTypList = new ArrayList<KundeTyp>();
+        for(IKunde elem : kundeList){
+            kundeTypList.add(new KundeTyp(elem));
+        }
+        return kundeTypList;
     }
 
 
