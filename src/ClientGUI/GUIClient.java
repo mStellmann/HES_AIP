@@ -21,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import typClasses.KundeTyp;
 import typClasses.ProduktTyp;
+import typClasses.AngebotTyp;
 /**
  *
  * @author aaz527
@@ -437,6 +438,11 @@ public class GUIClient extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         jButton5.setText("Auftrag erstellen");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -465,7 +471,7 @@ public class GUIClient extends javax.swing.JFrame {
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel13.setText("Name des Kunden:");
 
-        jTextField13.setFont(new java.awt.Font("Verdana", 0, 12));
+        jTextField13.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jTextField13.setToolTipText("Bitte den Namen des Gesuchten Produkts eingeben!");
         jTextField13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -477,7 +483,7 @@ public class GUIClient extends javax.swing.JFrame {
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel14.setText("Name des Produkts:");
 
-        jTextField14.setFont(new java.awt.Font("Verdana", 0, 12));
+        jTextField14.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jTextField14.setToolTipText("Bitte den Namen des Gesuchten Produkts eingeben!");
         jTextField14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -667,6 +673,15 @@ jTextField2.setText(String.valueOf(kunde.getKundenNummer()));
 jTextField3.setText(kunde.getName());
 jTextField4.setText(kunde.getAdresse());
 }//GEN-LAST:event_jButton3ActionPerformed
+
+private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+Date date = new Date();
+       
+            int index = jList1.getSelectedIndex();
+            AngebotTyp angebot = dispatcher.sucheAngebot(index);
+            dispatcher.erstelleAuftrag(date, angebot);
+           
+}//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
