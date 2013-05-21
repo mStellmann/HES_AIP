@@ -1,5 +1,7 @@
 package typClasses;
 
+import interfaces.IAngebot;
+
 import java.util.Date;
 import java.util.Map;
 
@@ -32,6 +34,10 @@ public class AngebotTyp {
 
     public AngebotTyp(int angebotsNummer, Date gueltigAb, Date gueltigBis, float gesamtPreis, KundeTyp kunde) {
         this(angebotsNummer, gueltigAb, gueltigBis, gesamtPreis, kunde, null, null);
+    }
+
+    public AngebotTyp(IAngebot angebot){
+           this(angebot.getAngebotsNummer(),angebot.getGueltigAb(),angebot.getGueltigBis(),angebot.getGesamtPreis(), new KundeTyp(angebot.getKunde()));
     }
 
     public int getAngebotsNummer() {

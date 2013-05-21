@@ -1,6 +1,7 @@
 package typClasses;
 
 import interfaces.IAngebot;
+import interfaces.IKunde;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,10 @@ public class KundeTyp {
         this.name = name;
         this.adresse = adresse;
         this.angebotsList=angebotsList;
+    }
+
+    public KundeTyp(IKunde kunde) {
+        this(kunde.getKundennummer(),kunde.getKundenname(),kunde.getAdresse(), null); // oh shit null für eine Leere Liste <- Marker fuer spaeter
     }
 
     public int getKundenNummer() {

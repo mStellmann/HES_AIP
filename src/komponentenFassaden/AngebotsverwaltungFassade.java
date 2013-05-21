@@ -42,7 +42,7 @@ public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAn
     @Override
     public AngebotTyp sucheAngebot(int id) throws RemoteException {
         IAngebot angebot = repository.sucheAngebot(id);
-        return null; // TODO
+        return new AngebotTyp(angebot);
     }
 
     @Override
