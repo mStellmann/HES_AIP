@@ -45,7 +45,7 @@ public class AuftragsverwaltungFassade implements IAuftragsverwaltungIntern, IAu
 
     @Override
     public List<AuftragTyp> getAlleAuftraege() throws RemoteException {
-        List<IAuftrag> auftrag = repository.getAlleAuftraege();
+        List<? extends IAuftrag> auftrag = repository.getAlleAuftraege();
         return null;     // TODO
     }
 

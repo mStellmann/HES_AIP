@@ -26,16 +26,16 @@ public class ClientStarter {
         // DashboardGUI starten
 
         HashMap<String, CallCenterServerFassade> serverMap;
-        serverMap = new HashMap<String,CallCenterServerFassade>();
+        serverMap = new HashMap<String, CallCenterServerFassade>();
 
-        for(int i=0;i<args.length;i=i+2){
-        //args[0] = zB localhost     + name des Servers = args[1] ( entspricht args[0] bei SystemRunner Main)
-        String url = new String("rmi://" + args[i] + "/" + args[i+1]);
-        serverMap.put(args[i+1],(CallCenterServerFassade) lookup(url));
+        for (int i = 0; i < args.length; i = i + 2) {
+            //args[0] = zB localhost     + name des Servers = args[1] ( entspricht args[0] bei SystemRunner Main)
+            String url = new String("rmi://" + args[i] + "/" + args[i + 1]);
+            serverMap.put(args[i + 1], (CallCenterServerFassade) lookup(url));
         }
 
         Monitor monitor = new Monitor();
-        Dispatcher dispetcher = new Dispetcher(monitor, serverMap);
+        Dispatcher dispatcher = new Dispatcher(monitor, serverMap);
 
 
     }
