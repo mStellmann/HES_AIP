@@ -73,4 +73,20 @@ public class PersistenzAdapter implements IPersitenz {
         }
         return obj;
     }
+
+    @Override
+    public <T> T searchObjectByName(String name, Class<T> tClass) {
+        Transaction transaction = null;
+        T obj = null;
+        try {
+            transaction = session.beginTransaction();
+            obj = (T) session.createQuery("from " + tClass.getSimpleName() + " where name = '" + name + "'").list().get(0);
+            transaction.commit();
+
+        } catch (HibernateException ex) {
+            transaction.rollback();
+            ex.printStackTrace();
+        }
+        return obj;
+    }
 }

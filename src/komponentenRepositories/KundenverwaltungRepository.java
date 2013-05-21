@@ -4,6 +4,8 @@ import classes.Kunde;
 import interfaces.IKunde;
 import komponentenInterfaces.intern.IPersitenz;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: abe263
@@ -37,5 +39,13 @@ public class KundenverwaltungRepository {
     // Saves
     private void saveKunde(Kunde kunde) {
         persitenz.saveObject(kunde);
+    }
+
+    public List<? extends IKunde> getAllKunden() {
+        return persitenz.getAllObjects(Kunde.class);
+    }
+
+    public IKunde getKunde(String name) {
+        return persitenz.searchObjectByName(name, Kunde.class);
     }
 }

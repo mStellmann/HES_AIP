@@ -15,4 +15,6 @@ public interface IPersitenz {
     <T> void updateObject(T objectToUpdate);
 
     <T> List<T> getAllObjects(Class<T> tClass);
+
+    <T> T searchObjectByName(String name, Class<T> tClass);
 }

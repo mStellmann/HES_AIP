@@ -6,6 +6,8 @@ import komponentenInterfaces.intern.IKundenverwaltungIntern;
 import komponentenInterfaces.intern.IPersitenz;
 import komponentenRepositories.KundenverwaltungRepository;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: abe263
@@ -24,11 +26,21 @@ public class KundenverwaltungFassade implements IKundenverwaltungIntern, IKunden
 
     @Override
     public IKunde getKunde(int kundenNummer) {
-        return repository.getKunde(kundenNummer);  //To change body of implemented methods use File | Settings | File Templates.
+        return repository.getKunde(kundenNummer);
     }
 
     @Override
     public IKunde createKunde(String name, String adresse) {
         return repository.erstelleKunde(name, adresse);
+    }
+
+    @Override
+    public List<? extends IKunde> getAllKunden() {
+        return repository.getAllKunden();
+    }
+
+    @Override
+    public IKunde getKunde(String name) {
+        return repository.getKunde(name);
     }
 }

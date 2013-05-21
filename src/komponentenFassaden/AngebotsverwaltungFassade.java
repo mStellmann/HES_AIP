@@ -47,7 +47,7 @@ public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAn
 
     @Override
     public List<AngebotTyp> getAlleAngebote() throws RemoteException {
-        List<IAngebot> angebotList = repository.getAlleAngebote();
+        List<? extends IAngebot> angebotList = repository.getAlleAngebote();
         return null; // TODO
     }
 
@@ -76,7 +76,7 @@ public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAn
 
     @Override
     public List<ProduktTyp> getAlleProdukte() {
-        List<IProdukt> produktList = logik.getAlleProdukte();
+        List<? extends IProdukt> produktList = logik.getAlleProdukte();
         return null; // TODO
     }
 
@@ -100,7 +100,7 @@ public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAn
 
     @Override
     public List<KundeTyp> getAlleKunden() {
-        List<IKunde> kundeList = logik.getAlleKunden();
+        List<? extends IKunde> kundeList = logik.getAlleKunden();
         return null; // TODO
     }
 
