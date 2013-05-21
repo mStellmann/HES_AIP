@@ -32,6 +32,10 @@ public class KundeTyp implements Serializable {
         this(kunde.getKundennummer(), kunde.getKundenname(), kunde.getAdresse(), null); // oh shit null für eine Leere Liste <- Marker fuer spaeter
     }
 
+    public KundeTyp(IKunde kunde) {
+        this(kunde.getKundennummer(),kunde.getKundenname(),kunde.getAdresse(), null); // oh shit null für eine Leere Liste <- Marker fuer spaeter
+    }
+
     public int getKundenNummer() {
         return kundenNummer;
     }
