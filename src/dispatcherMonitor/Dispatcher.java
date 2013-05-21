@@ -8,6 +8,7 @@ import typClasses.AuftragTyp;
 import typClasses.KundeTyp;
 import typClasses.ProduktTyp;
 
+import java.rmi.RemoteException;
 import java.util.*;
 
 /**
@@ -51,77 +52,141 @@ public class Dispatcher implements IDispatcher {
 //    }
 
     @Override
-    public AngebotTyp erstelleAngebot(Date gueltigAb, Date gueltigBis, float gesamtPreis, KundeTyp kunde) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public AngebotTyp erstelleAngebot(Date gueltigAb, Date gueltigBis, float gesamtPreis, KundeTyp kunde)  {
+        try {
+            return getNaechstesHES().erstelleAngebot(gueltigAb,gueltigBis,gesamtPreis,kunde);
+        } catch (RemoteException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return null;
     }
 
     @Override
-    public AngebotTyp sucheAngebot(int id) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public AngebotTyp sucheAngebot(int id)  {
+        try {
+            return getNaechstesHES().sucheAngebot(id);
+        } catch (RemoteException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return null;
     }
 
     @Override
-    public List<AngebotTyp> getAlleAngebote() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public List<AngebotTyp> getAlleAngebote()  {
+        try {
+            return getNaechstesHES().getAlleAngebote();
+        } catch (RemoteException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return null;
     }
 
     @Override
-    public void addProduktMengeZuAngebot(AngebotTyp angebot, ProduktTyp produkt, int menge) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void addProduktMengeZuAngebot(AngebotTyp angebot, ProduktTyp produkt, int menge)  {
+        try {
+            getNaechstesHES().addProduktMengeZuAngebot(angebot,produkt,menge);
+        } catch (RemoteException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 
     @Override
     public KundeTyp erstelleKunde(String name, String adresse) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        try {
+            return getNaechstesHES().erstelleKunde(name,adresse);
+        } catch (RemoteException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return null;
     }
 
     @Override
-    public ProduktTyp erstelleProdukt(String name, int lagerbestand) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public ProduktTyp erstelleProdukt(String name, int lagerbestand)  {
+        try {
+            return getNaechstesHES().erstelleProdukt(name,lagerbestand);
+        } catch (RemoteException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return null;
     }
 
     @Override
     public ProduktTyp sucheProdukt(String name) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        try {
+            return getNaechstesHES().sucheProdukt(name);
+        } catch (RemoteException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return null;
     }
 
     @Override
     public ProduktTyp sucheProdukt(int id) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        try {
+            return getNaechstesHES().sucheProdukt(id);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
     public List<ProduktTyp> getAlleProdukte() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return getNaechstesHES().getAlleProdukte();
     }
 
     @Override
     public KundeTyp sucheKunde(String name) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        try {
+            return getNaechstesHES().sucheKunde(name);
+        } catch (RemoteException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return null;
     }
 
     @Override
     public KundeTyp sucheKunde(int id) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        try {
+            return getNaechstesHES().sucheKunde(id);
+        } catch (RemoteException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return null;
     }
 
     @Override
     public List<KundeTyp> getAlleKunden() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return getNaechstesHES().getAlleKunden();
     }
 
     @Override
     public AuftragTyp erstelleAuftrag(Date beauftragtAm, AngebotTyp angebot) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        try {
+            return getNaechstesHES().erstelleAuftrag(beauftragtAm,angebot);
+        } catch (RemoteException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return null;
     }
 
     @Override
     public List<AuftragTyp> getAlleAuftraege() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        try {
+            return getNaechstesHES().getAlleAuftraege();  //To change body of implemented methods use File | Settings | File Templates.
+        } catch (RemoteException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return null;
     }
 
     @Override
     public AuftragTyp sucheAuftrag(int id) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        try {
+            return getNaechstesHES().sucheAuftrag(id);
+        } catch (RemoteException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return null;
     }
 }

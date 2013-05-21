@@ -5,6 +5,7 @@ import typClasses.AuftragTyp;
 import typClasses.KundeTyp;
 import typClasses.ProduktTyp;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.List;
 
@@ -12,19 +13,19 @@ import java.util.List;
  *
  */
 public interface IDispatcher {
-    AngebotTyp erstelleAngebot(Date gueltigAb, Date gueltigBis, float gesamtPreis, KundeTyp kunde);
+    AngebotTyp erstelleAngebot(Date gueltigAb, Date gueltigBis, float gesamtPreis, KundeTyp kunde) throws RemoteException;
 
-    AngebotTyp sucheAngebot(int id);
+    AngebotTyp sucheAngebot(int id) throws RemoteException;
 
-    List<AngebotTyp> getAlleAngebote();
+    List<AngebotTyp> getAlleAngebote() throws RemoteException;
 
-    void addProduktMengeZuAngebot(AngebotTyp angebot, ProduktTyp produkt, int menge);
+    void addProduktMengeZuAngebot(AngebotTyp angebot, ProduktTyp produkt, int menge) throws RemoteException;
 
-    KundeTyp erstelleKunde(String name, String adresse);
+    KundeTyp erstelleKunde(String name, String adresse) throws RemoteException;
 
-    ProduktTyp erstelleProdukt(String name, int lagerbestand);
+    ProduktTyp erstelleProdukt(String name, int lagerbestand) throws RemoteException;
 
-    ProduktTyp sucheProdukt(String name);
+    ProduktTyp sucheProdukt(String name) throws RemoteException;
 
     ProduktTyp sucheProdukt(int id);
 
