@@ -26,17 +26,14 @@ public class CallCenterServerFassade extends UnicastRemoteObject implements ICal
     private IAngebotsverwaltungExtern angebotsverwaltungFassade;
     private IAuftragsverwaltungExtern auftragsverwaltungFassade;
 
-    public CallCenterServerFassade(IAngebotsverwaltungExtern angebotsverwaltungFassade,IAuftragsverwaltungExtern auftragsverwaltungFassade) throws RemoteException {
-        super();
+    public CallCenterServerFassade(IAngebotsverwaltungExtern angebotsverwaltungFassade, IAuftragsverwaltungExtern auftragsverwaltungFassade) throws RemoteException {
         this.angebotsverwaltungFassade = angebotsverwaltungFassade;
         this.auftragsverwaltungFassade = auftragsverwaltungFassade;
-
-
     }
 
     @Override
     public AngebotTyp erstelleAngebot(Date gueltigAb, Date gueltigBis, float gesamtPreis, KundeTyp kunde) throws RemoteException {
-        return angebotsverwaltungFassade.erstelleAngebot(gueltigAb,gueltigBis,gesamtPreis,kunde);
+        return angebotsverwaltungFassade.erstelleAngebot(gueltigAb, gueltigBis, gesamtPreis, kunde);
     }
 
     @Override
@@ -51,12 +48,12 @@ public class CallCenterServerFassade extends UnicastRemoteObject implements ICal
 
     @Override
     public void addProduktMengeZuAngebot(AngebotTyp angebot, ProduktTyp produkt, int menge) throws RemoteException {
-        angebotsverwaltungFassade.addProduktMengeZuAngebot(angebot,produkt,menge);
+        angebotsverwaltungFassade.addProduktMengeZuAngebot(angebot, produkt, menge);
     }
 
     @Override
     public ProduktTyp erstelleProdukt(String name, int lagerbestand) throws RemoteException {
-        return angebotsverwaltungFassade.erstelleProdukt(name,lagerbestand);
+        return angebotsverwaltungFassade.erstelleProdukt(name, lagerbestand);
     }
 
     @Override
@@ -70,13 +67,13 @@ public class CallCenterServerFassade extends UnicastRemoteObject implements ICal
     }
 
     @Override
-    public List<ProduktTyp> getAlleProdukte() {
+    public List<ProduktTyp> getAlleProdukte() throws RemoteException {
         return angebotsverwaltungFassade.getAlleProdukte();
     }
 
     @Override
     public KundeTyp erstelleKunde(String name, String adresse) throws RemoteException {
-        return angebotsverwaltungFassade.erstelleKunde(name,adresse);
+        return angebotsverwaltungFassade.erstelleKunde(name, adresse);
     }
 
     @Override
@@ -90,13 +87,13 @@ public class CallCenterServerFassade extends UnicastRemoteObject implements ICal
     }
 
     @Override
-    public List<KundeTyp> getAlleKunden() {
-        return  angebotsverwaltungFassade.getAlleKunden();
+    public List<KundeTyp> getAlleKunden() throws RemoteException {
+        return angebotsverwaltungFassade.getAlleKunden();
     }
 
     @Override
     public AuftragTyp erstelleAuftrag(Date beauftragtAm, AngebotTyp angebot) throws RemoteException {
-        return auftragsverwaltungFassade.erstelleAuftrag(beauftragtAm,angebot);
+        return auftragsverwaltungFassade.erstelleAuftrag(beauftragtAm, angebot);
     }
 
     @Override

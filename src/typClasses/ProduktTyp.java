@@ -3,10 +3,11 @@ package typClasses;
 import classes.Orderbuch;
 import interfaces.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProduktTyp {
+public class ProduktTyp implements Serializable {
 
     private int produktNummer;
     private String produktName;

@@ -2,9 +2,10 @@ package typClasses;
 
 import interfaces.IAuftrag;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class AuftragTyp {
+public class AuftragTyp implements Serializable {
     private final int auftragsNummer;
     private final boolean istAbgeschlossen;
     private final Date beauftragtAm;

@@ -2,6 +2,7 @@ package typClasses;
 
 import interfaces.IAngebot;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
 
@@ -12,7 +13,7 @@ import java.util.Map;
  * Time: 12:40
  * To change this template use File | Settings | File Templates.
  */
-public class AngebotTyp {
+public class AngebotTyp implements Serializable {
     private final int angebotsNummer;
     private final Date gueltigAb;
     private final Date gueltigBis;
@@ -36,8 +37,8 @@ public class AngebotTyp {
         this(angebotsNummer, gueltigAb, gueltigBis, gesamtPreis, kunde, null, null);
     }
 
-    public AngebotTyp(IAngebot angebot){
-           this(angebot.getAngebotsNummer(),angebot.getGueltigAb(),angebot.getGueltigBis(),angebot.getGesamtPreis(), new KundeTyp(angebot.getKunde()));
+    public AngebotTyp(IAngebot angebot) {
+        this(angebot.getAngebotsNummer(), angebot.getGueltigAb(), angebot.getGueltigBis(), angebot.getGesamtPreis(), new KundeTyp(angebot.getKunde()));
     }
 
     public int getAngebotsNummer() {

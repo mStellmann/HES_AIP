@@ -23,7 +23,7 @@ public class Monitor implements IMonitor {
 
     private int nextSystem = 0;
     private Map<String, Triplet<InetAddress, Boolean, Long>> hesSystemsMap;  // IP, isAlive, lastTimeStamp
-    private Map<String, Boolean> SystemStatusForceOff;
+    private Map<String, Boolean> systemStatusForceOff;
     private DatagramSocket udpSocket;
 
     public Monitor() {
@@ -33,7 +33,7 @@ public class Monitor implements IMonitor {
             e.printStackTrace();
         }
         hesSystemsMap = new HashMap<String, Triplet<InetAddress, Boolean, Long>>();
-        SystemStatusForceOff = new HashMap<String, Boolean>();
+        systemStatusForceOff = new HashMap<String, Boolean>();
 
         // Dieser Thread empfängt alle Nachrichten..
         new Thread() {
@@ -70,10 +70,14 @@ public class Monitor implements IMonitor {
         switch (rcvCommand) {
             case "CONNECT":
                 hesSystemsMap.put(rcvName, Triplet.with(receivePacket.getAddress(), true, System.currentTimeMillis()));
+                if (!systemStatusForceOff.containsKey(rcvName))
+                    schalteAn(rcvName);
                 System.out.println("[Monitor-Info] " + getTimeStamp() + " System connected: " + rcvName);
                 break;
             case "ALIVE":
                 hesSystemsMap.put(rcvName, Triplet.with(receivePacket.getAddress(), true, System.currentTimeMillis()));
+                if (!systemStatusForceOff.containsKey(rcvName))
+                    schalteAn(rcvName);
                 System.out.println("[Monitor-Info] " + getTimeStamp() + " System alive: " + rcvName);
                 break;
             default:
@@ -105,7 +109,7 @@ public class Monitor implements IMonitor {
 
     @Override
     public boolean isVerfuegbar(String hesSystemRef) {
-        if (!SystemStatusForceOff.get(hesSystemRef))
+        if (!systemStatusForceOff.get(hesSystemRef))
             return hesSystemsMap.get(hesSystemRef).getValue1();
         else
             return false;
@@ -114,17 +118,32 @@ public class Monitor implements IMonitor {
     @Override
     public void schalteAn(String hesSystemRef) {
         System.out.println("[Monitor-Info] " + getTimeStamp() + " System switched On: " + hesSystemRef);
-        SystemStatusForceOff.put(hesSystemRef, false);
+        systemStatusForceOff.put(hesSystemRef, false);
     }
 
     @Override
     public void schalteAus(String hesSystemRef) {
         System.out.println("[Monitor-Info] " + getTimeStamp() + " System switched Off: " + hesSystemRef);
-        SystemStatusForceOff.put(hesSystemRef, true);
+        systemStatusForceOff.put(hesSystemRef, true);
     }
 
     @Override
     public Set<String> getSysteme() {
         return hesSystemsMap.keySet();
+    }
+
+    @Override
+    public int getUptime(String hesSystemRef) {
+        return 0;  // TODO
+    }
+
+    @Override
+    public int getDowntime(String hesSystemRef) {
+        return 0;  // TODO
+    }
+
+    @Override
+    public int getOpCount(String hesSystemRef) {
+        return 0;  // TODO
     }
 }

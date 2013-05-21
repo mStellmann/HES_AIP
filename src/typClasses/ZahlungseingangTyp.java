@@ -1,5 +1,6 @@
 package typClasses;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Date;
  * Time: 12:46
  * To change this template use File | Settings | File Templates.
  */
-public class ZahlungseingangTyp {
+public class ZahlungseingangTyp implements Serializable {
     private final Date eingangsdatum;
     private final float betrag;
 

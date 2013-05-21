@@ -1,5 +1,6 @@
 package typClasses;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * Time: 12:44
  * To change this template use File | Settings | File Templates.
  */
-public class RechnungTyp {
+public class RechnungTyp implements Serializable {
     private final int rechnungsNummer;
     private final Date rechnungsDatum;
     private final boolean istBezahlt;

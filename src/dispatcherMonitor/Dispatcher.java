@@ -28,9 +28,9 @@ public class Dispatcher implements IDispatcher {
         this.benutzteSysteme = new HashMap<String, ICallCenterServerFassade>();
     }
 
-    public ICallCenterServerFassade getNaechstesHES(){
-        if(benutzteSysteme.size() == systemMap.size()){
-           benutzteSysteme.clear();
+    public ICallCenterServerFassade getNaechstesHES() {
+        if (benutzteSysteme.size() == systemMap.size()) {
+            benutzteSysteme.clear();
         }
 //        String[] systemNamen = (String[]) systemMap.keySet().toArray();
 //        for(int i = 0;i<systemNamen.length;i++){
@@ -43,16 +43,16 @@ public class Dispatcher implements IDispatcher {
 //            }
 //
 //        }
-        Set<String> systemNamen =  systemMap.keySet();
-        for (String elem :systemNamen) {
-            if(!(benutzteSysteme.containsKey(elem))&& monitor.isVerfuegbar(elem)){
+        Set<String> systemNamen = systemMap.keySet();
+        for (String elem : systemNamen) {
+            if (!(benutzteSysteme.containsKey(elem)) && monitor.isVerfuegbar(elem)) {
                 ICallCenterServerFassade naechstesHES = systemMap.get(elem);
-                benutzteSysteme.put(elem,naechstesHES);
+                benutzteSysteme.put(elem, naechstesHES);
                 return naechstesHES;
             }
 
         }
-
+        System.out.println("DAS IST SCHEISSE UND DARF NIE PASSIEREN");
         return null;  //sollte nie passieren
     }
 
@@ -61,9 +61,9 @@ public class Dispatcher implements IDispatcher {
 //    }
 
     @Override
-    public AngebotTyp erstelleAngebot(Date gueltigAb, Date gueltigBis, float gesamtPreis, KundeTyp kunde)  {
+    public AngebotTyp erstelleAngebot(Date gueltigAb, Date gueltigBis, float gesamtPreis, KundeTyp kunde) {
         try {
-            return getNaechstesHES().erstelleAngebot(gueltigAb,gueltigBis,gesamtPreis,kunde);
+            return getNaechstesHES().erstelleAngebot(gueltigAb, gueltigBis, gesamtPreis, kunde);
         } catch (RemoteException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
@@ -71,7 +71,7 @@ public class Dispatcher implements IDispatcher {
     }
 
     @Override
-    public AngebotTyp sucheAngebot(int id)  {
+    public AngebotTyp sucheAngebot(int id) {
         try {
             return getNaechstesHES().sucheAngebot(id);
         } catch (RemoteException e) {
@@ -81,7 +81,7 @@ public class Dispatcher implements IDispatcher {
     }
 
     @Override
-    public List<AngebotTyp> getAlleAngebote()  {
+    public List<AngebotTyp> getAlleAngebote() {
         try {
             return getNaechstesHES().getAlleAngebote();
         } catch (RemoteException e) {
@@ -91,9 +91,9 @@ public class Dispatcher implements IDispatcher {
     }
 
     @Override
-    public void addProduktMengeZuAngebot(AngebotTyp angebot, ProduktTyp produkt, int menge)  {
+    public void addProduktMengeZuAngebot(AngebotTyp angebot, ProduktTyp produkt, int menge) {
         try {
-            getNaechstesHES().addProduktMengeZuAngebot(angebot,produkt,menge);
+            getNaechstesHES().addProduktMengeZuAngebot(angebot, produkt, menge);
         } catch (RemoteException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
@@ -102,7 +102,7 @@ public class Dispatcher implements IDispatcher {
     @Override
     public KundeTyp erstelleKunde(String name, String adresse) {
         try {
-            return getNaechstesHES().erstelleKunde(name,adresse);
+            return getNaechstesHES().erstelleKunde(name, adresse);
         } catch (RemoteException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
@@ -110,9 +110,9 @@ public class Dispatcher implements IDispatcher {
     }
 
     @Override
-    public ProduktTyp erstelleProdukt(String name, int lagerbestand)  {
+    public ProduktTyp erstelleProdukt(String name, int lagerbestand) {
         try {
-            return getNaechstesHES().erstelleProdukt(name,lagerbestand);
+            return getNaechstesHES().erstelleProdukt(name, lagerbestand);
         } catch (RemoteException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
@@ -141,7 +141,12 @@ public class Dispatcher implements IDispatcher {
 
     @Override
     public List<ProduktTyp> getAlleProdukte() {
-        return getNaechstesHES().getAlleProdukte();
+        try {
+            return getNaechstesHES().getAlleProdukte();
+        } catch (RemoteException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return null;
     }
 
     @Override
@@ -166,13 +171,18 @@ public class Dispatcher implements IDispatcher {
 
     @Override
     public List<KundeTyp> getAlleKunden() {
-        return getNaechstesHES().getAlleKunden();
+        try {
+            return getNaechstesHES().getAlleKunden();
+        } catch (RemoteException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return null;
     }
 
     @Override
     public AuftragTyp erstelleAuftrag(Date beauftragtAm, AngebotTyp angebot) {
         try {
-            return getNaechstesHES().erstelleAuftrag(beauftragtAm,angebot);
+            return getNaechstesHES().erstelleAuftrag(beauftragtAm, angebot);
         } catch (RemoteException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }

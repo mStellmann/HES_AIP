@@ -1,5 +1,7 @@
 package typClasses;
 
+import java.io.Serializable;
+
 /**
  * Created with IntelliJ IDEA.
  * User: abe263
@@ -7,7 +9,7 @@ package typClasses;
  * Time: 12:43
  * To change this template use File | Settings | File Templates.
  */
-public class LieferungTyp {
+public class LieferungTyp implements Serializable {
     private final int lieferungsNummer;
 
     private final TransportauftragTyp transportauftrag;
