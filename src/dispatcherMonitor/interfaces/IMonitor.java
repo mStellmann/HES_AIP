@@ -14,9 +14,11 @@ public interface IMonitor {
 
     Set<String> getSysteme();
 
-    int getUptime(String hesSystemRef);
+    long getUptime(String hesSystemRef);
 
-    int getDowntime(String hesSystemRef);
+    long getDowntime(String hesSystemRef);
 
     int getOpCount(String hesSystemRef);
+
+    void countOneOp(String hesSystemRef);
 }

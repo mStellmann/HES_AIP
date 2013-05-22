@@ -1,6 +1,7 @@
 package dispatcherMonitor;
 
 import dispatcherMonitor.interfaces.IMonitor;
+import helper.StopWatch;
 import org.javatuples.Triplet;
 
 import java.io.IOException;
@@ -8,10 +9,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  *
@@ -25,8 +23,15 @@ public class Monitor implements IMonitor {
     private Map<String, Triplet<InetAddress, Boolean, Long>> hesSystemsMap;  // IP, isAlive, lastTimeStamp
     private Map<String, Boolean> systemStatusForceOff;
     private DatagramSocket udpSocket;
+    private Map<String, StopWatch> upTimeMap;
+    private Map<String, StopWatch> downTimeMap;
+    private Map<String, Integer> opCountMap;
 
     public Monitor() {
+        upTimeMap = new HashMap<String, StopWatch>();
+        downTimeMap = new HashMap<String, StopWatch>();
+        opCountMap = new HashMap<String, Integer>();
+
         try {
             udpSocket = new DatagramSocket(MONITOR_PORT);
         } catch (SocketException e) {
@@ -70,14 +75,12 @@ public class Monitor implements IMonitor {
         switch (rcvCommand) {
             case "CONNECT":
                 hesSystemsMap.put(rcvName, Triplet.with(receivePacket.getAddress(), true, System.currentTimeMillis()));
-                if (!systemStatusForceOff.containsKey(rcvName))
-                    schalteAn(rcvName);
+                initMaps(rcvName);
                 System.out.println("[Monitor-Info] " + getTimeStamp() + " System connected: " + rcvName);
                 break;
             case "ALIVE":
                 hesSystemsMap.put(rcvName, Triplet.with(receivePacket.getAddress(), true, System.currentTimeMillis()));
-                if (!systemStatusForceOff.containsKey(rcvName))
-                    schalteAn(rcvName);
+                initMaps(rcvName);
                 System.out.println("[Monitor-Info] " + getTimeStamp() + " System alive: " + rcvName);
                 break;
             default:
@@ -86,6 +89,20 @@ public class Monitor implements IMonitor {
         }
     }
 
+    private void initMaps(String hesRevName) {
+        if (!systemStatusForceOff.containsKey(hesRevName))
+            schalteAn(hesRevName);
+        if (!upTimeMap.containsKey(hesRevName))
+            upTimeMap.put(hesRevName, new StopWatch());
+        if (!downTimeMap.containsKey(hesRevName))
+            downTimeMap.put(hesRevName, new StopWatch());
+        if (!upTimeMap.get(hesRevName).isRunning())
+            upTimeMap.get(hesRevName).start();
+        if (downTimeMap.get(hesRevName).isRunning())
+            downTimeMap.get(hesRevName).stop();
+    }
+
+
     private void pruefeSystemAmLeben() {
         while (true) {
             try {
@@ -93,6 +110,10 @@ public class Monitor implements IMonitor {
                     if (System.currentTimeMillis() - hesSystemsMap.get(elem).getValue2() > 1600) {
                         hesSystemsMap.put(elem, Triplet.with(hesSystemsMap.get(elem).getValue0(), false, System.currentTimeMillis()));
                         System.out.println("[Monitor-Info] " + getTimeStamp() + " System dead: " + elem);
+                        if (upTimeMap.get(elem).isRunning())
+                            upTimeMap.get(elem).stop();
+                        if (!downTimeMap.get(elem).isRunning())
+                            downTimeMap.get(elem).start();
                     }
                 }
                 Thread.sleep(UPDATEINTERVAL);
@@ -133,17 +154,36 @@ public class Monitor implements IMonitor {
     }
 
     @Override
-    public int getUptime(String hesSystemRef) {
-        return 0;  // TODO
+    public long getUptime(String hesSystemRef) {
+        if (!upTimeMap.containsKey(hesSystemRef))
+            return 0;
+        else {
+            return upTimeMap.get(hesSystemRef).getTime();
+        }
     }
 
     @Override
-    public int getDowntime(String hesSystemRef) {
-        return 0;  // TODO
+    public long getDowntime(String hesSystemRef) {
+        if (!downTimeMap.containsKey(hesSystemRef))
+            return 0;
+        else {
+            return downTimeMap.get(hesSystemRef).getTime();
+        }
     }
 
     @Override
     public int getOpCount(String hesSystemRef) {
-        return 0;  // TODO
+        if (!opCountMap.containsKey(hesSystemRef))
+            return 0;
+        else
+            return opCountMap.get(hesSystemRef);
+    }
+
+    @Override
+    public void countOneOp(String hesSystemRef) {
+        if (!opCountMap.containsKey(hesSystemRef))
+            opCountMap.put(hesSystemRef, 1);
+        else
+            opCountMap.put(hesSystemRef, opCountMap.get(hesSystemRef) + 1);
     }
 }

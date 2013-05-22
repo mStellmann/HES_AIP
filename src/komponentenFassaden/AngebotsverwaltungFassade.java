@@ -50,8 +50,8 @@ public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAn
     public List<AngebotTyp> getAlleAngebote() throws RemoteException {
         List<? extends IAngebot> angebotList = repository.getAlleAngebote();
         List<AngebotTyp> angebotTypList = new ArrayList<AngebotTyp>();
-        for(IAngebot elem: angebotList){
-             angebotTypList.add(new AngebotTyp(elem));
+        for (IAngebot elem : angebotList) {
+            angebotTypList.add(new AngebotTyp(elem));
         }
         return angebotTypList;
     }
@@ -83,7 +83,7 @@ public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAn
     public List<ProduktTyp> getAlleProdukte() {
         List<? extends IProdukt> produktList = logik.getAlleProdukte();
         List<ProduktTyp> produktTypList = new ArrayList<ProduktTyp>();
-        for(IProdukt elem : produktList){
+        for (IProdukt elem : produktList) {
             produktTypList.add(new ProduktTyp(elem));
         }
         return produktTypList;
@@ -111,7 +111,7 @@ public class AngebotsverwaltungFassade implements IAngebotsverwaltungIntern, IAn
     public List<KundeTyp> getAlleKunden() {
         List<? extends IKunde> kundeList = logik.getAlleKunden();
         List<KundeTyp> kundeTypList = new ArrayList<KundeTyp>();
-        for(IKunde elem : kundeList){
+        for (IKunde elem : kundeList) {
             kundeTypList.add(new KundeTyp(elem));
         }
         return kundeTypList;
