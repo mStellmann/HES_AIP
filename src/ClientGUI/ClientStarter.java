@@ -4,6 +4,7 @@
  */
 package ClientGUI;
 
+import DashboardGUI.GUIDashboard;
 import dispatcherMonitor.Dispatcher;
 import dispatcherMonitor.Monitor;
 import serverFassaden.CallCenterServerFassade;
@@ -50,5 +51,7 @@ public class ClientStarter {
         Dispatcher dispatcher = new Dispatcher(monitor, serverMap);
         GUIClient guiClient = new GUIClient(dispatcher);
         guiClient.setVisible(true);
+        GUIDashboard dashboard = new GUIDashboard(monitor);
+        dashboard.setVisible(true);
     }
 }
