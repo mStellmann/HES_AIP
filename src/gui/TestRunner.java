@@ -1,6 +1,7 @@
 package gui;
 
 import dispatcherMonitor.Monitor;
+import helper.StopWatch;
 
 /**
  * User: Matthias
@@ -10,21 +11,32 @@ import dispatcherMonitor.Monitor;
 public class TestRunner {
     public static void main(String[] args) {
 
-        System.out.println("system1_ALIVE".split("_")[0]);
+        StopWatch watch = new StopWatch();
 
-        Monitor monitor = new Monitor();
-        Heartbeat hb1 = new Heartbeat("system1", 50001);
-        Heartbeat hb2 = new Heartbeat("system2", 50002);
-
-        hb1.start();
-        hb2.start();
+        watch.start();
 
         try {
-            Thread.sleep(3000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        watch.stop();
+        System.out.println(watch.getTime());
 
-        hb1.interrupt();
+        watch.start();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(watch.getTime());
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        watch.stop();
+
+        System.out.println(watch.getTime());
     }
 }
