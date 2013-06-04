@@ -4,6 +4,7 @@ import interfaces.IZahlungseingang;
 import komponentenInterfaces.intern.IAuftragsverwaltungIntern;
 import komponentenInterfaces.intern.IBankAdapter;
 import komponentenRepositories.BuchhaltungsverwaltungRepository;
+import org.javatuples.Pair;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,7 +29,7 @@ public class BuchhaltungLogik {
             @Override
             public void run() {
                 while (true) {
-                    IZahlungseingang zahlungseingang = bankAdapter.getNaechstenZahlungseingang();
+                    Pair<IZahlungseingang, Integer> zahlungseingang = bankAdapter.getNaechstenZahlungseingang();
 
                     repository.erstelleZahlungseingang(zahlungseingang.getEingangsdatum(), zahlungseingang.getBetrag());
 
