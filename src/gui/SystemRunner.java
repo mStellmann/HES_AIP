@@ -59,7 +59,7 @@ public class SystemRunner {
 
 
         // TODO - TESTSZENARIO
-//               int i = 10;
+//        int i = 10;
 //        while(i-->=0)
 //            System.out.println(bankAdapter.getNaechstenZahlungseingang());
 

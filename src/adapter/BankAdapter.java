@@ -13,7 +13,6 @@ import sun.util.calendar.LocalGregorianCalendar;
 import java.io.IOException;
 import java.util.Date;
 
-// TODO - Jersey sendToTDL()
 public class BankAdapter implements IBankAdapter {
 
     private final static String QUEUE_NAME = "Zahlungseingang";
@@ -28,10 +27,7 @@ public class BankAdapter implements IBankAdapter {
         try {
             connection = factory.newConnection();
             channel = connection.createChannel();
-
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-
-
             consumer = new QueueingConsumer(channel);
             channel.basicConsume(QUEUE_NAME, true, consumer);
         } catch (IOException e) {

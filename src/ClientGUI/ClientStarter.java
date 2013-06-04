@@ -25,12 +25,6 @@ public class ClientStarter {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
-        // TODO
-        // Monitor starten
-        // Dispatcher starten
-        // ClientGUI starten
-        // DashboardGUI starten
-
         HashMap<String, ICallCenterServerFassade> serverMap;
 
         serverMap = new HashMap<String, ICallCenterServerFassade>();
