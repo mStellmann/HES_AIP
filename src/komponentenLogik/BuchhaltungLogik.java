@@ -1,5 +1,6 @@
 package komponentenLogik;
 
+import interfaces.IRechnung;
 import interfaces.IZahlungseingang;
 import komponentenInterfaces.intern.IAuftragsverwaltungIntern;
 import komponentenInterfaces.intern.IBankAdapter;
@@ -29,10 +30,20 @@ public class BuchhaltungLogik {
             @Override
             public void run() {
                 while (true) {
-                    Pair<IZahlungseingang, Integer> zahlungseingang = bankAdapter.getNaechstenZahlungseingang();
+                    Pair<IZahlungseingang, Integer> zahlungseingangIntegerPair = bankAdapter.getNaechstenZahlungseingang();
+                    IZahlungseingang zahlungseingang = zahlungseingangIntegerPair.getValue0();
+                    IRechnung rechnung = repository.getRechnung(zahlungseingangIntegerPair.getValue1());
 
-                    repository.erstelleZahlungseingang(zahlungseingang.getEingangsdatum(), zahlungseingang.getBetrag());
-
+                    // TODO - Kritischer Punkt - Gesamtpreis
+                    if (rechnung.getAuftrag().getAngebot().getGesamtPreis() == zahlungseingang.getBetrag()) {
+                        rechnung.setIstBezahlt(true);
+                        repository.updateRechnung(rechnung);
+                        zahlungseingang = repository.erstelleZahlungseingang(zahlungseingang.getEingangsdatum(), zahlungseingang.getBetrag());
+                        zahlungseingang.setRechnung(rechnung);
+                        repository.updateZahlungseingang(zahlungseingang);
+                    } else {
+                        System.out.println("[INFO] Buchhaltung - Betrag nicht gedeckt - Rechnungsnummer: " + rechnung.getRechnungsNummer());
+                    }
                 }
             }
         }.start();

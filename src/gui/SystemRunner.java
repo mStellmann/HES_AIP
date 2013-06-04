@@ -57,6 +57,10 @@ public class SystemRunner {
         CallCenterServerFassade system = new CallCenterServerFassade(angebotsverwaltung, auftragsverwaltung);
         Naming.rebind("//localhost:" + Registry.REGISTRY_PORT + "/" + args[0], system);
 
+
+        // TODO - Rechnungen erstellen für den TEST
+
+
         try {
             hbeat.join();
         } catch (InterruptedException e) {
