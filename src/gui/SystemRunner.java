@@ -58,6 +58,11 @@ public class SystemRunner {
         Naming.rebind("//localhost:" + Registry.REGISTRY_PORT + "/" + args[0], system);
 
 
+        // TODO - TESTSZENARIO
+//               int i = 10;
+//        while(i-->=0)
+//            System.out.println(bankAdapter.getNaechstenZahlungseingang());
+
         // TODO - Rechnungen erstellen für den TEST
 
 

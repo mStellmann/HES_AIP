@@ -31,25 +31,24 @@ public class LagerverwaltungFassade implements ILagerverwaltungIntern, ILagerver
         logik = new LagerverwaltungLogik(repositorie, produkt, einkauf);
     }
 
-    public IWareneingangsmeldung createWareneingangsmeldung(int bestellNr, Date datum, IBestellung bestellung)   {
-                   return repositorie.createWareneingangsmeldung(bestellNr, datum, bestellung);
+    public IWareneingangsmeldung createWareneingangsmeldung(int bestellNr, Date datum, IBestellung bestellung) {
+        return repositorie.createWareneingangsmeldung(bestellNr, datum, bestellung);
     }
 
-    public IWarenausgangsmeldung createWarenausgangsmeldung(int menge, Date datum, IProdukt produkt){
-                      return repositorie.createWarenausgangsmeldung(menge,datum,produkt);
+    public IWarenausgangsmeldung createWarenausgangsmeldung(int menge, Date datum, IProdukt produkt) {
+        return repositorie.createWarenausgangsmeldung(menge, datum, produkt);
     }
 
-    public IWareneingangsmeldung getWareneingangsmeldung(int id){
-          return repositorie.getWareneingangsmeldung(id);
+    public IWareneingangsmeldung getWareneingangsmeldung(int id) {
+        return repositorie.getWareneingangsmeldung(id);
     }
 
-    public IWarenausgangsmeldung getWarenausgangsmeldung(int id){
-         return repositorie.getWarenausgangsmeldung(id);
+    public IWarenausgangsmeldung getWarenausgangsmeldung(int id) {
+        return repositorie.getWarenausgangsmeldung(id);
     }
 
     @Override
     public boolean pruefeLagerbestand(int produktNummer, int geforderteProduktMenge) {
-        return logik.pruefeLagerbestand(produktNummer,geforderteProduktMenge);
-       // return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return logik.pruefeLagerbestand(produktNummer, geforderteProduktMenge);
     }
 }

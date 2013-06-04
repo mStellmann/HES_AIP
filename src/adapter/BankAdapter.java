@@ -22,25 +22,26 @@ public class BankAdapter implements IBankAdapter {
     private Channel channel;
     private QueueingConsumer consumer;
 
-        public BankAdapter() throws IOException {
+    public BankAdapter() {
         factory = new ConnectionFactory();
         factory.setHost("localhost");
-        connection = factory.newConnection();
-        channel = connection.createChannel();
+        try {
+            connection = factory.newConnection();
+            channel = connection.createChannel();
 
-        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+            channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
 
-        consumer = new QueueingConsumer(channel);
-        channel.basicConsume(QUEUE_NAME, true, consumer);
+            consumer = new QueueingConsumer(channel);
+            channel.basicConsume(QUEUE_NAME, true, consumer);
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
-
-
-
+    }
 
 
     @Override
-    public Pair<IZahlungseingang, Integer> getNaechstenZahlungseingang()  {
+    public Pair<IZahlungseingang, Integer> getNaechstenZahlungseingang() {
         QueueingConsumer.Delivery delivery = null;
         try {
             delivery = consumer.nextDelivery();
@@ -49,12 +50,12 @@ public class BankAdapter implements IBankAdapter {
         }
         String message = new String(delivery.getBody());
 
-        //System.out.println(" [x] Received '" + message + "'");
+        System.out.println(" [x] Received '" + message + "'");
 
         String[] messageSplit = message.split(" ");
-        int rechnungsNummer   = Integer.getInteger(messageSplit[0]);
-        int betrag      = Integer.getInteger(messageSplit[1]);
-        IZahlungseingang zahlungseingang = new Zahlungseingang(new Date(),betrag);
+        int rechnungsNummer = Integer.getInteger(messageSplit[0]);
+        int betrag = Integer.getInteger(messageSplit[1]);
+        IZahlungseingang zahlungseingang = new Zahlungseingang(new Date(), betrag);
 
         return Pair.with(zahlungseingang, rechnungsNummer);
     }
