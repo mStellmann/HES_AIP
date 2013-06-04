@@ -19,4 +19,6 @@ public interface IBuchhaltungsverwaltungIntern {
     IRechnung getRechnung(int rechnungsNummer);
 
     IZahlungseingang getZahlungseingang(int rechnungsNummer);
+
+    void getZahlungseingaengeVonAdapter();
 }

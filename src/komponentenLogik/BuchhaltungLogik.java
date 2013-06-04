@@ -1,5 +1,6 @@
 package komponentenLogik;
 
+import interfaces.IZahlungseingang;
 import komponentenInterfaces.intern.IAuftragsverwaltungIntern;
 import komponentenInterfaces.intern.IBankAdapter;
 import komponentenRepositories.BuchhaltungsverwaltungRepository;
@@ -20,5 +21,19 @@ public class BuchhaltungLogik {
         this.repository = repo;
         this.auftragsverwaltungIntern = auftragsverwaltungIntern;
         this.bankAdapter = bankAdapter;
+    }
+
+    public void getZahlungseingaengeVonAdapter() {
+        new Thread() {
+            @Override
+            public void run() {
+                while (true) {
+                    IZahlungseingang zahlungseingang = bankAdapter.getNaechstenZahlungseingang();
+
+                    repository.erstelleZahlungseingang(zahlungseingang.getEingangsdatum(), zahlungseingang.getBetrag());
+
+                }
+            }
+        }.start();
     }
 }

@@ -57,4 +57,9 @@ public class BuchhaltungverwaltungFassade implements IBuchhaltungsverwaltungInte
     public IZahlungseingang getZahlungseingang(int rechnungsNummer) {
         return repository.getZahlungseingang(rechnungsNummer);
     }
+
+    @Override
+    public void getZahlungseingaengeVonAdapter() {
+        logik.getZahlungseingaengeVonAdapter();
+    }
 }

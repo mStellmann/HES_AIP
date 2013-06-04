@@ -1,7 +1,8 @@
 package komponentenInterfaces.intern;
 
-import interfaces.IRechnung;
 import interfaces.IZahlungseingang;
+import org.javatuples.Pair;
+
 
 /**
  * User: Matthias
@@ -9,5 +10,6 @@ import interfaces.IZahlungseingang;
  * Time: 21:05
  */
 public interface IBankAdapter {
-    IZahlungseingang getNaechstenZahlungseingang();
+    // Integer-Wert == Rechnungsnummer
+    Pair<IZahlungseingang, Integer> getNaechstenZahlungseingang();
 }
