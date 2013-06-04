@@ -1,13 +1,12 @@
 package adapter;
 
+import interfaces.IZahlungseingang;
 import komponentenInterfaces.intern.IBankAdapter;
 
-/**
- * Created with IntelliJ IDEA.
- * User: aaz527
- * Date: 19.04.13
- * Time: 13:31
- * To change this template use File | Settings | File Templates.
- */
+// TODO - Jersey sendToTDL()
 public class BankAdapter implements IBankAdapter {
+    @Override
+    public IZahlungseingang getNaechstenZahlungseingang() {
+        return null;  // TODO
+    }
 }

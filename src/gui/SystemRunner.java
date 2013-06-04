@@ -25,9 +25,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-/**
- * TODO UDP-Heartbeat
- */
 public class SystemRunner {
     public static void main(String[] args) throws RemoteException, MalformedURLException {
 
@@ -67,8 +64,6 @@ public class SystemRunner {
         }
 
         // --- SIMULATING SOME STUFF ---
-
-        // TODO
         /*
         Kunde erstellen
         Angebot erstellen

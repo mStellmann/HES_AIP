@@ -9,5 +9,5 @@ import interfaces.ITransportauftrag;
  * Time: 21:05
  */
 public interface ITransportdienstleisterAdapter {
-    ITransportauftrag erstelleTransportauftrag(int transportauftragsNummer, String transportdienstleister, ILieferung lieferung);
+    void verschickeTransportauftrag(ILieferung lieferung);
 }
