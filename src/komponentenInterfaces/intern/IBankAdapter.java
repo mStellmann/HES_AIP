@@ -11,5 +11,5 @@ import org.javatuples.Pair;
  */
 public interface IBankAdapter {
     // Integer-Wert == Rechnungsnummer
-    Pair<IZahlungseingang, Integer> getNaechstenZahlungseingang() throws InterruptedException;
+    Pair<IZahlungseingang, Integer> getNaechstenZahlungseingang() ;
 }

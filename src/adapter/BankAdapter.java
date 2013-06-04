@@ -40,8 +40,13 @@ public class BankAdapter implements IBankAdapter {
 
 
     @Override
-    public Pair<IZahlungseingang, Integer> getNaechstenZahlungseingang() throws InterruptedException {
-        QueueingConsumer.Delivery delivery = consumer.nextDelivery();
+    public Pair<IZahlungseingang, Integer> getNaechstenZahlungseingang()  {
+        QueueingConsumer.Delivery delivery = null;
+        try {
+            delivery = consumer.nextDelivery();
+        } catch (InterruptedException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
         String message = new String(delivery.getBody());
 
         System.out.println(" [x] Received '" + message + "'");
