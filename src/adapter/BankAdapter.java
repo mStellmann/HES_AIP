@@ -29,7 +29,7 @@ public class BankAdapter implements IBankAdapter {
         channel = connection.createChannel();
 
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+
 
         consumer = new QueueingConsumer(channel);
         channel.basicConsume(QUEUE_NAME, true, consumer);
@@ -49,13 +49,13 @@ public class BankAdapter implements IBankAdapter {
         }
         String message = new String(delivery.getBody());
 
-        System.out.println(" [x] Received '" + message + "'");
+        //System.out.println(" [x] Received '" + message + "'");
 
         String[] messageSplit = message.split(" ");
         int rechnungsNummer   = Integer.getInteger(messageSplit[0]);
         int betrag      = Integer.getInteger(messageSplit[1]);
         IZahlungseingang zahlungseingang = new Zahlungseingang(new Date(),betrag);
-        Pair<IZahlungseingang, Integer> rueckgabe = Pair.with(zahlungseingang, rechnungsNummer);
-        return rueckgabe;
+
+        return Pair.with(zahlungseingang, rechnungsNummer);
     }
 }
