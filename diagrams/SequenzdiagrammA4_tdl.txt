@@ -1,0 +1,11 @@
+AuftragsVerwaltung->+TDLAdapter: verschickeAuftrag(auftrag: Auftrag): Transportauftrag
+
+TDLAdapter->Transportdienstleister: verschickeAuftrag(message: String): void
+
+TDLAdapter-->-AuftragsVerwaltung: tAuftrag: Transportauftrag
+
+
+AuftragsVerwaltung->+TDLAdapter: getAuftraege(): List[String]
+TDLAdapter->+Transportdienstleister: getAuftraege(): List[String]
+Transportdienstleister-->-TDLAdapter: auftraegeList: List[String]
+TDLAdapter-->-AuftragsVerwaltung: auftraegeList: List[String] 
