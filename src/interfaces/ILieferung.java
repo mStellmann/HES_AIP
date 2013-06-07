@@ -13,4 +13,8 @@ public interface ILieferung {
     ITransportauftrag getTransportauftrag();
 
     void setTransportauftrag(ITransportauftrag transportauftrag);
+
+    IAuftrag getAuftrag();
+
+    void setAuftrag(IAuftrag auftrag);
 }

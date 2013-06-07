@@ -1,5 +1,7 @@
 package typClasses;
 
+import interfaces.ITransportauftrag;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -26,6 +28,10 @@ public class TransportauftragTyp implements Serializable {
         this.lieferdatum = lieferdatum;
         this.transportdienstleister = transportdienstleister;
         this.lieferung = lieferung;
+    }
+
+    public TransportauftragTyp(ITransportauftrag transportauftrag) {
+        this(transportauftrag.getTransportauftragsNummer(), transportauftrag.getAusgangsdatum(), transportauftrag.isLieferungErfolgt(), transportauftrag.getLieferdatum(), transportauftrag.getTransportdienstleister(), null);
     }
 
     public int getTransportauftragsNummer() {

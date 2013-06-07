@@ -88,31 +88,16 @@ public class SystemRunner {
         buchhaltungverwaltung.addAuftragZuRechnung(r4.getRechnungsNummer(), auf2.getAuftragsNummer());
         buchhaltungverwaltung.addAuftragZuRechnung(r5.getRechnungsNummer(), auf1.getAuftragsNummer());
 
+        auftragsverwaltung.verschickeAuftragPerTDL(auf1.getAuftragsNummer());
+        auftragsverwaltung.verschickeAuftragPerTDL(auf2.getAuftragsNummer());
 
-        // -----------------------------
-//        Date sampleDate = new DateTime().toDate();
-//        IProdukt produkt = produktverwaltung.createProdukt("USB-Stick", 10);
-//        IProdukt p2 = produktverwaltung.getProdukt("USB-Stick");
-//        System.out.println(p2);
-//        IKunde kunde = kundenverwaltung.createKunde("Hans Dieter", "Musterstr. 123, 27232 Musterhausen");
-//        IAngebot angebot = angebotsverwaltung.erstelleAngebot(sampleDate, sampleDate, 10f, kunde);
-//        IAuftrag auftrag = auftragsverwaltung.erstelleAuftrag(sampleDate, angebot);
-//
-//        lagerverwaltung.createWarenausgangsmeldung(5, sampleDate, produkt);
-//        lagerverwaltung.createWarenausgangsmeldung(25, sampleDate, produkt);
-//
-//
-//        buchhaltungverwaltung.erstelleZahlungseingang(sampleDate, 100f);
-//        buchhaltungverwaltung.erstelleRechnung(sampleDate, null);
-//
-//        ILieferung lieferung = auftragsverwaltung.erstelleLieferung();
-//        lieferung.setTransportauftrag(auftragsverwaltung.erstelleTransportauftrag(sampleDate, "Super Heftig Transports"));
-//        auftrag.setLieferung(lieferung);
-//
-//        persitenz.updateObject(auftrag);
-//
-//        auftragsverwaltung.markiereAuftragAlsVerschickt(auftrag.getAuftragsNummer());
-//        auftragsverwaltung.auftragAbschliessen(auftrag.getAuftragsNummer());
+        System.out.println("[INFO] - Ausgabe der verschickten Auftraege:");
+        for (String elem : auftragsverwaltung.getAlleVerschicktenAuftraege())
+            System.out.println(elem);
+
+//        TODO --------- wenn rabbitMQ laeuft -----------
+//        buchhaltungverwaltung.getZahlungseingaengeVonAdapter();
+
 
         session.close();
     }

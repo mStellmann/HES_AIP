@@ -10,6 +10,7 @@ import komponentenLogik.AuftragsverwaltungLogik;
 import komponentenRepositories.AuftragsverwaltungRepository;
 import typClasses.AngebotTyp;
 import typClasses.AuftragTyp;
+import typClasses.LieferungTyp;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -53,6 +54,16 @@ public class AuftragsverwaltungFassade implements IAuftragsverwaltungIntern, IAu
     public AuftragTyp sucheAuftrag(int id) throws RemoteException {
         IAuftrag auftrag = repository.sucheAuftrag(id);
         return new AuftragTyp(auftrag);
+    }
+
+    @Override
+    public List<String> getAlleVerschicktenAuftraege() {
+        return logik.getAlleVerschicktenAuftraege();
+    }
+
+    @Override
+    public LieferungTyp verschickeAuftragPerTDL(int auftragsNr) {
+        return new LieferungTyp(logik.verschickeAuftragPerTDL(auftragsNr));
     }
 
     // ----- from intern -----

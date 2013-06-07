@@ -16,7 +16,7 @@ public class TransportdienstleisterAdapter implements ITransportdienstleisterAda
     }
 
     @Override
-    public List<String> getAuftaege() {
+    public List<String> getAuftraege() {
         return null;
     }
 }

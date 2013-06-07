@@ -1,8 +1,6 @@
 package komponentenLogik;
 
-import interfaces.IAngebot;
-import interfaces.IAuftrag;
-import interfaces.IProdukt;
+import interfaces.*;
 import komponentenInterfaces.intern.IAngebotsverwaltungIntern;
 import komponentenInterfaces.intern.ILagerverwaltungIntern;
 import komponentenInterfaces.intern.ITransportdienstleisterAdapter;
@@ -10,6 +8,7 @@ import komponentenRepositories.AuftragsverwaltungRepository;
 import typClasses.*;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -44,5 +43,20 @@ public class AuftragsverwaltungLogik {
 
         IAngebot angebotVar = angebotsverwaltungIntern.getAngebot(angebot.getAngebotsNummer());
         return repository.erstelleAuftrag(beauftragtAm, angebotVar);
+    }
+
+    public List<String> getAlleVerschicktenAuftraege() {
+        return transportdienstleisterAdapter.getAuftraege();
+    }
+
+    public ILieferung verschickeAuftragPerTDL(int auftragsNr) {
+        IAuftrag auftrag = repository.getAuftrag(auftragsNr);
+        ITransportauftrag transportauftrag = transportdienstleisterAdapter.verschickeAuftrag(auftrag);
+        ILieferung lieferung = repository.erstelleLieferung();
+        ITransportauftrag t2 = repository.erstelleTransportauftrag(transportauftrag.getAusgangsdatum(), transportauftrag.getTransportdienstleister());
+        lieferung.setTransportauftrag(t2);
+        lieferung.setAuftrag(auftrag);
+        repository.updateLieferung(lieferung);
+        return lieferung;
     }
 }

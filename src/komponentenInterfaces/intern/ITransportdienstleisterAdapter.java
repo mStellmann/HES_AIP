@@ -12,7 +12,8 @@ import java.util.List;
  */
 public interface ITransportdienstleisterAdapter {
     ITransportauftrag verschickeAuftrag(IAuftrag auftrag);
-    List<String> getAuftaege();
+
+    List<String> getAuftraege();
 }
 
 

@@ -1,5 +1,7 @@
 package typClasses;
 
+import interfaces.ILieferung;
+
 import java.io.Serializable;
 
 /**
@@ -17,6 +19,10 @@ public class LieferungTyp implements Serializable {
     public LieferungTyp(TransportauftragTyp transportauftrag, int lieferungsNummer) {
         this.transportauftrag = transportauftrag;
         this.lieferungsNummer = lieferungsNummer;
+    }
+
+    public LieferungTyp(ILieferung lieferung) {
+        this(new TransportauftragTyp(lieferung.getTransportauftrag()), lieferung.getLieferungsNummer());
     }
 
     public int getLieferungsNummer() {

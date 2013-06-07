@@ -35,7 +35,16 @@ public class Lieferung implements ILieferung, Serializable {
     public Lieferung() {
     }
 
+    public IAuftrag getAuftrag() {
+        return auftrag;
+    }
+
+    public void setAuftrag(IAuftrag auftrag) {
+        this.auftrag = auftrag;
+    }
+
     public int getLieferungsNummer() {
+
         return lieferungsNummer;
     }
 

@@ -45,8 +45,9 @@ public class BuchhaltungLogik {
                         zahlungseingang = repository.erstelleZahlungseingang(zahlungseingang.getEingangsdatum(), zahlungseingang.getBetrag());
                         zahlungseingang.setRechnung(rechnung);
                         repository.updateZahlungseingang(zahlungseingang);
+                        System.out.println("[INFO] Buchhaltung - Betrag bezahlt von Rechung: " + rechnung.getRechnungsNummer());
                     } else {
-                        System.out.println("[INFO] Buchhaltung - Betrag nicht gedeckt - Rechnungsnummer: " + rechnung.getRechnungsNummer());
+                        System.out.println("[ERROR] Buchhaltung - Betrag nicht gedeckt - Rechnungsnummer: " + rechnung.getRechnungsNummer());
                     }
                 }
             }

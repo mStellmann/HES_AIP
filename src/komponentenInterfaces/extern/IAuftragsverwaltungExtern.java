@@ -13,10 +13,15 @@ import java.util.List;
 /**
  *
  */
-public interface IAuftragsverwaltungExtern  {
+public interface IAuftragsverwaltungExtern {
     AuftragTyp erstelleAuftrag(Date beauftragtAm, AngebotTyp angebot) throws RemoteException;
 
     List<AuftragTyp> getAlleAuftraege() throws RemoteException;
 
     AuftragTyp sucheAuftrag(int id) throws RemoteException;
+
+    List<String> getAlleVerschicktenAuftraege();
+
+    LieferungTyp verschickeAuftragPerTDL(int auftragsNr);
+
 }
