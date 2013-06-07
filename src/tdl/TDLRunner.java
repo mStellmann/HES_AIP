@@ -11,33 +11,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Path( "TDL" )
 public class TDLRunner {
-//    public List<String> auftraege;
-//
-//    public TDLRunner() {
-//        auftraege = new ArrayList<String>();
-//    }
-
-//    @PUT
-//    @Path("verschickeTransportauftrag/{message}")
-//    @Consumes(MediaType.TEXT_PLAIN)
-//    public String verschickeTransportauftrag(@PathParam("message") String message) {
-//        auftraege.add(message);
-//        return "Auftrag: " + message + " erfolgreich verschickt!";
-//    }
-//
-//    @GET
-//    @Path( "Auftraege" )
-//    @Produces( MediaType.TEXT_PLAIN )
-//    List<String> getAuftraege() {
-//        return auftraege;
-//    }
 
     public static void main(String args[]) {
         HttpServer server = null;
         try {
-            server = HttpServerFactory.create("http://localhost:8080/TDL");
+            server = HttpServerFactory.create("http://localhost:8080/rest");
         } catch (IOException e) {
             e.printStackTrace();
         }
