@@ -1,7 +1,9 @@
 package komponentenInterfaces.intern;
 
-import interfaces.ILieferung;
+import interfaces.IAuftrag;
 import interfaces.ITransportauftrag;
+
+import java.util.List;
 
 /**
  * User: Matthias
@@ -9,5 +11,8 @@ import interfaces.ITransportauftrag;
  * Time: 21:05
  */
 public interface ITransportdienstleisterAdapter {
-    void verschickeTransportauftrag(ILieferung lieferung);
+    ITransportauftrag verschickeAuftrag(IAuftrag auftrag);
+    List<String> getAuftaege();
 }
+
+

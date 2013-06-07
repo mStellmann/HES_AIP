@@ -1,18 +1,22 @@
 package adapter;
 
-import interfaces.ILieferung;
+import interfaces.IAuftrag;
 import interfaces.ITransportauftrag;
 import komponentenInterfaces.intern.ITransportdienstleisterAdapter;
 
-import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.MessageProperties;
+
+import java.util.List;
 
 // TODO - RabbitMQ receive()
 public class TransportdienstleisterAdapter implements ITransportdienstleisterAdapter {
+
     @Override
-    public void verschickeTransportauftrag(ILieferung lieferung) {
-        // TODO
+    public ITransportauftrag verschickeAuftrag(IAuftrag auftrag) {
+        return null;
+    }
+
+    @Override
+    public List<String> getAuftaege() {
+        return null;
     }
 }
