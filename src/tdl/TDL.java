@@ -2,39 +2,27 @@ package tdl;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: aaz527
- * Date: 07.06.13
- * Time: 13:02
- * To change this template use File | Settings | File Templates.
- */
-
 @Path("tdl")
-@XmlRootElement
 public class TDL {
 
-    public List<String> auftraege;
-
-    public TDL() {
-        auftraege = new ArrayList<String>();
-        auftraege.add("fhsjklhflks");
-        auftraege.add("dfsdfa");
-        auftraege.add("fsdfsd");
-        auftraege.add("sdfsdsdfsd");
-    }
+    private static List<String> auftraege = new ArrayList<String>();
 
     @PUT
-    @Path("auftrag_verschicken/{vonWEM}")
+    @Path("verschickeAuftrag/{user}")
     @Consumes(MediaType.TEXT_PLAIN)
-    public void verschickeTransportauftrag(@PathParam("vonWEM") String vonWEM, String message) {
-        auftraege.add("Auftrag erteilt von: " + vonWEM + " --> " + message);
+    public void verschickeTransportauftrag(@PathParam("user") String user, String message) {
+        auftraege.add(user + " --> " + message);
     }
 
+    @GET
+    @Path("auftraege")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getAuftraege() {
+        return listToString(auftraege);
+    }
 
     private String listToString(List<String> list) {
         String newString = "";
@@ -45,12 +33,4 @@ public class TDL {
         }
         return newString;
     }
-
-    @GET
-    @Path("auftraege")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String getAuftraege() {
-        return listToString(auftraege);
-    }
-
 }

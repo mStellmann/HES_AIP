@@ -26,7 +26,7 @@ public class TransportdienstleisterAdapter implements ITransportdienstleisterAda
 
     @Override
     public ITransportauftrag verschickeAuftrag(IAuftrag auftrag) {
-        service.path("verschickeTransportauftrag").accept(MediaType.TEXT_PLAIN).put("Auftragsnummer: " + auftrag.getAuftragsNummer());
+        service.path("verschickeAuftrag").path("HES").accept(MediaType.TEXT_PLAIN).put("Auftragsnummer: " + auftrag.getAuftragsNummer());
         return new Transportauftrag(new Date(System.currentTimeMillis()), "DHL");
     }
 

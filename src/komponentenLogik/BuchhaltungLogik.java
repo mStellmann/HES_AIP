@@ -12,13 +12,6 @@ import typClasses.RechnungTyp;
 
 import java.util.Date;
 
-/**
- * Created with IntelliJ IDEA.
- * User: aaz527
- * Date: 19.04.13
- * Time: 13:18
- * To change this template use File | Settings | File Templates.
- */
 public class BuchhaltungLogik {
     private IBankAdapter bankAdapter;
     private IAuftragsverwaltungIntern auftragsverwaltungIntern;
@@ -39,7 +32,7 @@ public class BuchhaltungLogik {
                     IZahlungseingang zahlungseingang = zahlungseingangIntegerPair.getValue0();
                     IRechnung rechnung = repository.getRechnung(zahlungseingangIntegerPair.getValue1());
 
-                    if (rechnung.getAuftrag().getAngebot().getGesamtPreis() == zahlungseingang.getBetrag()) {
+                    if (rechnung.getAuftrag().getAngebot().getGesamtPreis() <= zahlungseingang.getBetrag()) {
                         rechnung.setIstBezahlt(true);
                         repository.updateRechnung(rechnung);
                         zahlungseingang = repository.erstelleZahlungseingang(zahlungseingang.getEingangsdatum(), zahlungseingang.getBetrag());

@@ -88,6 +88,7 @@ public class SystemRunner {
         buchhaltungverwaltung.addAuftragZuRechnung(r4.getRechnungsNummer(), auf2.getAuftragsNummer());
         buchhaltungverwaltung.addAuftragZuRechnung(r5.getRechnungsNummer(), auf1.getAuftragsNummer());
 
+        // ------- wenn Jersey laeuft -----------
         auftragsverwaltung.verschickeAuftragPerTDL(auf1.getAuftragsNummer());
         auftragsverwaltung.verschickeAuftragPerTDL(auf2.getAuftragsNummer());
 
@@ -95,7 +96,7 @@ public class SystemRunner {
         for (String elem : auftragsverwaltung.getAlleVerschicktenAuftraege())
             System.out.println(elem);
 
-//        TODO --------- wenn rabbitMQ laeuft -----------
+//        --------- wenn rabbitMQ laeuft -----------
 //        buchhaltungverwaltung.getZahlungseingaengeVonAdapter();
 
 

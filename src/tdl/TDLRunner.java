@@ -4,12 +4,7 @@ import com.sun.net.httpserver.*;
 import com.sun.jersey.api.container.httpserver.HttpServerFactory;
 
 import javax.swing.*;
-import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-import javax.ws.rs.PathParam;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TDLRunner {
 

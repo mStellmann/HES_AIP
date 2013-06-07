@@ -12,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "TRANSPORTAUFTRAG")
-    public class Transportauftrag implements ITransportauftrag, Serializable {
+public class Transportauftrag implements ITransportauftrag, Serializable {
     @Id
     @GeneratedValue
     private int transportauftragsNummer;
@@ -63,13 +63,8 @@ import javax.persistence.*;
     }
 
     public String getTransportdienstleister() {
-        return  "BLA!";       //transportdienstleister;
+        return transportdienstleister;       //transportdienstleister;
     }
-
-    public String getTransportdienstleister1() {
-        return  "BLA213213213213!";       //transportdienstleister;
-    }
-
 
     public ILieferung getLieferung() {
         return lieferung;
