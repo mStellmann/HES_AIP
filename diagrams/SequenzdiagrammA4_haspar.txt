@@ -1,0 +1,16 @@
+
+loop 
+    HASPAR->RabbitMQ: publish(message: String)
+end
+
+loop 
+
+BuchhaltungLogik->+BankAdapter: getZahlungseingaengeVonAdapter(): Zahlungseingang    
+BankAdapter->+RabbitMQ: nextDelivery(): String 
+RabbitMQ-->-BankAdapter: message: String
+BankAdapter-->-BuchhaltungLogik: zEingang: Zahlungseingang
+opt Eingangsbetrag == Rechnungsbetrag
+    BuchhaltungLogik->BuchhaltungRepository: erstelleZahlungseingang(zEingang)
+note right of BuchhaltungLogik: Rechnung wird als markiert bezahlt    
+end
+end

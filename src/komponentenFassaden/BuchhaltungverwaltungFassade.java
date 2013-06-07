@@ -10,6 +10,8 @@ import komponentenInterfaces.intern.IBuchhaltungsverwaltungIntern;
 import komponentenInterfaces.intern.IPersitenz;
 import komponentenLogik.BuchhaltungLogik;
 import komponentenRepositories.BuchhaltungsverwaltungRepository;
+import typClasses.AuftragTyp;
+import typClasses.RechnungTyp;
 
 import java.util.Date;
 
@@ -29,6 +31,16 @@ public class BuchhaltungverwaltungFassade implements IBuchhaltungsverwaltungInte
         rechnung.setAuftrag(auftrag);
         repository.updateRechnung(rechnung);
         return rechnung;
+    }
+
+    @Override
+    public RechnungTyp erstelleRechnung(Date rechnungsDatum) {
+        return new RechnungTyp(repository.erstelleRechnung(rechnungsDatum));
+    }
+
+    @Override
+    public RechnungTyp addAuftragZuRechnung(int rechnungsNr, int auftragsNr) {
+        return new RechnungTyp(logik.addAuftragZuRechnung(rechnungsNr, auftragsNr));
     }
 
     @Override

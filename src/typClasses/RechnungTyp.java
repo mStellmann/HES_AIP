@@ -1,5 +1,7 @@
 package typClasses;
 
+import interfaces.IRechnung;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +27,10 @@ public class RechnungTyp implements Serializable {
         this.istBezahlt = istBezahlt;
         this.zahlungseingangList = zahlungseingangList;
         this.auftrag = auftrag;
+    }
+
+    public RechnungTyp(IRechnung rechnung) {
+        this(rechnung.getRechnungsNummer(), rechnung.getRechnungsDatum(), rechnung.isIstBezahlt(), null, null);
     }
 
     public int getRechnungsNummer() {

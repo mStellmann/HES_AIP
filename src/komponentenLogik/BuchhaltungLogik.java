@@ -1,11 +1,16 @@
 package komponentenLogik;
 
+import interfaces.IAuftrag;
 import interfaces.IRechnung;
 import interfaces.IZahlungseingang;
 import komponentenInterfaces.intern.IAuftragsverwaltungIntern;
 import komponentenInterfaces.intern.IBankAdapter;
 import komponentenRepositories.BuchhaltungsverwaltungRepository;
 import org.javatuples.Pair;
+import typClasses.AuftragTyp;
+import typClasses.RechnungTyp;
+
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -34,7 +39,6 @@ public class BuchhaltungLogik {
                     IZahlungseingang zahlungseingang = zahlungseingangIntegerPair.getValue0();
                     IRechnung rechnung = repository.getRechnung(zahlungseingangIntegerPair.getValue1());
 
-                    // TODO - Kritischer Punkt - Gesamtpreis
                     if (rechnung.getAuftrag().getAngebot().getGesamtPreis() == zahlungseingang.getBetrag()) {
                         rechnung.setIstBezahlt(true);
                         repository.updateRechnung(rechnung);
@@ -47,5 +51,13 @@ public class BuchhaltungLogik {
                 }
             }
         }.start();
+    }
+
+    public IRechnung addAuftragZuRechnung(int rechnungsNr, int auftragsNr) {
+        IRechnung rechnung = repository.getRechnung(rechnungsNr);
+        IAuftrag auftrag = auftragsverwaltungIntern.getAuftrag(auftragsNr);
+        rechnung.setAuftrag(auftrag);
+        repository.updateRechnung(rechnung);
+        return rechnung;
     }
 }
