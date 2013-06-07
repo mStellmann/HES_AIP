@@ -1,6 +1,5 @@
 package komponentenInterfaces.extern;
 
-import typClasses.AuftragTyp;
 import typClasses.RechnungTyp;
 
 import java.util.Date;

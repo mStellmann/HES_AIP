@@ -5,12 +5,10 @@ import adapter.PersistenzAdapter;
 import adapter.TransaktionsAdapter;
 import adapter.TransportdienstleisterAdapter;
 import hibernate.HibernateUtil;
-import interfaces.*;
 import komponentenFassaden.*;
 import komponentenInterfaces.intern.IPersitenz;
 import komponentenInterfaces.intern.ITransaktionsAdapter;
 import org.hibernate.Session;
-import org.joda.time.DateTime;
 import serverFassaden.CallCenterServerFassade;
 import typClasses.*;
 
@@ -19,9 +17,8 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.GregorianCalendar;
+
 
 public class SystemRunner {
     public static void main(String[] args) throws RemoteException, MalformedURLException {
