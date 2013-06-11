@@ -24,15 +24,15 @@ public class HAPSARConsole {
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         Scanner sc = new Scanner(System.in);
 
-        String message = null;
-        System.out.println("Gregstar, Mattis und Roman Co. Trademark etc. PP usw.\n");
-        System.out.println("Willkommen im Verwaltungssystem der HAPSAR!");
-        System.out.println("Wir haben keine Kosten und Muehen gescheut um dieses System ");
-        System.out.println("im hoehsten Masse benutzerfreundlich, simpel zu bedienen und schlicht zu gestalten. \n");
-        System.out.println("Wenn sie lust haben, koennen sie dieses System durch das eintippen von >exit< beenden ");
-        System.out.println("oder auch nicht - uns egal GG ");
+        String message = "";
+//        System.out.println("Gregstar, Mattis und Roman Co. Trademark etc. PP usw.\n");
+//        System.out.println("Willkommen im Verwaltungssystem der HAPSAR!");
+//        System.out.println("Wir haben keine Kosten und Muehen gescheut um dieses System ");
+//        System.out.println("im hoehsten Masse benutzerfreundlich, simpel zu bedienen und schlicht zu gestalten. \n");
+//        System.out.println("Wenn sie lust haben, koennen sie dieses System durch das eintippen von >exit< beenden ");
+//        System.out.println("oder auch nicht - uns egal GG ");
 
-        while (!message.equals("exit")) {
+        while (!message.toLowerCase().equals("exit")) {
             System.out.println("Bitte geben sie die Rechnungsnummer und den Betrag durch ein Leerzeichen getrennt ein:");
 
             message = sc.nextLine();
@@ -40,7 +40,7 @@ public class HAPSARConsole {
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
             channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
-            System.out.println(" [x] Sent '" + message + "'");
+            System.out.println("[INFO] Message published '" + message + "'");
         }
 
         channel.close();

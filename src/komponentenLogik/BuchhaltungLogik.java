@@ -30,7 +30,9 @@ public class BuchhaltungLogik {
                 while (true) {
                     Pair<IZahlungseingang, Integer> zahlungseingangIntegerPair = bankAdapter.getNaechstenZahlungseingang();
                     IZahlungseingang zahlungseingang = zahlungseingangIntegerPair.getValue0();
+
                     IRechnung rechnung = repository.getRechnung(zahlungseingangIntegerPair.getValue1());
+                    if (rechnung == null) continue;
 
                     if (rechnung.getAuftrag().getAngebot().getGesamtPreis() <= zahlungseingang.getBetrag()) {
                         rechnung.setIstBezahlt(true);

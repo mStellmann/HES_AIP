@@ -51,14 +51,6 @@ public class SystemRunner {
         Naming.rebind("//localhost:" + Registry.REGISTRY_PORT + "/" + args[0], system);
 
 
-        //        Heartbeat hbeat = new Heartbeat(args[0], Integer.parseInt(args[1]));
-//        hbeat.start();
-//        try {
-//            hbeat.join();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-
         Date d1 = new Date(System.currentTimeMillis());
         Date d2 = new Date(System.currentTimeMillis() + 86400000 * 5);
         Date d3 = new Date(System.currentTimeMillis() + 86400000 * 3);
@@ -70,8 +62,8 @@ public class SystemRunner {
         KundeTyp k1 = angebotsverwaltung.erstelleKunde("Klaus Dieter", "Hamburger Str. 1");
         KundeTyp k2 = angebotsverwaltung.erstelleKunde("Hans Peter", "Hamburger Str. 2");
 
-        AngebotTyp ang1 = angebotsverwaltung.erstelleAngebot(d1, d2, 10.99f, k1);
-        AngebotTyp ang2 = angebotsverwaltung.erstelleAngebot(d1, d2, 7.99f, k2);
+        AngebotTyp ang1 = angebotsverwaltung.erstelleAngebot(d1, d2, 10f, k1);
+        AngebotTyp ang2 = angebotsverwaltung.erstelleAngebot(d1, d2, 7f, k2);
 
         AuftragTyp auf1 = auftragsverwaltung.erstelleAuftrag(d3, ang1);
         AuftragTyp auf2 = auftragsverwaltung.erstelleAuftrag(d3, ang2);
@@ -89,16 +81,23 @@ public class SystemRunner {
         buchhaltungverwaltung.addAuftragZuRechnung(r5.getRechnungsNummer(), auf1.getAuftragsNummer());
 
         // ------- wenn Jersey laeuft -----------
-        auftragsverwaltung.verschickeAuftragPerTDL(auf1.getAuftragsNummer());
-        auftragsverwaltung.verschickeAuftragPerTDL(auf2.getAuftragsNummer());
-
-        System.out.println("[INFO] - Ausgabe der verschickten Auftraege:");
-        for (String elem : auftragsverwaltung.getAlleVerschicktenAuftraege())
-            System.out.println(elem);
+//        auftragsverwaltung.verschickeAuftragPerTDL(auf1.getAuftragsNummer());
+//        auftragsverwaltung.verschickeAuftragPerTDL(auf2.getAuftragsNummer());
+//
+//        System.out.println("[INFO] - Ausgabe der verschickten Auftraege:");
+//        for (String elem : auftragsverwaltung.getAlleVerschicktenAuftraege())
+//            System.out.println(elem);
 
 //        --------- wenn rabbitMQ laeuft -----------
-//        buchhaltungverwaltung.getZahlungseingaengeVonAdapter();
+        buchhaltungverwaltung.getZahlungseingaengeVonAdapter();
 
+        Heartbeat hbeat = new Heartbeat(args[0], Integer.parseInt(args[1]));
+        hbeat.start();
+        try {
+            hbeat.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         session.close();
     }

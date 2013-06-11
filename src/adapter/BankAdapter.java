@@ -46,11 +46,12 @@ public class BankAdapter implements IBankAdapter {
         }
         String message = new String(delivery.getBody());
 
-        System.out.println(" [x] Received '" + message + "'");
+        System.out.println("[INFO] Message received '" + message + "'");
 
         String[] messageSplit = message.split(" ");
-        int rechnungsNummer = Integer.getInteger(messageSplit[0]);
-        int betrag = Integer.getInteger(messageSplit[1]);
+
+        int rechnungsNummer = Integer.parseInt(messageSplit[0]);
+        float betrag = Float.parseFloat(messageSplit[1]);
         IZahlungseingang zahlungseingang = new Zahlungseingang(new Date(), betrag);
 
         return Pair.with(zahlungseingang, rechnungsNummer);
